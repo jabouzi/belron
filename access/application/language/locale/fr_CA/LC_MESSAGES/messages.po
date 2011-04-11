@@ -1,0 +1,318 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Belron shopping cart\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-07 09:47-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Skander Jabouzi <jabouzi@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin_index.php:7
+msgid "Access to your ressources"
+msgstr "Accès à vos ressources"
+
+#: categories.php:5
+msgid "Select a category"
+msgstr "Sélectionne une catégorie"
+
+#: confirm.php:7
+msgid "Order confirmation"
+msgstr "Confirmer la commande"
+
+#: confirm.php:20
+#: order.php:20
+#: order_approved.php:18
+#: products.php:18
+msgid "More info"
+msgstr "Plus d'infos"
+
+#: confirm.php:23
+#: order.php:23
+#: order_approved.php:21
+msgid "Quantity"
+msgstr "Quantité"
+
+#: confirm.php:36
+#: order.php:36
+#: order_approved.php:32
+msgid "Store address"
+msgstr "Adresse du magasin"
+
+#: confirm.php:40
+#: order.php:40
+msgid "Address"
+msgstr "Adresse"
+
+#: confirm.php:41
+#: order.php:41
+#: order_approved.php:37
+msgid "City"
+msgstr "Cité"
+
+#: confirm.php:42
+#: order.php:42
+#: order_approved.php:38
+msgid "Postal Code"
+msgstr "Code postale"
+
+#: confirm.php:43
+#: order.php:43
+#: order_approved.php:39
+msgid "Province"
+msgstr "Province"
+
+#: confirm.php:44
+#: order.php:44
+#: order_approved.php:40
+msgid "Tel"
+msgstr "Tél"
+
+#: confirm.php:45
+#: order.php:45
+#: order_approved.php:41
+msgid "Fax"
+msgstr "Fax"
+
+#: confirm.php:48
+msgid "Confirm the order"
+msgstr "Confirmer la commande"
+
+#: dashboard.php:5
+msgid "Order preview"
+msgstr "Aperçu de la commande"
+
+#: dashboard.php:9
+msgid "Managers"
+msgstr "Gérant"
+
+#: dashboard.php:12
+msgid "Select a manager"
+msgstr "Sélectionner un gérant"
+
+#: dashboard.php:25
+#: dashboard.php:63
+#: orders.php:20
+#: storelogin.php:12
+msgid "Store"
+msgstr "Magasin"
+
+#: dashboard.php:26
+#: dashboard.php:64
+msgid "Order"
+msgstr "Commande"
+
+#: dashboard.php:27
+#: dashboard.php:65
+#: orders.php:23
+msgid "Status"
+msgstr "Statut"
+
+#: dashboard.php:30
+#: dashboard.php:68
+#: orders.php:29
+msgid "approved"
+msgstr "Approuvée"
+
+#: dashboard.php:32
+#: dashboard.php:70
+#: orders.php:31
+msgid "not approved"
+msgstr "non approuvée"
+
+#: dashboard.php:47
+msgid "Stores"
+msgstr "Magasins"
+
+#: dashboard.php:50
+msgid "Select an order"
+msgstr "Sélectionner une commande"
+
+#: footer.php:3
+msgid "copyright"
+msgstr "© Belron Canada Inc. 2009; BELRON®, BELRON® CANADA, LEBEAU VITRES D'AUTOS®, DURO® , SPEEDY GLASS®, STANDARD AUTOGLASS® et APPLE AUTO GLASS® sont des marques déposées de Belron S.A. et de ses entités affiliées."
+
+#: header.php:29
+msgid "Printed orders"
+msgstr "Commandes imprimées"
+
+#: header.php:31
+msgid "Logout"
+msgstr "Se deconnecter"
+
+#: header.php:34
+msgid "English"
+msgstr "Anglais"
+
+#: header.php:35
+msgid "French"
+msgstr "Français"
+
+#: order.php:7
+msgid "Approve the order"
+msgstr "Approuver la commande"
+
+#: order.php:50
+msgid "Approve"
+msgstr "Approuver"
+
+#: order_approved.php:5
+#: products.php:5
+msgid "Add a product"
+msgstr "Ajouter un produit"
+
+#: order_approved.php:36
+msgid "Adress"
+msgstr "Adresse"
+
+#: orders.php:5
+msgid "Orders list"
+msgstr "Liste des commandes"
+
+#: orders.php:10
+#: orders.php:48
+msgid "Previous"
+msgstr "Précédent"
+
+#: orders.php:14
+#: orders.php:52
+msgid "Next"
+msgstr "Suivant"
+
+#: orders.php:21
+msgid "Date"
+msgstr "Date"
+
+#: orders.php:22
+msgid "Number"
+msgstr "Numéro"
+
+#: orders.php:24
+msgid "Ordered by"
+msgstr "Commandé par"
+
+#: orders.php:25
+msgid "Actions"
+msgstr "Actions"
+
+#: orders.php:41
+msgid "Details"
+msgstr "Détails"
+
+#: product.php:18
+#: products.php:22
+msgid "Add to cart"
+msgstr "Ajouter au panier"
+
+#: product.php:26
+#: products.php:31
+msgid "Shopping cart"
+msgstr "Panier d'achat"
+
+#: product.php:31
+#: products.php:36
+msgid "Order now"
+msgstr "Commander maintenant"
+
+#: storelogin.php:5
+#: userlogin.php:5
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: storelogin.php:9
+#: userlogin.php:9
+msgid "Intoduction"
+msgstr "Lebeau Vitres d'autosMD est le chef de file québécois de l'industrie de la vitre d'auto. Fondée en 1947, l'entreprise compte aujourd'hui 63 centres de services sur le territoire québécois et sert plus de 100 000 automobilistes chaque année. LebeauMC répare et remplace plus de pare-brise que quiconque au Québec et jouit d'une très grande notoriété. L'entreprise s'est imposée au fil des ans par la qualité de ses procédés, la compétence de son équipe et la rapidité de son service."
+
+#: storelogin.php:17
+msgid "Select a store"
+msgstr "Sélectionner un magasin"
+
+#: storelogin.php:30
+#: userlogin.php:28
+msgid "Submit"
+msgstr "Soumettre"
+
+#: storelogin.php:35
+msgid "Admin login"
+msgstr "Connexion de l'admin"
+
+#: userlogin.php:19
+msgid "Admin"
+msgstr "Admin"
+
+#: userlogin.php:30
+msgid "Store login"
+msgstr ""
+
+#: confirm.php:33
+msgid "Remove"
+msgstr "Supprimmer"
+
+#: confirm.php:46
+msgid "Get shipping rates"
+msgstr "Afficher les frais de livraison"
+
+msgid "Approval date"
+msgstr "Date d'approbation"
+
+msgid "Reservation date"
+msgstr "Date de réservation"
+
+msgid "Total in"
+msgstr "Total en"
+
+msgid "Cancelled"
+msgstr "Annulée"
+
+msgid "Update order"
+msgstr "Mettre à jour la commande"
+
+msgid "Select quantity"
+msgstr "Choisie une quantité"
+
+msgid "This order has been processed with success"
+msgstr "La commande a été traitée avec succès"
+
+msgid "Your order is waiting for appoval by"
+msgstr "Votre commande est maintenant en attente de confirmation par"
+
+msgid "Order details"
+msgstr "Détails de la commande"
+
+msgid "History"
+msgstr "Historique"
+
+msgid "Select a rate"
+msgstr "Sélectionner une livraison"
+
+msgid "My order"
+msgstr "Ma commande"
+
+msgid "Price"
+msgstr "Prix"
+
+msgid "Username"
+msgstr "nom d'usager"
+
+msgid "Password"
+msgstr "Mot de passe"
+
+msgid "Home"
+msgstr "Accueil"
+
+msgid "Page number"
+msgstr "Numéro de page"
+
+msgid "Sort by"
+msgstr "Trier par"
+
+msgid "Sort order"
+msgstr "Ordre du tri"
+
+msgid "Approved by"
+msgstr "Approuvée par"
+

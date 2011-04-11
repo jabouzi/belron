@@ -1,0 +1,308 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Belron products\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-04-04 09:39-0400\n"
+"PO-Revision-Date: 2011-04-04 11:53-0500\n"
+"Last-Translator: Skander Jabouzi <jabouzi@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: add-confirm.php:5
+#: update-confirm.php:5
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#: add-confirm.php:8
+msgid "The product info has been added with success"
+msgstr "Les informations du produit ont été ajoutées avec succès"
+
+#: add-product.php:5
+#: add-product.php:62
+msgid "Add product"
+msgstr "Ajouter un produit"
+
+#: add-product.php:11
+#: edit-product.php:11
+#: products-index.php:81
+msgid "product id"
+msgstr "Id du produit"
+
+#: add-product.php:12
+#: edit-product.php:12
+#: products-index.php:82
+msgid "Group id"
+msgstr "Id du groupe"
+
+#: add-product.php:13
+#: edit-product.php:13
+#: products-index.php:83
+msgid "Category"
+msgstr "Catégorie"
+
+#: add-product.php:20
+#: edit-product.php:24
+#: products-index.php:84
+msgid "Name"
+msgstr "Nom"
+
+#: add-product.php:21
+#: edit-product.php:25
+#: products-index.php:85
+msgid "Language"
+msgstr "Langue"
+
+#: add-product.php:32
+#: edit-product.php:36
+#: products-index.php:86
+msgid "Description"
+msgstr "Description"
+
+#: add-product.php:33
+#: edit-product.php:37
+#: products-index.php:87
+msgid "Dimension"
+msgstr "Dimension"
+
+#: add-product.php:34
+#: edit-product.php:38
+#: products-index.php:88
+msgid "Impression materiel"
+msgstr "Matériel d'impression"
+
+#: add-product.php:35
+#: edit-product.php:39
+msgid "Prix 1 vinyle opaque"
+msgstr ""
+
+#: add-product.php:36
+#: edit-product.php:40
+msgid "Prix 2 vinyles opaque"
+msgstr ""
+
+#: add-product.php:37
+#: edit-product.php:41
+msgid "Prix 3 vinyles opaque"
+msgstr ""
+
+#: add-product.php:38
+#: edit-product.php:42
+msgid "Prix 4 vinyles opaque"
+msgstr ""
+
+#: add-product.php:39
+#: edit-product.php:43
+msgid "Prix 5 vinyles opaque"
+msgstr ""
+
+#: add-product.php:40
+#: edit-product.php:44
+msgid "Prix 1 papier photo"
+msgstr ""
+
+#: add-product.php:41
+#: edit-product.php:45
+msgid "Prix 2 papiers photo"
+msgstr ""
+
+#: add-product.php:42
+#: edit-product.php:46
+msgid "Prix 3 papiers photo"
+msgstr ""
+
+#: add-product.php:43
+#: edit-product.php:47
+msgid "Prix 4 papiers photo"
+msgstr ""
+
+#: add-product.php:44
+#: edit-product.php:48
+msgid "Prix 5 papiers photo"
+msgstr ""
+
+#: add-product.php:45
+#: edit-product.php:49
+msgid "Prix pour 1"
+msgstr ""
+
+#: add-product.php:46
+#: edit-product.php:50
+msgid "Prix pour 2"
+msgstr ""
+
+#: add-product.php:47
+#: edit-product.php:51
+msgid "Prix pour 3"
+msgstr ""
+
+#: add-product.php:48
+#: edit-product.php:52
+msgid "Prix pour 4"
+msgstr ""
+
+#: add-product.php:49
+#: edit-product.php:53
+msgid "Prix pour 5"
+msgstr ""
+
+#: add-product.php:50
+#: edit-product.php:54
+msgid "Prix pour 20"
+msgstr ""
+
+#: add-product.php:51
+#: edit-product.php:55
+msgid "Prix pour 50"
+msgstr ""
+
+#: add-product.php:52
+#: edit-product.php:56
+msgid "Prix pour 100"
+msgstr ""
+
+#: add-product.php:53
+#: edit-product.php:57
+msgid "Prix pour 150"
+msgstr ""
+
+#: add-product.php:54
+#: edit-product.php:58
+msgid "Prix pour 250"
+msgstr ""
+
+#: add-product.php:55
+#: edit-product.php:59
+msgid "Prix pour 500"
+msgstr ""
+
+#: add-product.php:56
+#: edit-product.php:60
+msgid "Prix pour 1000"
+msgstr ""
+
+#: edit-product.php:5
+msgid "Edit product"
+msgstr "Modifier un produit"
+
+#: edit-product.php:65
+msgid "Update product"
+msgstr "Mettre à  jour un produit"
+
+#: footer.php:3
+msgid "copyright"
+msgstr "© Belron Canada Inc. 2009; BELRON®, BELRON® CANADA, LEBEAU VITRES D'AUTOS®, DURO® , SPEEDY GLASS®, STANDARD AUTOGLASS® et APPLE AUTO GLASS® sont des marques déposées de Belron S.A. et de ses entités affiliées"
+
+#: footer.php:6
+msgid "Login form"
+msgstr "Formulaire de connexion"
+
+#: footer.php:10
+msgid "To close it click a button or use the ESC key."
+msgstr "Pour fermer cliquer sur le bouton Échap"
+
+#: footer.php:15
+msgid "Username"
+msgstr "Nom d'usager"
+
+#: footer.php:16
+msgid "Password"
+msgstr "Mot de passe"
+
+#: footer.php:18
+#: header.php:27
+msgid "Login"
+msgstr "Se connecter"
+
+#: footer.php:19
+msgid "Cancel"
+msgstr "Annuler"
+
+#: header.php:30
+msgid "Logout"
+msgstr "Quitter"
+
+#: header.php:31
+msgid "Add"
+msgstr "Ajouter"
+
+#: header.php:32
+msgid "List"
+msgstr "Liste"
+
+#: header.php:36
+msgid "English"
+msgstr "Anglais"
+
+#: header.php:37
+msgid "French"
+msgstr "Français"
+
+#: page-index.php:5
+msgid "Speedy ordering website"
+msgstr "Site web de commande Lebeau"
+
+#: products-index.php:7
+msgid "products list"
+msgstr "Liste des produits"
+
+#: products-index.php:12
+msgid "Page number"
+msgstr "Nombre par affichage"
+
+#: products-index.php:26
+msgid "Sort by"
+msgstr "Trier par"
+
+#: products-index.php:38
+msgid "Sort product"
+msgstr "Trier produit"
+
+#: products-index.php:48
+msgid "DESC"
+msgstr ""
+
+#: products-index.php:49
+msgid "ASC"
+msgstr ""
+
+#: products-index.php:52
+msgid "Display count"
+msgstr "Nombre par affichage"
+
+#: products-index.php:69
+#: products-index.php:116
+msgid "Previous"
+msgstr "Précédent"
+
+#: products-index.php:73
+#: products-index.php:120
+msgid "Next"
+msgstr "Suivant"
+
+#: products-index.php:80
+msgid "Remove"
+msgstr "Supprimer"
+
+#: products-index.php:106
+msgid "Edit"
+msgstr "Modifier"
+
+#: products-index.php:112
+msgid "Remove products"
+msgstr "Supprimer les produits"
+
+#: update-confirm.php:8
+msgid "The user info has been updated with success"
+msgstr "Les informations du produit ont été mises à  jour avec succès"
+
+msgid "Home"
+msgstr "Accueil"
+

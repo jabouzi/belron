@@ -1,0 +1,174 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-31 10:01-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: add-confirm.php:5 update-confirm.php:5
+msgid "Confirmation"
+msgstr ""
+
+#: add-confirm.php:8
+msgid "The user info has been added with success"
+msgstr ""
+
+#: add-user.php:5 add-user.php:44
+msgid "Add user"
+msgstr ""
+
+#: add-user.php:13 edit-user.php:13 users-index.php:66
+msgid "Position"
+msgstr ""
+
+#: add-user.php:21 edit-user.php:27
+msgid "Last name"
+msgstr ""
+
+#: add-user.php:22 edit-user.php:28
+msgid "First name"
+msgstr ""
+
+#: add-user.php:23 edit-user.php:29 users-index.php:69
+msgid "Address"
+msgstr ""
+
+#: add-user.php:24 edit-user.php:30
+msgid "City"
+msgstr ""
+
+#: add-user.php:25 edit-user.php:31 users-index.php:71
+msgid "Province"
+msgstr ""
+
+#: add-user.php:35 edit-user.php:41 users-index.php:72
+msgid "Postal code"
+msgstr ""
+
+#: add-user.php:37 edit-user.php:43 users-index.php:73
+msgid "Phone"
+msgstr ""
+
+#: add-user.php:40 edit-user.php:46 users-index.php:74
+msgid "Email"
+msgstr ""
+
+#: add-user.php:41 edit-user.php:47
+msgid "Password"
+msgstr ""
+
+#: edit-user.php:5
+msgid "Edit user"
+msgstr ""
+
+#: edit-user.php:51
+msgid "Update user"
+msgstr ""
+
+#: footer.php:3
+msgid "copyright"
+msgstr ""
+
+#: header.php:24
+msgid "Add"
+msgstr ""
+
+#: header.php:25
+msgid "List"
+msgstr ""
+
+#: header.php:28
+msgid "English"
+msgstr ""
+
+#: header.php:29
+msgid "French"
+msgstr ""
+
+#: update-confirm.php:8
+msgid "The user info has been updated with success"
+msgstr ""
+
+#: users-index.php:5
+msgid "users list"
+msgstr ""
+
+#: users-index.php:10
+msgid "Page number"
+msgstr ""
+
+#: users-index.php:24
+msgid "Sort by"
+msgstr ""
+
+#: users-index.php:36
+msgid "Sort user"
+msgstr ""
+
+#: users-index.php:46
+msgid "DESC"
+msgstr ""
+
+#: users-index.php:47
+msgid "ASC"
+msgstr ""
+
+#: users-index.php:55 users-index.php:111
+msgid "Previous"
+msgstr ""
+
+#: users-index.php:59 users-index.php:115
+msgid "Next"
+msgstr ""
+
+#: users-index.php:65
+msgid "Remove"
+msgstr ""
+
+#: users-index.php:67
+msgid "Lastname"
+msgstr ""
+
+#: users-index.php:68
+msgid "Firstname"
+msgstr ""
+
+#: users-index.php:70
+msgid "Town"
+msgstr ""
+
+#: users-index.php:75
+msgid "Action"
+msgstr ""
+
+#: users-index.php:82
+msgid "Cancelled"
+msgstr ""
+
+#: users-index.php:84
+msgid "approved"
+msgstr ""
+
+#: users-index.php:86
+msgid "not approved"
+msgstr ""
+
+#: users-index.php:102
+msgid "Edit"
+msgstr ""
+
+#: users-index.php:107
+msgid "Remove users"
+msgstr ""

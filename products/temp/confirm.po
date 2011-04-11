@@ -1,0 +1,57 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Belron shopping cart\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-07 09:47-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Skander Jabouzi <jabouzi@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: confirm.php:7
+msgid "Order confirmation"
+msgstr "Confirmer la commande"
+
+#: confirm.php:20
+msgid "More info"
+msgstr "Plus d'infos"
+
+#: confirm.php:23
+msgid "Quantity"
+msgstr "Quantité"
+
+#: confirm.php:36
+msgid "Store address"
+msgstr "Adresse du magasin"
+
+#: confirm.php:40
+msgid "Address"
+msgstr "Adresse"
+
+#: confirm.php:41
+msgid "City"
+msgstr "Cité"
+
+#: confirm.php:42
+msgid "Postal Code"
+msgstr "Code postale"
+
+#: confirm.php:43
+msgid "Province"
+msgstr "Province"
+
+#: confirm.php:44
+msgid "Tel"
+msgstr "Tél"
+
+#: confirm.php:45
+msgid "Fax"
+msgstr "Fax"
+
+#: confirm.php:48
+msgid "Confirm the order"
+msgstr "Confirmer la commande"
+

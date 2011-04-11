@@ -1,0 +1,11 @@
+AddType application/x-httpd-php5 .php
+
+DirectoryIndex index.php
+
+RewriteEngine on
+RewriteBase /belron_pp/users
+Order allow,deny
+Allow from all
+
+RewriteCond $1 !^(index\.php|img|public|bin)
+RewriteRule ^(.*)$ index.php?__dingo_page=$1 [L]

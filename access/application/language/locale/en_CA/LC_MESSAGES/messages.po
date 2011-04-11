@@ -1,0 +1,318 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Belron shopping cart\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-01-07 09:47-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Skander Jabouzi <jabouzi@gmail.com>\n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: admin_index.php:7
+msgid "Access to your ressources"
+msgstr ""
+
+#: categories.php:5
+msgid "Select a category"
+msgstr ""
+
+#: confirm.php:7
+msgid "Order confirmation"
+msgstr ""
+
+#: confirm.php:20
+#: order.php:20
+#: order_approved.php:18
+#: products.php:18
+msgid "More info"
+msgstr ""
+
+#: confirm.php:23
+#: order.php:23
+#: order_approved.php:21
+msgid "Quantity"
+msgstr ""
+
+#: confirm.php:36
+#: order.php:36
+#: order_approved.php:32
+msgid "Store address"
+msgstr ""
+
+#: confirm.php:40
+#: order.php:40
+msgid "Address"
+msgstr ""
+
+#: confirm.php:41
+#: order.php:41
+#: order_approved.php:37
+msgid "City"
+msgstr ""
+
+#: confirm.php:42
+#: order.php:42
+#: order_approved.php:38
+msgid "Postal Code"
+msgstr ""
+
+#: confirm.php:43
+#: order.php:43
+#: order_approved.php:39
+msgid "Province"
+msgstr ""
+
+#: confirm.php:44
+#: order.php:44
+#: order_approved.php:40
+msgid "Tel"
+msgstr ""
+
+#: confirm.php:45
+#: order.php:45
+#: order_approved.php:41
+msgid "Fax"
+msgstr ""
+
+#: confirm.php:48
+msgid "Confirm the order"
+msgstr ""
+
+#: dashboard.php:5
+msgid "Order preview"
+msgstr ""
+
+#: dashboard.php:9
+msgid "Managers"
+msgstr ""
+
+#: dashboard.php:12
+msgid "Select a manager"
+msgstr ""
+
+#: dashboard.php:25
+#: dashboard.php:63
+#: orders.php:20
+#: storelogin.php:12
+msgid "Store"
+msgstr ""
+
+#: dashboard.php:26
+#: dashboard.php:64
+msgid "Order"
+msgstr ""
+
+#: dashboard.php:27
+#: dashboard.php:65
+#: orders.php:23
+msgid "Status"
+msgstr ""
+
+#: dashboard.php:30
+#: dashboard.php:68
+#: orders.php:29
+msgid "approved"
+msgstr ""
+
+#: dashboard.php:32
+#: dashboard.php:70
+#: orders.php:31
+msgid "not approved"
+msgstr ""
+
+#: dashboard.php:47
+msgid "Stores"
+msgstr ""
+
+#: dashboard.php:50
+msgid "Select an order"
+msgstr ""
+
+#: footer.php:3
+msgid "copyright"
+msgstr "© Belron Canada Inc. 2009; BELRON®, BELRON® CANADA, LEBEAU VITRES D'AUTOS®, DURO® , SPEEDY GLASS®, STANDARD AUTOGLASS® et APPLE AUTO GLASS® sont des marques déposées de Belron S.A. et de ses entités affiliées."
+
+#: header.php:29
+msgid "Printed orders"
+msgstr ""
+
+#: header.php:31
+msgid "Logout"
+msgstr ""
+
+#: header.php:34
+msgid "English"
+msgstr ""
+
+#: header.php:35
+msgid "French"
+msgstr ""
+
+#: order.php:7
+msgid "Approve the order"
+msgstr ""
+
+#: order.php:50
+msgid "Approve"
+msgstr ""
+
+#: order_approved.php:5
+#: products.php:5
+msgid "Add a product"
+msgstr ""
+
+#: order_approved.php:36
+msgid "Adress"
+msgstr ""
+
+#: orders.php:5
+msgid "Orders list"
+msgstr ""
+
+#: orders.php:10
+#: orders.php:48
+msgid "Previous"
+msgstr ""
+
+#: orders.php:14
+#: orders.php:52
+msgid "Next"
+msgstr ""
+
+#: orders.php:21
+msgid "Date"
+msgstr ""
+
+#: orders.php:22
+msgid "Number"
+msgstr ""
+
+#: orders.php:24
+msgid "Ordered by"
+msgstr ""
+
+#: orders.php:25
+msgid "Actions"
+msgstr ""
+
+#: orders.php:41
+msgid "Details"
+msgstr ""
+
+#: product.php:18
+#: products.php:22
+msgid "Add to cart"
+msgstr ""
+
+#: product.php:26
+#: products.php:31
+msgid "Shopping cart"
+msgstr ""
+
+#: product.php:31
+#: products.php:36
+msgid "Order now"
+msgstr ""
+
+#: storelogin.php:5
+#: userlogin.php:5
+msgid "Welcome"
+msgstr ""
+
+#: storelogin.php:9
+#: userlogin.php:9
+msgid "Intoduction"
+msgstr "Lebeau Vitres d'autosMD est le chef de file québécois de l'industrie de la vitre d'auto. Fondée en 1947, l'entreprise compte aujourd'hui 63 centres de services sur le territoire québécois et sert plus de 100 000 automobilistes chaque année. LebeauMC répare et remplace plus de pare-brise que quiconque au Québec et jouit d'une très grande notoriété. L'entreprise s'est imposée au fil des ans par la qualité de ses procédés, la compétence de son équipe et la rapidité de son service."
+
+#: storelogin.php:17
+msgid "Select a store"
+msgstr ""
+
+#: storelogin.php:30
+#: userlogin.php:28
+msgid "Submit"
+msgstr ""
+
+#: storelogin.php:35
+msgid "Admin login"
+msgstr ""
+
+#: userlogin.php:19
+msgid "Admin"
+msgstr ""
+
+#: userlogin.php:30
+msgid "Store login"
+msgstr ""
+
+#: confirm.php:33
+msgid "remove"
+msgstr ""
+
+#: confirm.php:46
+msgid "Get shipping rates"
+msgstr ""
+
+msgid "Approval date"
+msgstr ""
+
+msgid "Reservation date"
+msgstr ""
+
+msgid "Total in"
+msgstr ""
+
+msgid "Cancelled"
+msgstr ""
+
+msgid "Update order"
+msgstr ""
+
+msgid "Select quantity"
+msgstr ""
+
+msgid "This order has been processed with success"
+msgstr ""
+
+msgid "Your order is waiting for appoval by"
+msgstr ""
+
+msgid "Order details"
+msgstr ""
+
+msgid "History"
+msgstr ""
+
+msgid "Select a rate"
+msgstr ""
+
+msgid "My order"
+msgstr ""
+
+msgid "Price"
+msgstr ""
+
+msgid "Username"
+msgstr ""
+
+msgid "Password"
+msgstr ""
+
+msgid "Home"
+msgstr ""
+
+msgid "Page number"
+msgstr ""
+
+msgid "Sort by"
+msgstr ""
+
+msgid "Sort order"
+msgstr ""
+
+msgid "Approved by"
+msgstr ""
+
