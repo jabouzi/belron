@@ -12,6 +12,9 @@
 // Application's Base URL
 define('BASE_URL','http://php2.groupimage.net/belron_pp/access/');
 
+// Application's Store URL
+define('STORE_URL','http://php2.groupimage.net/belron_pp/stores/');
+
 // Application's Document root
 define('ROOT','/belron_pp/access/');
 

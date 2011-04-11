@@ -18,7 +18,13 @@
 <body>
 <div id="header_full">
     <div id="header_960">
-        <div id="logo"><img src="<?=url::base()?>public/styles/images/logo.gif" alt="" border="0" /></div>
+        <? if (session::get('store_type') == 'lebeau'):?>
+            <div id="logo"><img src="<?=url::base()?>public/styles/images/Lebeau_Logo.gif" alt="" border="0" /></div>
+        <? elseif (session::get('store_type') == 'speedy'):?>
+            <div id="logo"><img src="<?=url::base()?>public/styles/images/Logo_Speedy.gif" alt="" border="0" /></div>
+        <?else:?>
+            <div id="logo"><img src="<?=url::base()?>public/styles/images/logo.gif" alt="" border="0" /></div>
+        <?endif?>
         
         <div id="header_menu">
             <? $user = session::get('user'); ?>
@@ -27,6 +33,7 @@
             <? if ($user):?>
                 <? if ($usertype == 1):?>
                     <a href="<?=url::page('admin/admin_index')?>"><?=gettext("Home")?></a>
+                    <a href="<?=STORE_URL?>"><?=gettext("Admin")?></a>
                 <? elseif ($usertype == 2):?>
                     <a href="<?=url::page('orders/lists/0')?>"><?=gettext("Home")?></a>
                 <? else:?>                    

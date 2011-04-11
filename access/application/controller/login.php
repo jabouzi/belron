@@ -78,7 +78,12 @@ class login_controller
         if (empty($this->errors))
         {
             session::set('lang','fr');
-            if (input::post('store_name') == 'Speedy Glass') session::set('lang','en');
+            session::set('store_type','lebeau');
+            if (input::post('store_name') == 'Speedy Glass')
+            {
+                session::set('lang','en');
+                session::set('store_type','speedy');
+            }
             session::set('user_type',3);
             session::set('user',input::post('password'));
             session::set('wishlist',$this->has_wishlist());
@@ -128,6 +133,7 @@ class login_controller
         session::delete('user');
         session::delete('user_type');
         session::delete('wishlist');
+        session::delete('store_type');
         url::redirect('login');
     }
     
