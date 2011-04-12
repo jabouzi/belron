@@ -53,7 +53,7 @@ class usersmanager_controller
         header('location: '.HOME_URL);
     }
     
-    public function lists($current_page = 1, $number = 10, $sort = 0, $type = 1)
+    public function lists($current_page = 1, $number = 'all', $sort = 0, $type = 1)
     {       
         if (is_logged(session::get('user')))
         {

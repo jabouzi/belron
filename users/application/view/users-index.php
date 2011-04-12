@@ -75,7 +75,6 @@
         <table id="users_table" width="100%" border="0" cellspacing="5" cellpadding="2" class="tablesorter table_commande">
             <thead>
                 <tr>
-                    <th style="cursor:pointer;" scope="col"><?=gettext("Remove")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Position")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Lastname")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Firstname")?></th>
@@ -94,7 +93,6 @@
                     <?$tr_class = 'odd'?>
                         <?if ($key % 2) $tr_class = 'even'?>
                     <tr class="<?=$tr_class?>">
-                        <td><input type="checkbox" value="<?=$user->id?>" id="checkbox_<?=$user->id?>" name="checkbox_supprim[]" /></td>
                         <td><?=utf8_encode($user->position)?></td>
                         <td><?=utf8_encode($user->family_name)?></td>
                         <td><?=utf8_encode($user->first_name)?></td>

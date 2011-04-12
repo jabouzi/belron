@@ -77,7 +77,6 @@
         <table id="stores_table" width="100%" border="0" cellspacing="5" cellpadding="2" class="tablesorter table_commande">
             <thead>
                 <tr>
-                    <th style="cursor:pointer;" scope="col"><?=gettext("Remove")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Store id")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Name")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Address")?></th>
@@ -96,7 +95,6 @@
                     <?$tr_class = 'odd'?>
                         <?if ($key % 2) $tr_class = 'even'?>
                     <tr class="<?=$tr_class?>">
-                        <td><input type="checkbox" value="<?=$store->id?>" id="checkbox_<?=$store->id?>" name="checkbox_supprim[]" /></td>
                         <td><?=utf8_encode($store->store_id)?></td>
                         <td><?=utf8_encode($store->name)?></td>
                         <td><?=utf8_encode($store->address)?></td>                    

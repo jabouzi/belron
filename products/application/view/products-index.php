@@ -75,9 +75,7 @@
         <table id="products_table" width="100%" border="0" cellspacing="5" cellpadding="2" class="tablesorter table_commande">
             <thead>
                 <tr>
-                    <th style="cursor:pointer;" scope="col"><?=gettext("Remove")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("product id")?></th>
-                    <th style="cursor:pointer;" scope="col"><?=gettext("Group id")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Category")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Name")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Language")?></th>
@@ -92,9 +90,7 @@
                     <?$tr_class = 'odd'?>
                         <?if ($key % 2) $tr_class = 'even'?>
                     <tr class="<?=$tr_class?>">
-                        <td><input type="checkbox" value="<?=$product->id?>" id="checkbox_<?=$product->id?>" name="checkbox_supprim[]" /></td>
                         <td><?=utf8_encode($product->id)?></td>
-                        <td><?=utf8_encode($product->group_id)?></td>
                         <td><?=utf8_encode($categories[$product->category_id][session::get('lang')])?></td>           
                         <td><?=utf8_encode($product->name)?></td>               
                         <td><?=utf8_encode($product->lang)?></td>               
