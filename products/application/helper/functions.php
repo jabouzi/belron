@@ -20,13 +20,15 @@ function get_sort_items()
     return array
     (
         'Product id',
-        'Group id', 
         'Category id',  
+        'Brand',
         'Name', 
         'Language', 
         'Description',
         'Dimension', 
         'Impression materiel',
+        'Date created',
+        'Date modified',
     );
 }
 
@@ -35,13 +37,15 @@ function get_sort_rows()
      return array
      (
         'id',
-        'group_id', 
-        'category_id',  
+        'category_id', 
+        'brand', 
         'name', 
         'lang', 
         'description',
         'dimension', 
         'impression_materiel',
+        'date_created',
+        'date_modif',
     );
 }
 

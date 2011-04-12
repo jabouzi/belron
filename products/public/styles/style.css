@@ -661,7 +661,7 @@ td.total {
 .modal {
     background-color:#fff;
     display:none;
-    width:350px;
+    width:450px;
     padding:15px;
     text-align:left;
     border:2px solid #333;
@@ -678,8 +678,14 @@ td.total {
     margin:0px;
     padding:10px 0 10px 45px;
     border-bottom:1px solid #333;
-    font-size:20px;
+    font-size:20px;    
 }
+
+#edit_product div.Produit_liste_item {padding-bottom: 5px;}
+#edit_product div.Produit_liste_item label {display: block; float: left; width: 150px; text-align: right; margin-right: 10px;}
+#edit_product div.Produit_liste_item input, #edit_product div.Produit_liste_item select {padding: 5px;}
+#edit_product input.commande {margin: 10px 0 0 100px;}
+
 
 table.tablesorter tbody tr.odd td {
 	background-color:#F0F0F6;

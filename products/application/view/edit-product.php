@@ -7,6 +7,9 @@
         <div id="error">               
         </div>   
         <form id="edit_product" method="post" action="<?=url::page("productsmanager/update/"); ?>">
+            <?$checked = ""; if ($category[0]->active == '1') :?>
+                <?$checked = "checked"?>
+            <?endif?>
             <div>            
                 <div class="Produit_liste_item"><label><?=gettext("Category")?> : </label><input type='text' id='category' name='category'  value="<?=$categories[$product[0]->category_id][session::get('lang')]?>"  readonly /></div>                    
                 <div class="Produit_liste_item"><label><?=gettext("Brand")?> : </label><input type='text' id='brand' name='brand'  value="<?=$product[0]->brand?>"  readonly /></div>                    
@@ -38,6 +41,8 @@
                 <div class="Produit_liste_item"><label><?=gettext("Prix pour 250")?> : </label><input type='text' id='prix_pour_250' name='prix_pour_250' value="<?=$product[0]->prix_pour_250?>" /></div>
                 <div class="Produit_liste_item"><label><?=gettext("Prix pour 500")?> : </label><input type='text' id='prix_pour_500' name='prix_pour_500' value="<?=$product[0]->prix_pour_500?>" /></div>
                 <div class="Produit_liste_item"><label><?=gettext("Prix pour 1000")?> : </label><input type='text' id='prix_pour_1000' name='prix_pour_1000' value="<?=$product[0]->prix_pour_1000?>" /></div>
+                <div class="Produit_liste_item"><label><?=gettext("Active")?> : </label><input type="checkbox" value="1" id="active" name="active" <?=$checked?>/></div>
+                <div class="Produit_liste_item"><img src="<?=HOME_URL.'public/images/products/250x381/'.$product[0]->id.'.jpg'?>"></div>
             <br/>
             <input type='hidden' id='id' name='id' value="<?=$product[0]->id?>" />
             <input type='hidden' id='lang' name='lang' value="<?=session::get('lang')?>" />

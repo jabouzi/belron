@@ -35,7 +35,7 @@
                 <?endforeach?>
             </tbody>
         </table>
-        <a href="#" class="modalInput" rel="#add-category"><?=gettext("Add category")?></a>
+        <input type="button" class="modalInput" rel="#add-category" value="<?=gettext("Add category")?>" />
     </div>
 </div>
 
@@ -44,7 +44,7 @@
         <div id="Breadcrumb"><a href="#">&nbsp;</a></div>
         <h1><?= gettext("Add category"); ?></h1>
     </div>
-    <form id="edit_category" method="post" action="<?=url::page("productsmanager/add_category/"); ?>">        
+    <form id="edit_product" method="post" action="<?=url::page("productsmanager/add_category/"); ?>">        
         <div>                
             <div class="Produit_liste_item"><label><?=gettext("Name fr")?> : </label><input type='text' id='name_fr' name='name_fr' value="" /></div>
             <div class="Produit_liste_item"><label><?=gettext("Name en")?> : </label><input type='text' id='name_en' name='name_en' value="" /></div>

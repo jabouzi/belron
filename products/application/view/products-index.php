@@ -77,11 +77,14 @@
                 <tr>
                     <th style="cursor:pointer;" scope="col"><?=gettext("product id")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Category")?></th>
+                    <th style="cursor:pointer;" scope="col"><?=gettext("Brand")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Name")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Language")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Description")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Dimension")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Impression materiel")?></th>
+                    <th style="cursor:pointer;" scope="col"><?=gettext("Creation date")?></th>
+                    <th style="cursor:pointer;" scope="col"><?=gettext("Modification date")?></th>
                 </tr>
             </thead>
             <tbody>
@@ -93,11 +96,14 @@
                         <tr class="<?=$tr_class?>">
                             <td><?=utf8_encode($product->id)?></td>
                             <td><?=utf8_encode($categories[$product->category_id][session::get('lang')])?></td>           
+                            <td><?=utf8_encode($product->brand)?></td>               
                             <td><?=utf8_encode($product->name)?></td>               
                             <td><?=utf8_encode($product->lang)?></td>               
                             <td><?=utf8_encode($product->description)?></td>             
                             <td><?=utf8_encode($product->dimension)?></td>
                             <td><?=utf8_encode($product->impression_materiel)?></td>
+                            <td><?=date("Y-m-d", strtotime($product->date_created))?></td>
+                            <td><?=date("Y-m-d", strtotime($product->date_modif))?></td>
                             <td><a href="<?=url::page("productsmanager/edit/{$product->id}/")?>"><?=gettext("Edit")?></a></td>
                         </tr>
                     <?endif?>

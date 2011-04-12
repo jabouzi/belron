@@ -6,7 +6,7 @@
         </div>
         <div id="error">               
         </div>   
-        <form id="edit_category" method="post" action="<?=url::page("productsmanager/update_category/"); ?>">
+        <form id="edit_product" method="post" action="<?=url::page("productsmanager/update_category/"); ?>">
             <?$checked = ""; if ($category[0]->active == '1') :?>
                 <?$checked = "checked"?>
             <?endif?>

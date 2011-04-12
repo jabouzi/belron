@@ -70,7 +70,8 @@ class products_model
             'prix_pour_150' => $data['prix_pour_150'],
             'prix_pour_250' => $data['prix_pour_250'],
             'prix_pour_500' => $data['prix_pour_500'],
-            'prix_pour_1000' => $data['prix_pour_1000'],            
+            'prix_pour_1000' => $data['prix_pour_1000'],   
+            'date_created' => date('Y-m-d H:i:s'),         
         ));      
 
         return $res;
@@ -103,6 +104,9 @@ class products_model
             'prix_pour_250' => $data['prix_pour_250'],
             'prix_pour_500' => $data['prix_pour_500'],
             'prix_pour_1000' => $data['prix_pour_1000'], 
+            'active' => $data['active'], 
+            'date_modif' => date('Y-m-d H:i:s'), 
+            
         ))->where('id','=',$id)->execute();
         
         return $res;

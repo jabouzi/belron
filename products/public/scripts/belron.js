@@ -3,7 +3,6 @@ var root_url = "/belron_pp/products";
 $(document).ready(function() {
     
     var triggers = $(".modalInput").overlay({
-
         mask: {
             color: '#ebecff',
             loadSpeed: 200,

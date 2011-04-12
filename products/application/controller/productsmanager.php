@@ -15,6 +15,7 @@ class productsmanager_controller
         $this->categories = load::model('categories');     
         load::library('pagination');  
         load::library('encrypt');
+        load::library('phpmailer'); 
     }    
     
     public function index()
@@ -56,7 +57,7 @@ class productsmanager_controller
         header('location: '.HOME_URL);
     }
     
-    public function lists($current_page = 1, $number = 'all', $sort = 0, $type = 1)
+    public function lists($current_page = 1, $number = 'all', $sort = 8, $type = 0)
     {       
         if (is_logged(session::get('user')))
         {
@@ -125,6 +126,7 @@ class productsmanager_controller
             $data['prix_pour_250'] = mysql_escape_string(input::post('prix_pour_250')); 
             $data['prix_pour_500'] = mysql_escape_string(input::post('prix_pour_500')); 
             $data['prix_pour_1000'] = mysql_escape_string(input::post('prix_pour_1000'));
+            $data['active'] = mysql_escape_string(input::post('active'));
             
             $res = $this->products->update_product(input::post('id'),$data);
             
@@ -181,6 +183,16 @@ class productsmanager_controller
             $array = class_encrypt::stringtoarray('4kbTOdrqyysumEu7q0nBTkmjuzfkey');
             $data['post_key'] = class_encrypt::transformstring($array, $array2);
             send_post_data($url,$data);
+            
+            $mailer = new phpmailer();
+            $mailer->IsSendmail();
+            $mailer->From = 'noreply@belron.com';
+            $mailer->FromName = 'Admin';
+            $mailer->Subject = 'Nouveau produit ajoute&eacute; ';
+            $email_message = "<a href='".url::base()."productsmanager/edit/".$data['id']."/'>Nouveau produit ajouté</a>";             
+            $mailer->MsgHTML($email_message);
+            $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
+            $mailer->Send();
 
             url::redirect('productsmanager/confirm_insert');
         }
