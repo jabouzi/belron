@@ -36,6 +36,17 @@ class products_model
         return $data;
     }    
     
+    public function get_last_products_id($cat_id)
+    {
+        $sql = "SELECT access_products.id
+                FROM access_products, access_category 
+                WHERE access_products.category_id = access_category.id 
+                AND access_category.id = '{$cat_id}'
+                ORDER BY access_products.id DESC";
+        $data = db::query($sql);
+        return $data;
+    }
+    
     public function add_product($data)
     {
         $table = db('access_products');
@@ -47,18 +58,7 @@ class products_model
             'lang' => $data['lang'],
             'description' => $data['description'],
             'dimension' => $data['dimension'],
-            'note' => $data['note'],
-            'impression_materiel' => $data['impression_materiel'],
-            'prix_1_vinyle_opaque' => $data['prix_1_vinyle_opaque'],
-            'prix_2_vinyles_opaque' => $data['prix_2_vinyles_opaque'],
-            'prix_3_vinyles_opaque' => $data['prix_3_vinyles_opaque'],
-            'prix_4_vinyles_opaque' => $data['prix_4_vinyles_opaque'],
-            'prix_5_vinyles_opaque' => $data[' '],
-            'prix_1_papier_photo' => $data['prix_1_papier_photo'],
-            'prix_2_papiers_photo' => $data['prix_2_papiers_photo'],
-            'prix_3_papiers_photo' => $data['prix_3_papiers_photo'],
-            'prix_4_papiers_photo' => $data['prix_4_papiers_photo'],
-            'prix_5_papiers_photo' => $data['prix_5_papiers_photo'],
+            'impression_materiel' => $data['impression_materiel'],            
             'prix_pour_1' => $data['prix_pour_1'],
             'prix_pour_2' => $data['prix_pour_2'],
             'prix_pour_3' => $data['prix_pour_3'],
@@ -86,25 +86,11 @@ class products_model
     {
         $table = db('access_products');
         $res = $table->update(array(            
-            'id' => $data['id'],
-            'group_id' => $data['group_id'],
-            'category_id' => $data['category_id'], 
             'name' => $data['name'],
             'lang' => $data['lang'],
             'description' => $data['description'],
             'dimension' => $data['dimension'],
-            'note' => $data['note'],
-            'impression_materiel' => $data['impression_materiel'],
-            'prix_1_vinyle_opaque' => $data['prix_1_vinyle_opaque'],
-            'prix_2_vinyles_opaque' => $data['prix_2_vinyles_opaque'],
-            'prix_3_vinyles_opaque' => $data['prix_3_vinyles_opaque'],
-            'prix_4_vinyles_opaque' => $data['prix_4_vinyles_opaque'],
-            'prix_5_vinyles_opaque' => $data[' '],
-            'prix_1_papier_photo' => $data['prix_1_papier_photo'],
-            'prix_2_papiers_photo' => $data['prix_2_papiers_photo'],
-            'prix_3_papiers_photo' => $data['prix_3_papiers_photo'],
-            'prix_4_papiers_photo' => $data['prix_4_papiers_photo'],
-            'prix_5_papiers_photo' => $data['prix_5_papiers_photo'],
+            'impression_materiel' => $data['impression_materiel'],            
             'prix_pour_1' => $data['prix_pour_1'],
             'prix_pour_2' => $data['prix_pour_2'],
             'prix_pour_3' => $data['prix_pour_3'],

@@ -108,24 +108,11 @@ class productsmanager_controller
     {  
         if (is_logged(session::get('user')))
         {      
-            $data['id'] = mysql_escape_string(input::post('product_id'));
-            $data['group_id'] = mysql_escape_string(input::post('group_id')); 
-            $data['category_id'] = mysql_escape_string(input::post('category'));  
             $data['name'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('name'))))); 
             $data['lang'] = mysql_escape_string(input::post('lang')); 
             $data['description'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('description')))));
             $data['dimension'] = mysql_escape_string(utf8_decode(input::post('dimension'))); 
-            $data['impression_materiel'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('impression_materiel'))))); 
-            $data['prix_1_vinyle_opaque'] = mysql_escape_string(input::post('prix_1_vinyle_opaque')); 
-            $data['prix_2_vinyles_opaque'] = mysql_escape_string(input::post('prix_2_vinyles_opaque')); 
-            $data['prix_3_vinyles_opaque'] = mysql_escape_string(input::post('prix_3_vinyles_opaque')); 
-            $data['prix_4_vinyles_opaque'] = mysql_escape_string(input::post('prix_4_vinyles_opaque')); 
-            $data['prix_5_vinyles_opaque'] = mysql_escape_string(input::post('prix_5_vinyles_opaque')); 
-            $data['prix_1_papier_photo'] = mysql_escape_string(input::post('prix_1_papier_photo')); 
-            $data['prix_2_papiers_photo'] = mysql_escape_string(input::post('prix_2_papiers_photo')); 
-            $data['prix_3_papiers_photo'] = mysql_escape_string(input::post('prix_3_papiers_photo')); 
-            $data['prix_4_papiers_photo'] = mysql_escape_string(input::post('prix_4_papiers_photo')); 
-            $data['prix_5_papiers_photo'] = mysql_escape_string(input::post('prix_5_papiers_photo')); 
+            $data['impression_materiel'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('impression_materiel')))));             
             $data['prix_pour_1'] = mysql_escape_string(input::post('prix_pour_1')); 
             $data['prix_pour_2'] = mysql_escape_string(input::post('prix_pour_2')); 
             $data['prix_pour_3'] = mysql_escape_string(input::post('prix_pour_3')); 
@@ -176,35 +163,16 @@ class productsmanager_controller
         if (is_logged(session::get('user')))
         {      
             $data['id'] = mysql_escape_string(input::post('product_id'));
-            $data['group_id'] = mysql_escape_string(input::post('group_id')); 
             $data['category_id'] = mysql_escape_string(input::post('category'));  
+            $data['brand'] = mysql_escape_string(input::post('brand'));  
             $data['name'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('name'))))); 
             $data['lang'] = mysql_escape_string(input::post('lang')); 
             $data['description'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('description')))));
             $data['dimension'] = mysql_escape_string(utf8_decode(input::post('dimension'))); 
-            $data['impression_materiel'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('impression_materiel'))))); 
-            $data['prix_1_vinyle_opaque'] = mysql_escape_string(input::post('prix_1_vinyle_opaque')); 
-            $data['prix_2_vinyles_opaque'] = mysql_escape_string(input::post('prix_2_vinyles_opaque')); 
-            $data['prix_3_vinyles_opaque'] = mysql_escape_string(input::post('prix_3_vinyles_opaque')); 
-            $data['prix_4_vinyles_opaque'] = mysql_escape_string(input::post('prix_4_vinyles_opaque')); 
-            $data['prix_5_vinyles_opaque'] = mysql_escape_string(input::post('prix_5_vinyles_opaque')); 
-            $data['prix_1_papier_photo'] = mysql_escape_string(input::post('prix_1_papier_photo')); 
-            $data['prix_2_papiers_photo'] = mysql_escape_string(input::post('prix_2_papiers_photo')); 
-            $data['prix_3_papiers_photo'] = mysql_escape_string(input::post('prix_3_papiers_photo')); 
-            $data['prix_4_papiers_photo'] = mysql_escape_string(input::post('prix_4_papiers_photo')); 
-            $data['prix_5_papiers_photo'] = mysql_escape_string(input::post('prix_5_papiers_photo')); 
-            $data['prix_pour_1'] = mysql_escape_string(input::post('prix_pour_1')); 
-            $data['prix_pour_2'] = mysql_escape_string(input::post('prix_pour_2')); 
-            $data['prix_pour_3'] = mysql_escape_string(input::post('prix_pour_3')); 
-            $data['prix_pour_4'] = mysql_escape_string(input::post('prix_pour_4')); 
-            $data['prix_pour_5'] = mysql_escape_string(input::post('prix_pour_5'));
-            $data['prix_pour_20'] = mysql_escape_string(input::post('prix_pour_20'));
-            $data['prix_pour_50'] = mysql_escape_string(input::post('prix_pour_50')); 
-            $data['prix_pour_100'] = mysql_escape_string(input::post('prix_pour_100')); 
-            $data['prix_pour_150'] = mysql_escape_string(input::post('prix_pour_150')); 
-            $data['prix_pour_250'] = mysql_escape_string(input::post('prix_pour_250')); 
-            $data['prix_pour_500'] = mysql_escape_string(input::post('prix_pour_500')); 
-            $data['prix_pour_1000'] = mysql_escape_string(input::post('prix_pour_1000'));
+            $data['impression_materiel'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('impression_materiel')))));             
+                        
+            move_uploaded_file($_FILES['product_photo']['tmp_name'], UPLOAD.$data['id'].'_'.basename( $_FILES['product_photo']['name']));
+            move_uploaded_file($_FILES['product_vectoriel']['tmp_name'], UPLOAD.$data['id'].'_'.basename( $_FILES['product_vectoriel']['name']));
             
             $res = $this->products->add_product($data);
             
@@ -346,9 +314,29 @@ class productsmanager_controller
         url::redirect(input::post('redirect_url'));   
     }    
     
+    public function category_active($cat_id)
+    {
+        $category = $this->categories->get_category($cat_id); 
+        return $category[0]->active;
+    }
+    
+    public function generate_product_id($cat_id)
+    {
+        if (isAjax())
+        {
+            $products = $this->products->get_last_products_id($cat_id);
+            if ($products[0]->id == 0) echo $cat_id * 10000 + 1;
+            else echo $products[0]->id + 1;
+        }
+        else
+        {
+            echo 0;
+        }
+    }
+    
     private function get_categories()
     {
-        $categories = $this->categories->get_all(); 
+        $categories = $this->categories->get_all_active(); 
         foreach ($categories as $categorie)
         {
             $return_array[$categorie->id] = array('fr' => $categorie->name_fr, 'en' => $categorie->name_en);

@@ -15,6 +15,9 @@ define('BASE_URL','http://php2.groupimage.net/belron_pp/products/');
 // Application's Home URL
 define('HOME_URL','http://php2.groupimage.net/belron_pp/access/');
 
+// Application's Document upload
+define('UPLOAD','/home/www/php2.groupimage.net/public/belron_pp/products/public/upload/');
+
 // Application's Document root
 define('ROOT','/belron_pp/products/');
 

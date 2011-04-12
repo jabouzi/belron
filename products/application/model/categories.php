@@ -9,6 +9,13 @@ class categories_model
         return $data;
     }    
     
+    public function get_all_active()
+    {
+        $table = db('access_category');
+        $data = $table->select('*')->where('active','=','1')->execute();
+        return $data;
+    }    
+    
     public function get_category($id)
     {
         $table = db('access_category');

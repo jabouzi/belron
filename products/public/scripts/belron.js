@@ -159,3 +159,24 @@ function remove_products(products)
         }
     );
 }
+
+function show_form()
+{
+    if ($('#category').val() == '0')
+    {
+        ;
+    }
+    else
+    {
+        $('#product_span').show();
+        $('#product_add_submit').show();
+        $.get(root_url+"/productsmanager/generate_product_id/"+$('#category').val()+'/',{uid : String((new Date()).getTime()).replace(/\D/gi, '') },
+        function(data) {
+            if (data != 0)
+            {
+                $('#product_id').val(data);
+            }
+        }
+    );
+    }
+}

@@ -86,19 +86,21 @@
             </thead>
             <tbody>
                 <?foreach ($products as $key => $product):?>
-                    <?$ids[] = $product->id;?>                
-                    <?$tr_class = 'odd'?>
-                        <?if ($key % 2) $tr_class = 'even'?>
-                    <tr class="<?=$tr_class?>">
-                        <td><?=utf8_encode($product->id)?></td>
-                        <td><?=utf8_encode($categories[$product->category_id][session::get('lang')])?></td>           
-                        <td><?=utf8_encode($product->name)?></td>               
-                        <td><?=utf8_encode($product->lang)?></td>               
-                        <td><?=utf8_encode($product->description)?></td>             
-                        <td><?=utf8_encode($product->dimension)?></td>
-                        <td><?=utf8_encode($product->impression_materiel)?></td>
-                        <td><a href="<?=url::page("productsmanager/edit/{$product->id}/")?>"><?=gettext("Edit")?></a></td>
-                    </tr>
+                    <? if (array_key_exists($product->category_id,$categories)) :?>
+                        <?$ids[] = $product->id;?>                
+                        <?$tr_class = 'odd'?>
+                            <?if ($key % 2) $tr_class = 'even'?>
+                        <tr class="<?=$tr_class?>">
+                            <td><?=utf8_encode($product->id)?></td>
+                            <td><?=utf8_encode($categories[$product->category_id][session::get('lang')])?></td>           
+                            <td><?=utf8_encode($product->name)?></td>               
+                            <td><?=utf8_encode($product->lang)?></td>               
+                            <td><?=utf8_encode($product->description)?></td>             
+                            <td><?=utf8_encode($product->dimension)?></td>
+                            <td><?=utf8_encode($product->impression_materiel)?></td>
+                            <td><a href="<?=url::page("productsmanager/edit/{$product->id}/")?>"><?=gettext("Edit")?></a></td>
+                        </tr>
+                    <?endif?>
                 <?endforeach?>
             </tbody>
         </table>
