@@ -243,6 +243,87 @@ class productsmanager_controller
         else echo 0;
     }
     
+    public function categories()
+    {
+        if (is_logged(session::get('user')))
+        { 
+            $categories = $this->categories->get_all();
+            load::view('header');
+            load::view('categories',array('categories' => $categories));
+            load::view('footer'); 
+        }
+        else
+        {
+            url::redirect('productsmanager/index');
+        }
+    }
+    
+    public function update_category()
+    {
+        if (is_logged(session::get('user')))
+        {
+            $data['id'] = mysql_escape_string(input::post('id'));
+            $data['name_fr'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('name_fr'))))); 
+            $data['name_en'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('name_en'))))); 
+            $data['image_file'] = mysql_escape_string(input::post('image_file')); 
+            $data['active'] = mysql_escape_string(input::post('active'));
+            
+            $res = $this->categories->update($data['id'], $data);           
+
+            /*$url = HOME_URL."products/add/";
+            $array2 = class_encrypt::keycalc('58hdlDMwol1hhWqAdtap');
+            $array = class_encrypt::stringtoarray('4kbTOdrqyysumEu7q0nBTkmjuzfkey');
+            $data['post_key'] = class_encrypt::transformstring($array, $array2);
+            send_post_data($url,$data);*/
+
+            url::redirect('productsmanager/confirm_update');
+        }
+        else
+        {
+            url::redirect('productsmanager/index');
+        }
+    }
+    
+    public function add_category()
+    {
+        if (is_logged(session::get('user')))
+        {              
+            $data['name_fr'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('name_fr'))))); 
+            $data['name_en'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('name_en'))))); 
+            $data['image_file'] = mysql_escape_string(input::post('image_file')); 
+            $data['active'] = mysql_escape_string(input::post('active')); 
+            
+            $res = $this->categories->insert($data);
+            
+            /*$url = HOME_URL."products/add/";
+            $array2 = class_encrypt::keycalc('58hdlDMwol1hhWqAdtap');
+            $array = class_encrypt::stringtoarray('4kbTOdrqyysumEu7q0nBTkmjuzfkey');
+            $data['post_key'] = class_encrypt::transformstring($array, $array2);
+            send_post_data($url,$data);*/
+
+            url::redirect('productsmanager/confirm_insert');
+        }
+        else
+        {
+            url::redirect('productsmanager/index');
+        }
+    }
+    
+    public function edit_category($id)
+    {
+        if (is_logged(session::get('user')))
+        {              
+            $category = $this->categories->get_category($id);            
+            load::view('header');
+            load::view('edit-category',array('category' => $category));
+            load::view('footer'); 
+        }
+        else
+        {
+            url::redirect('productsmanager/index');
+        }
+    }
+    
     public function confirm_update()
     {
         load::view('header');

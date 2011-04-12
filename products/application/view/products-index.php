@@ -1,5 +1,3 @@
-<?//var_dump($products);exit;?>
-
 <div id="Container_Principale_full">
     <div id="Container_Principale_960">
         <div id="Page_haut">

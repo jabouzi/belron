@@ -29,8 +29,9 @@
                 <? if ($user):?>    
                 <a href="<?=HOME_URL?>admin/admin_index"><?=gettext("Home")?></a>
                 <a href="<?=url::page('productsmanager/logout')?>"><?=gettext("Logout")?></a>
-                <a href="<?=url::page('productsmanager/add')?>"><?=gettext("Add")?></a>            
-                <a href="<?=url::page('productsmanager/lists')?>"><?=gettext("List")?></a>       
+                <a href="<?=url::page('productsmanager/add')?>"><?=gettext("Add product")?></a>            
+                <a href="<?=url::page('productsmanager/lists')?>"><?=gettext("products list")?></a>       
+                <a href="<?=url::page('productsmanager/categories')?>"><?=gettext("Categories")?></a>       
                 <? endif?>     
             <form name="form" method="post" action="<?=url::page('productsmanager/change_language')?>">
             <select name="lang" onchange="form.submit();">

@@ -107,6 +107,33 @@ function add_update_product()
     
 }
 
+function add_update_category()
+{    
+    var en = ['You must enter a family name', 'You must enter a first name', 'You must enter an address', 'You must enter a city',
+              'You must enter a province', 'You must a postal code', 'You must enter a phone number', 'You must enter an email', 
+              'You must enter a password'];
+    fr = [];
+    var errors = '';
+    if ($('#family_name').val() == '') errors += en[0] + '<br />';
+    if ($('#first_name').val() == '') errors += en[1] + '<br />';
+    if ($('#address').val() == '') errors += en[2] + '<br />';
+    if ($('#town').val() == '') errors += en[3] + '<br />';
+    if ($('#province').val() == '') errors += en[4] + '<br />';
+    if ($('#postal_code1').val() == '') errors += en[5] + '<br />';
+    if ($('#postal_code2').val() == '') errors += en[5] + '<br />';
+    if ($('#phone1').val() == '') errors += en[6] + '<br />';
+    if ($('#phone2').val() == '') errors += en[6] + '<br />';
+    if ($('#phone3').val() == '') errors += en[6] + '<br />';
+    if ($('#email').val() == '') errors += en[7] + '<br />';
+    if ($('#password').val() == '') errors += en[8] + '<br />';
+    
+    if (errors != '') $('#error').html(errors);
+    else document.forms["edit_category"].submit();   
+    
+    $('#type').val();
+    
+}
+
 function jump(curElm, nextElm, length)
 {
     if($("#"+curElm).val().length == length) $("#"+nextElm).focus();
