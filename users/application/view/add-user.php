@@ -7,17 +7,9 @@
         <div id="error">               
         </div>   
         <form id="edit_user" method="post" action="<?=url::page("usersmanager/insert/"); ?>">
-            <div>            
-            <div class="Produit_liste_item">         
-            <?$items = get_positions()?>
-            <label><?=gettext("Position")?> : </label>
-            <select id="position" name="position">
-                <?foreach($items as $key => $item) :?>
-                    <option value="<?=$key?>" <?=$selected?>><?=$item?></option>
-                <?endforeach?>
-            </select>
-            </div>
             <?$provinces = provinces();?>
+            <div>            
+            <div class="Produit_liste_item"><label><?=gettext("Position")?> : </label><input type='text' id='position' name='position' value="<?=utf8_encode($user[0]->position)?>" /></div>
             <div class="Produit_liste_item"><label><?=gettext("Last name")?> : </label><input type='text' id='family_name' name='family_name' value="" /></div>
             <div class="Produit_liste_item"><label><?=gettext("First name")?> : </label><input type='text' id='first_name' name='first_name' value=""  /></div>
             <div class="Produit_liste_item"><label><?=gettext("Address")?> : </label><input type='text' id='address' name='address' value="" /></div>
@@ -39,8 +31,9 @@
                                                                                    <input type='text' id='phone3' name='phone3' value="" size="4" maxlength="4" /></div>
             <div class="Produit_liste_item"><label><?=gettext("Email")?> : </label><input type='text' id='email' name='email' value="" /></div>
             <div class="Produit_liste_item"><label><?=gettext("Password")?> : </label><input type='password' id='password' name='password' value="" /></div>
+            <div class="Produit_liste_item"><label><?=gettext("Active")?> : </label><input type="checkbox" value="1" id="active" name="active"/></div>
             <input type='hidden' id='lang' name='lang' value='<?=session::get('lang')?>' />
-            </div>
+            </div>            
             <input type="button" class="commande" name="submit_add" value="<?=gettext("Add user")?>" onclick="add_update_user()"/>
         </form>
     </div>

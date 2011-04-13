@@ -88,6 +88,7 @@ class products_model
         $table = db('access_products');
         $res = $table->update(array(            
             'name' => $data['name'],
+            'brand' => $data['brand'],
             'lang' => $data['lang'],
             'description' => $data['description'],
             'dimension' => $data['dimension'],

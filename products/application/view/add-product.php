@@ -26,7 +26,7 @@
                 <div class="Produit_liste_item"><label><?=gettext("product id")?> : </label><input type='text' id='product_id' name='product_id' readonly value="" /></div>
                 <div class="Produit_liste_item"><label><?=gettext("Name")?> : </label><input type='text' id='name' name='name' value="" /></div>            
                 <div class="Produit_liste_item"><label><?=gettext("Language")?> : </label>                    
-                    <select id='language' name='language'  >
+                    <select id='lang' name='lang'  >
                         <?foreach($language as $key => $lang) :?>
                             <?$selected = "";?>
                             <? if ($key == $product[0]->lang):?>
@@ -43,7 +43,7 @@
                 <div class="Produit_liste_item"><label><?=gettext("Product vectoriel")?> : </label><input name="product_vectoriel" type="file" /><br />
                 </span>   
             <br/>
-            <input type='hidden' id='lang' name='lang' value='<?=session::get('lang')?>' />
+            <input type='hidden' id='language' name='language' value='<?=session::get('lang')?>' />
             </div>
             <input type="button" class="commande" name="submit_update" id="product_add_submit" value="<?=gettext("Add product")?>" onclick="add_update_product()" style="display:none"/>
             

@@ -10,6 +10,8 @@ class usersmanager_controller
     function __construct() 
     {
         $this->users = load::model('users');     
+        $this->stores = load::model('stores');     
+        $this->permissions = load::model('permissions');     
         load::library('pagination');  
         load::library('encrypt');
     }    
@@ -53,7 +55,7 @@ class usersmanager_controller
         header('location: '.HOME_URL);
     }
     
-    public function lists($current_page = 1, $number = 'all', $sort = 0, $type = 1)
+    public function lists($current_page = 1, $number = 'all', $sort = 1, $type = 1)
     {       
         if (is_logged(session::get('user')))
         {
@@ -91,7 +93,9 @@ class usersmanager_controller
         { 
             $user = $this->users->get_user_infos($user_id);
             load::view('header');
-            load::view('edit-user',array('user' => $user));
+            load::view('edit-user',array('user' => $user, 'user_permissions' => $this->get_user_permissions($user_id), 
+                        'store_permissions' => $this->get_store_permissions($user_id),
+                        'stores' => $this->stores->get_all_active($user[0]->province),'users' => $this->users->get_all_active()));
             load::view('footer'); 
         }
         else
@@ -103,9 +107,9 @@ class usersmanager_controller
     public function update()
     {  
         if (is_logged(session::get('user')))
-        {      
-            $positions = get_positions();
-            $data['position'] = mysql_escape_string(utf8_decode($positions[input::post('position')]));
+        {
+            $data['id'] = mysql_escape_string(input::post('id'));
+            $data['position'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('position')))));
             $data['family_name'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('family_name')))));
             $data['first_name'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('first_name')))));
             $data['address'] = mysql_escape_string(utf8_decode(input::post('address')));
@@ -115,11 +119,18 @@ class usersmanager_controller
             $data['phone'] = mysql_escape_string(format_phone(input::post('phone1'),input::post('phone2'),input::post('phone3')));
             $data['email'] = mysql_escape_string(utf8_decode(strtolower(input::post('email'))));
             $data['password'] = md5(input::post('password'));
+            $user_permissions = input::post('user-permissions');
+            $store_permissions = input::post('store-permissions');
             
-            $res = $this->users->update_user(input::post('id'),$data);
+            $res = $this->users->update_user($data['id'],$data);
             
-            $url = HOME_URL."users/update/";
-            $data['id'] = input::post('id');
+            $this->permissions->delete_user_permissions($data['id']);
+            $this->permissions->delete_store_permissions($data['id']);
+            
+            $this->add_user_permissions($data['id'],$user_permissions);
+            $this->add_store_permissions($data['id'],$store_permissions);
+                        
+            $url = HOME_URL."users/update/";            
             $array2 = class_encrypt::keycalc('58hdlDMwol1hhWqAdtap');
             $array = class_encrypt::stringtoarray('4kbTOdrqyysumEu7q0nBTkmjuzfkey');
             $data['post_key'] = class_encrypt::transformstring($array, $array2);
@@ -138,7 +149,9 @@ class usersmanager_controller
         if (is_logged(session::get('user')))
         { 
             load::view('header');
-            load::view('add-user');
+            load::view('add-user',array('user_permissions' => $this->get_user_permissions($user_id), 
+                        'store_permissions' => $this->get_store_permissions($user_id),
+                        'stores' => $this->stores->get_all_active(),'users' => $this->users->get_all_active()));
             load::view('footer'); 
         }
         else
@@ -152,7 +165,7 @@ class usersmanager_controller
         if (is_logged(session::get('user')))
         {      
             $positions = get_positions();
-            $data['position'] = mysql_escape_string(utf8_decode($positions[input::post('position')]));
+            $data['position'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('position')))));
             $data['family_name'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('family_name')))));
             $data['first_name'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('first_name')))));
             $data['address'] = mysql_escape_string(utf8_decode(input::post('address')));
@@ -200,6 +213,28 @@ class usersmanager_controller
         else echo 0;
     }
     
+    public function get_user_permissions($id)
+    {
+        $user_permissions = $this->permissions->get_user_permissions($id);
+        foreach($user_permissions as $user)
+        {
+            $data = $this->users->get_user_infos($user->user);
+            $users[] = $data[0]->id;
+        }
+        return $users;
+    }
+    
+    public function get_store_permissions($id)
+    {
+        $store_permissions = $this->permissions->get_store_permissions($id);        
+        foreach($store_permissions as $store)
+        {
+            $data = $this->stores->get_store_infos($store->store);
+            $stores[] = $data[0]->id;
+        }
+        return $stores;
+    }
+    
     public function confirm_update()
     {
         load::view('header');
@@ -221,4 +256,24 @@ class usersmanager_controller
 
         url::redirect(input::post('redirect_url'));   
     }    
+    
+    public function add_user_permissions($user,$user_permissions)
+    {
+        foreach($user_permissions as $permissions)
+        {
+            $data['superviser'] = mysql_escape_string($user);
+            $data['user'] = mysql_escape_string($permissions);
+            $this->permissions->update_user_permissions($data);
+        }
+    }
+    
+    public function add_store_permissions($user,$store_permissions)
+    {
+        foreach($store_permissions as $permissions)
+        {        
+            $data['superviser'] = mysql_escape_string($user);
+            $data['store'] = mysql_escape_string($permissions);
+            $this->permissions->update_store_permissions($data);
+        }
+    }
 }

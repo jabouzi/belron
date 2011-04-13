@@ -84,7 +84,9 @@
                     <th style="cursor:pointer;" scope="col"><?=gettext("Postal code")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Phone")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Email")?></th>
-                    <th style="cursor:pointer;" scope="col"><?=gettext("Action")?></th>
+                    <th style="cursor:pointer;" scope="col"><?=gettext("Active")?></th>
+                    <th style="cursor:pointer;" scope="col"><?=gettext("Creation date")?></th>
+                    <th style="cursor:pointer;" scope="col"><?=gettext("Modification date")?></th>
                 </tr>
             </thead>
             <tbody>
@@ -101,7 +103,13 @@
                         <td><?=utf8_encode($user->province)?></td>                    
                         <td><?=utf8_encode($user->postal_code)?></td>                    
                         <td><?=utf8_encode($user->phone)?></td>                    
-                        <td><?=utf8_encode($user->email)?></td>                    
+                        <td><?=utf8_encode($user->email)?></td>        
+                        <?$active = 'Not active'; if ($user->active):?>
+                            <?$active = 'Active';?>
+                        <?endif?>
+                        <td><?=$active?></td>         
+                        <td><?=date("Y-m-d", strtotime($user->date_created))?></td>
+                        <td><?=date("Y-m-d", strtotime($user->date_modif))?></td>     
                         <td><a href="<?=url::page("usersmanager/edit/{$user->id}/")?>"><?=gettext("Edit")?></a></td>
                     </tr>
                 <?endforeach?>

@@ -57,7 +57,7 @@ class productsmanager_controller
         header('location: '.HOME_URL);
     }
     
-    public function lists($current_page = 1, $number = 'all', $sort = 8, $type = 0)
+    public function lists($current_page = 1, $number = 'all', $sort = 0, $type = 1)
     {       
         if (is_logged(session::get('user')))
         {
@@ -110,6 +110,7 @@ class productsmanager_controller
         if (is_logged(session::get('user')))
         {      
             $data['name'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('name'))))); 
+            $data['brand'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('brand'))))); 
             $data['lang'] = mysql_escape_string(input::post('lang')); 
             $data['description'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('description')))));
             $data['dimension'] = mysql_escape_string(utf8_decode(input::post('dimension'))); 

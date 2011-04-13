@@ -7,16 +7,16 @@
         <div id="error">               
         </div>   
         <form id="edit_product" method="post" action="<?=url::page("productsmanager/update/"); ?>">
-            <?$checked = ""; if ($category[0]->active == '1') :?>
+            <?$checked = ""; if ($product[0]->active == '1') :?>
                 <?$checked = "checked"?>
             <?endif?>
             <div>            
                 <div class="Produit_liste_item"><label><?=gettext("Category")?> : </label><input type='text' id='category' name='category'  value="<?=$categories[$product[0]->category_id][session::get('lang')]?>"  readonly /></div>                    
-                <div class="Produit_liste_item"><label><?=gettext("Brand")?> : </label><input type='text' id='brand' name='brand'  value="<?=$product[0]->brand?>"  readonly /></div>                    
                 <div class="Produit_liste_item"><label><?=gettext("product id")?> : </label><input type='text' id='product_id' name='product_id' value="<?=$product[0]->id?>" readonly /></div>
+                <div class="Produit_liste_item"><label><?=gettext("Brand")?> : </label><input type='text' id='brand' name='brand'  value="<?=$product[0]->brand?>" /></div>                    
                 <div class="Produit_liste_item"><label><?=gettext("Name")?> : </label><input type='text' id='name' name='name' value="<?=utf8_encode($product[0]->name)?>" /></div>            
                 <div class="Produit_liste_item"><label><?=gettext("Language")?> : </label>                    
-                    <select id='language' name='language'  >
+                    <select id='lang' name='lang'  >
                         <?foreach($language as $key => $lang) :?>
                             <?$selected = "";?>
                             <? if ($key == $product[0]->lang):?>
@@ -27,7 +27,7 @@
                     </select>
                 </div>
                 <div class="Produit_liste_item"><label><?=gettext("Description")?> : </label><input type='text' id='description' name='description' value="<?=utf8_encode($product[0]->description)?>" /></div>
-                <div class="Produit_liste_item"><label><?=gettext("Dimension")?> : </label><input type='text' id='dimension' name='dimension' value="<?=$product[0]->dimension?>" /></div>
+                <div class="Produit_liste_item"><label><?=gettext("Dimension")?> : </label><input type='text' id='dimension' name='dimension' value='<?=$product[0]->dimension?>' /></div>
                 <div class="Produit_liste_item"><label><?=gettext("Impression materiel")?> : </label><input type='text' id='impression_materiel' name='impression_materiel' value="<?=utf8_encode($product[0]->impression_materiel)?>" /></div>
                 <div class="Produit_liste_item"><label><?=gettext("Prix pour 1")?> : </label><input type='text' id='prix_pour_1' name='prix_pour_1' value="<?=$product[0]->prix_pour_1?>" /></div>
                 <div class="Produit_liste_item"><label><?=gettext("Prix pour 2")?> : </label><input type='text' id='prix_pour_2' name='prix_pour_2' value="<?=$product[0]->prix_pour_2?>" /></div>
@@ -45,7 +45,7 @@
                 <div class="Produit_liste_item"><img src="<?=HOME_URL.'public/images/products/250x381/'.$product[0]->id.'.jpg'?>"></div>
             <br/>
             <input type='hidden' id='id' name='id' value="<?=$product[0]->id?>" />
-            <input type='hidden' id='lang' name='lang' value="<?=session::get('lang')?>" />
+            <input type='hidden' id='language' name='language' value="<?=session::get('lang')?>" />
             </div>
             <input type="button" class="commande" name="submit_update" value="<?=gettext("Update product")?>" onclick="add_update_product()"/>
         </form>

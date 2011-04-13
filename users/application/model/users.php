@@ -29,10 +29,10 @@ class users_model
         return $orders;
     }
     
-    public function get_all_type2()
+    public function get_all_active()
     {
         $table = db('access_users');
-         $data = $table->select('*')->where('type','=','2')->execute();
+        $data = $table->select('*')->where('active','=','1')->execute();
         return $data;
     }
     
@@ -109,7 +109,7 @@ class users_model
         ))->where('id','=',$id)->execute();
         
         return $res;
-    }
+    }    
 }
 
 

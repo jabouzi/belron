@@ -83,6 +83,7 @@
                     <th style="cursor:pointer;" scope="col"><?=gettext("Description")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Dimension")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Impression materiel")?></th>
+                    <th style="cursor:pointer;" scope="col"><?=gettext("Active")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Creation date")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Modification date")?></th>
                 </tr>
@@ -102,6 +103,10 @@
                             <td><?=utf8_encode($product->description)?></td>             
                             <td><?=utf8_encode($product->dimension)?></td>
                             <td><?=utf8_encode($product->impression_materiel)?></td>
+                            <?$active = 'Not active'; if ($product->active):?>
+                                <?$active = 'Active';?>
+                            <?endif?>
+                            <td><?=$active?></td> 
                             <td><?=date("Y-m-d", strtotime($product->date_created))?></td>
                             <td><?=date("Y-m-d", strtotime($product->date_modif))?></td>
                             <td><a href="<?=url::page("productsmanager/edit/{$product->id}/")?>"><?=gettext("Edit")?></a></td>
