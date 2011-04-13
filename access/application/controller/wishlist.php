@@ -171,21 +171,11 @@ class wishlist_controller
                                 'phone' => input::post('phone'),
                                 'fax' => input::post('fax'));
                 
-                $store->update_address(session::get('user'),$address);
-                     
-                $mailer = new phpmailer();
-                $mailer->IsSendmail();
-                $mailer->From = 'noreply@domain.com';
-                $mailer->FromName = 'Name';
-                $mailer->Subject = 'Order approved';
-                $email_message = "<a href='".url::base()."login/userlogin/".$last_id."/'>Click ici </a>";
-                $mailer->MsgHTML($email_message);
-                $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
-                //$mailer->AddAddress($dm_infos[0]->email, $dm_infos[0]->first_name.' '.$dm_infos[0]->family_name);
-                $mailer->Send();
+                $store->update_address(session::get('user'),$address);                
             }
-            
-            url::redirect('wishlist/confirmation/'.$dm_id[0]->dm_id);
+                        
+            url::redirect('wishlist/pos/'.$last_id);
+            //url::redirect('wishlist/confirmation/'.$dm_id[0]->dm_id);
         }
         else
         {
@@ -202,7 +192,7 @@ class wishlist_controller
         load::view('footer');
     }
     
-    function remove_item_by_value($array, $val) 
+    public function remove_item_by_value($array, $val) 
     {
         if (empty($array) || !is_array($array)) return array();
         if (!in_array($val, $array)) return $array;
@@ -213,4 +203,88 @@ class wishlist_controller
 
         return $array;
     }    
+    
+    public function pos($id)
+    {
+        if (is_logged(session::get('user')))
+        {
+            $orders = load::model('orders');
+            $products = load::model('products');
+            $order = $orders->get($id);  
+            
+            $order_list = unserialize($order[0]->wish_list);
+            
+            $items = $order_list['items'];
+            $prices = $order_list['quantity'];
+            $shipping = $order_list['shipping'][$order_list['shipping'][0]];      
+            foreach($items as $key => $item)
+            {
+                $prod = $products->get_products_by_id($item);         
+                $price = $products->get_product_price($item, $prices[$item]); 
+                $price = get_object_vars($price[0]);  
+                
+                $products_list[] = array($prod[0]->name,$prod[0]->description,$price[$prices[$item]]);
+            }
+                          
+            $store_id = $order[0]->store_id;
+            $total_cost = $order[0]->total_cost;
+           
+            load::view('header');
+            load::view('order_pos',array('id' => $id, 'products_list' => $products_list,'shipping' => $shipping, 'store_id' => $store_id, 'total_cost' => $total_cost ));
+            load::view('footer');
+        }
+        else
+        {
+            url::redirect('login/storelogin');
+        }
+/*
+        $mailer = new phpmailer();
+        $mailer->IsSendmail();
+        $mailer->From = 'noreply@domain.com';
+        $mailer->FromName = 'Name';
+        $mailer->Subject = 'Order approved';
+        $email_message = "<a href='".url::base()."login/userlogin/".$last_id."/'>Click ici </a>";
+        $mailer->MsgHTML($email_message);
+        $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
+        //$mailer->AddAddress($dm_infos[0]->email, $dm_infos[0]->first_name.' '.$dm_infos[0]->family_name);
+        $mailer->Send();
+*/
+        
+    }
+    
+    public function approve_pos($id)
+    {
+        if (is_logged(session::get('user')))
+        {
+            $orders = load::model('orders');
+            if ($this->has_superviser())
+            {
+                 $orders->add_pos($id,mysql_escape_string(input::post('pos')));
+            }
+            else
+            {
+                $orders->approve_pos($id,mysql_escape_string(input::post('pos')));
+                $mailer = new phpmailer();
+                $mailer->IsSendmail();
+                $mailer->From = 'noreply@domain.com';
+                $mailer->FromName = 'Name';
+                $mailer->Subject = 'Order approved';
+                $email_message = "<a href='".url::base()."login/userlogin/".$last_id."/'>Click ici </a>";
+                $mailer->MsgHTML($email_message);
+                $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
+                $mailer->Send();
+            }
+            url::redirect('wishlist/confirmation/');
+        }
+        else
+        {
+            url::redirect('login/storelogin');
+        }
+    }
+    
+    private function has_superviser()
+    {
+        $permissions = load::model('permissions');
+        return $permissions->get_supervisers(session::get('user'));
+    }
 }

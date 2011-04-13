@@ -723,3 +723,8 @@ div.total_approuved {
     border-bottom:1px solid #333;
     font-size:20px;
 }
+
+#edit_user div.Produit_liste_item {padding-bottom: 5px;}
+#edit_user div.Produit_liste_item label {display: block; float: left; width: 150px; text-align: right; margin-right: 10px;}
+#edit_user div.Produit_liste_item input, #edit_user div.Produit_liste_item select {padding: 5px;}
+#edit_user input.commande {margin: 10px 0 0 100px;}

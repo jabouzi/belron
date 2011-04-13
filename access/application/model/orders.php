@@ -69,6 +69,7 @@ class orders_model
         return $row->id;
     }
     
+        
     public function update($list, $id, $user_id)
     {
         $table = db('access_orders');
@@ -87,6 +88,18 @@ class orders_model
         $res = $table->update(array('approved' => $approved, 'changed_by' => $user, 'approve_date' => date('Y-m-d H:i:s')))->where('id','=',$id)->execute();
         return $res;
     }    
+    
+    public function add_pos($id, $pos)
+    {
+        $table = db('access_orders');
+        $table->update(array('pos' => $pos))->where('id','=',$id)->execute();
+    }
+    
+    public function approve_pos($id, $pos)
+    {
+        $table = db('access_orders');
+        $table->update(array('pos' => $pos, 'approved' => '1'))->where('id','=',$id)->execute();
+    }
     
     public function delete($id)
     {

@@ -9,6 +9,13 @@ class wishlist_model
         return $data;
     }
     
+    public function get_by_id($id)
+    {
+        $table = db('access_wishlists');       
+        $data = $table->select('*')->where('id','=',$id)->execute();        
+        return $data;
+    }
+    
     public function insert($list, $store_id)
     {
         $table = db('access_wishlists');

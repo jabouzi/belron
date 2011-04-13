@@ -349,6 +349,24 @@ function order_wishlist(prods)
     }
 }
 
+function submit_pos()
+{
+    //alert($("#pos").val());
+    if ($("#pos").val() == '')
+    {            
+        if ($("#lang").val() == 'fr')
+            $errors = "Il faut entrer le P.O.S<br />";     
+        else $errors = "You must type the P.O.S<br />";  
+        $("#error").html($errors);   
+        
+    }     
+    else 
+    {
+        $("#error").html('');
+        document.forms["pos_form"].submit();
+    }
+}
+
 function submit_dashboard(form)
 {
     $('#'+form).attr('action',root_url+'/admin/dashboard/'+$('#user_name').val()+'/'+$('#store_name').val()+'/');

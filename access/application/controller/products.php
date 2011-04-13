@@ -13,11 +13,11 @@ class products_controller
     {        
         if (is_logged(session::get('user')))
         {            
-            $products = $this->products->get_products_by_groups($cat_id,session::get('lang'));
+            $products = $this->products->get_products_by_category($cat_id,session::get('lang'),session::get('store_type'));
             $product_list = array();
             foreach($products as $product)
             {
-                $product_list[] = $this->products->get_products_by_group_id($product->group_id);
+                $product_list[] = $this->products->get_products_by_id($product->id);
             }    
             load::view('header');
             load::view('products',array('products_list' => $product_list, 'store_id' => session::get('user')));

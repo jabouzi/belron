@@ -7,13 +7,14 @@ class products_model
         return db('access_products')->all();
     }
     
-    public function get_products_by_category($cat_id,$lang)
+    public function get_products_by_category($cat_id,$lang,$brand)
     {
         $sql = "SELECT access_products.id, access_products.name, access_products.description 
                 FROM access_products, access_category 
                 WHERE access_products.category_id = access_category.id 
                 AND access_category.id = '{$cat_id}'
-                AND access_products.lang = '{$lang}'";
+                AND (access_products.brand = '{$brand}' OR brand = 'Generic' OR brand = '')
+                AND access_products.lang = '{$lang}'";        
         $data = db::query($sql);
         return $data;
     }

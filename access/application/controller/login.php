@@ -78,11 +78,11 @@ class login_controller
         if (empty($this->errors))
         {
             session::set('lang','fr');
-            session::set('store_type','lebeau');
+            session::set('store_type','Lebeau');
             if (input::post('store_name') == 'Speedy Glass')
             {
                 session::set('lang','en');
-                session::set('store_type','speedy');
+                session::set('store_type','Speedy');
             }
             session::set('user_type',3);
             session::set('user',input::post('password'));
