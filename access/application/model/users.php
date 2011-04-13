@@ -17,10 +17,10 @@ class users_model
     }
     
     public function get_id($email)
-    {
+    {        
         $table = db('access_users');
         $data = $table->select('id')->where('email','=',$email)->execute();
-        return $data;
+        return $data[0]->id;
     }
     
     public function get_name($email)

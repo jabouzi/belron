@@ -73,7 +73,25 @@
                 <input type="hidden" value="<?=$store[0]->id?>" id="store_id">
             </div>            
         </div>
+        <input type="button" class="modalInput" rel="#stores" value="<?=gettext("Order again")?>" />
     </div>
   
 </div>
 </form>
+
+<div class="modal" id="stores">
+    <div id="Page_haut">
+        <div id="Breadcrumb"><a href="#">&nbsp;</a></div>
+        <h1><?= gettext("Add stores"); ?></h1>
+    </div>    
+    <form id="edit_user" method="post" action="<?=url::page("orders/order_again/".$order_id); ?>">
+    <div>        
+        <?foreach($stores_supervised as $store_item):?>            
+            <div class="Produit_liste_item"><input type='text' id='<?=$store_item?>' value="<?=$store_item?>" readonly />
+            <input type="checkbox" value="<?=$store_item?>" id="active" name="store-orders[]" /></div>            
+        <?endforeach?>
+    <br/>
+    </div>
+    <input type="submit" name="submit_update" value="<?=gettext("Add stores")?>"/>
+    </form>
+</div>

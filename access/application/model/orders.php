@@ -66,6 +66,13 @@ class orders_model
         $table->update(array('wish_list' => $list, 'approved' => $approved, 'changed_by' => $user, 'approve_date' => date('Y-m-d H:i:s'), 'total_cost' =>  $total_cost))->where('id','=',$id)->execute();
     }    
     
+    public function approve_direct($id, $approved, $user)
+    {        
+        $table = db('access_orders');
+        $res = $table->update(array('approved' => $approved, 'changed_by' => $user, 'approve_date' => date('Y-m-d H:i:s')))->where('id','=',$id)->execute();
+        return $res;
+    }    
+    
     public function delete($id)
     {
         $table = db('access_orders');

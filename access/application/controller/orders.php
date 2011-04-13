@@ -33,11 +33,11 @@ class orders_controller
                     $rows = get_sort_rows();
                     $user = load::model('users'); 
                     $user_id = $user->get_id(session::get('user'));
-                    $total_orders = $this->orders->manager_count($user_id[0]->id);                               
+                    $total_orders = $this->orders->manager_count($user_id);                               
                     $page = new pagination($total_orders,$current_page,10);
                     $sort_order = 'DESC';
                     if ($type == 1) $sort_order = 'ASC';
-                    $orders = $this->orders->order_manager_page($user_id[0]->id,$page->limit,$page->min,$rows[$sort],$sort_order);        
+                    $orders = $this->orders->order_manager_page($user_id,$page->limit,$page->min,$rows[$sort],$sort_order);        
                     $users = array();
                     foreach($orders as $key => $order)
                     {                    
@@ -82,7 +82,7 @@ class orders_controller
                     load::view('header');
                     if ($order[0]->approved)
                     {
-                        load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 'order_id' => $id, 'rows' => get_quantities()));
+                        load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 'order_id' => $id, 'rows' => get_quantities(), 'stores_supervised' => $this->get_stores_supevised(session::get('user_id'))));
                     }
                     else
                     {
@@ -233,6 +233,12 @@ class orders_controller
         }
     }
     
+    public function approve_order($id)
+    {
+        $res = $this->orders->approve_direct($id, '1', session::get('user'));
+        url::redirect('orders/lists/0');
+    }
+    
     public function confirmation()
     {
         load::view('header');
@@ -281,25 +287,24 @@ class orders_controller
         return $array;
     }    
     
-    public function get_users_supevised($id)
+    public function get_users_supevised($user_id)
     {
         $datas = $this->permissions->get_user_permissions($user_id);
         foreach($datas as $data)
         {
-            $users[] = $data[0]->user;
+            $users[] = $data->user;
         }
         
         return $users;
     }
     
-    public function get_stores_supevised($id)
+    public function get_stores_supevised($user_id)
     {
-        $data = $this->permissions->get_store_permissions($user_id);
+        $datas = $this->permissions->get_store_permissions($user_id);
         foreach($datas as $data)
         {
-            $stores[] = $data[0]->user;
+            $stores[] = $data->store;
         }
-        
         return $stores;
     }
     
