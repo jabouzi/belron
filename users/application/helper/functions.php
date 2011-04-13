@@ -17,12 +17,14 @@ function isPost()
 
 function get_sort_items()
 {
-    return array('Position', 'Lastname', 'Firstname', 'Address', 'Town', 'Province', 'Postal code', 'Phone', 'Email', 'Type');
+    return array('Position', 'Lastname', 'Firstname', 'Address', 'Town', 'Province', 'Postal code', 'Phone'
+                    , 'Email', 'Active','Date created','Date modified');
 }
 
 function get_sort_rows()
 {
-     return array('position', 'family_name', 'first_name', 'address', 'town', 'province', 'postal_code', 'phone', 'email', 'type');
+     return array('position', 'family_name', 'first_name', 'address', 'town', 'province', 'postal_code', 'phone'
+                    , 'email', 'active','date_created','date_modif',);
 }
 
 function get_positions()

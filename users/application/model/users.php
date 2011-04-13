@@ -81,6 +81,7 @@ class users_model
             'email' => $data['email'], 
             'password' => $data['password'], 
             'type' => $data['type'],
+            'date_created' => date('Y-m-d H:i:s'),
         ));      
 
         return $res;
@@ -106,6 +107,7 @@ class users_model
             'phone' => $data['phone'], 
             'email' => $data['email'], 
             'password' => $data['password'], 
+            'date_modif' => date('Y-m-d H:i:s'), 
         ))->where('id','=',$id)->execute();
         
         return $res;
