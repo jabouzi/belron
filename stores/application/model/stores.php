@@ -53,6 +53,7 @@ class stores_model
             'manager_or_owner' => $data['manager_or_owner'], 
             'dm_id' => $data['dm_id'],
             'cart_active' => $data['cart_active'],
+            'date_created' => date('Y-m-d H:i:s'),
         ));      
 
         return $res;
@@ -79,6 +80,7 @@ class stores_model
             'manager_or_owner' => $data['manager_or_owner'], 
             'dm_id' => $data['dm_id'],
             'cart_active' => $data['cart_active'], 
+            'date_modif' => date('Y-m-d H:i:s'), 
         ))->where('id','=',$id)->execute();
         
         return $res;

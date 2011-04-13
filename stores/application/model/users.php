@@ -2,10 +2,10 @@
 
 class users_model
 {
-    public function get_all_type2()
+    public function get_managers($province)
     {
         $table = db('access_users');
-         $data = $table->select('*')->where('type','=','2')->execute();
+        $data = $table->select('*')->where('province','=',$province)->execute();
         return $data;
     }    
     

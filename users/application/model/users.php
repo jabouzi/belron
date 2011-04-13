@@ -80,7 +80,7 @@ class users_model
             'phone' => $data['phone'], 
             'email' => $data['email'], 
             'password' => $data['password'], 
-            'type' => $data['type'],
+            'type' => '2',
             'date_created' => date('Y-m-d H:i:s'),
         ));      
 

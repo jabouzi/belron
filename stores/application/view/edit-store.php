@@ -37,23 +37,36 @@
             <div class="Produit_liste_item"><label><?=gettext("Fax")?> : </label><input type='text' id='fax1' name='fax1' value="<?=$fax[0]?>" size="3" maxlength="3" onkeyup="jump('fax1', 'fax2', '3')"/>
                                                                                    <input type='text' id='fax2' name='fax2' value="<?=$fax[1]?>" size="3" maxlength="3" onkeyup="jump('fax2', 'fax3', '3')"/>
                                                                                    <input type='text' id='fax3' name='fax3' value="<?=$fax[2]?>" size="4" maxlength="4" /></div>
-            <div class="Produit_liste_item"><label><?=gettext("Manager")?> : </label><input type='text' id='manager_name' name='manager_name' value="<?=utf8_encode($store[0]->manager_or_owner)?>" /><a href="#" class="modalInput" rel="#managers"><?=gettext("Select a manager")?></a>  </div>
+            <div class="Produit_liste_item"><label><?=gettext("Manager")?> : </label><input type='text' id='manager_name' name='manager_name' value="<?=utf8_encode($store[0]->manager_or_owner)?>" /></div>
             <div class="Produit_liste_item"><label><?=gettext("Cart active")?> : </label><input type="checkbox" value="1" id="checkbox_cart_active" name="checkbox_cart_active" <?=$checked?>/></div>
             <br/>
             <input type='hidden' id='id' name='id' value="<?=$store[0]->id?>" />
-            <input type='hidden' id='dm_id' name='dm_id' value="<?=$store[0]->dm_id?>" />
             <input type='hidden' id='lang' name='lang' value="<?=session::get('lang')?>" />
             </div>
+            <input type="button" class="modalInput" rel="#supervisers" value="<?=gettext("Add supervisers")?>" />
             <input type="button" class="commande" name="submit_update" value="<?=gettext("Update store")?>" onclick="add_update_store()"/>
+            
+            <div class="modal" id="supervisers">
+                <div id="Page_haut">
+                    <div id="Breadcrumb"><a href="#">&nbsp;</a></div>
+                    <h1><?= gettext("Add supervisers"); ?></h1>
+                </div>                
+                <div>                
+                    <?foreach($admins as $admin):?>
+                        <? if ($admin[0]->id != $user[0]->id):?>
+                            <?$checked = '';?>
+                            <?if (in_array($admin[0]->id,$admin_permissions)):?>
+                                <?$checked = 'checked';?>
+                            <?endif?>
+                            <div class="Produit_liste_item"><input type='text' id='<?=$admin[0]->id?>' value="<?=utf8_encode($admin[0]->first_name)?> <?=utf8_encode($admin[0]->family_name)?>" readonly />
+                            <input type="checkbox" value="<?=$admin[0]->id?>" id="active" name="user-permissions[]" <?=$checked?>/></div>            
+                        <?endif?>
+                    <?endforeach?>
+                <br/>
+                </div>
+                <input type="button" class="close" name="submit_update" value="<?=gettext("Add supervisers")?>" />
+            </div>
+            
         </form>
     </div>
-</div>
-
-<div class="modal" id="managers">
-    </label><select id="manager" name="manager">
-        <?foreach($admins as $key => $admin) :?>                
-            <option value="<?=$admin[0]->id?>" <?=$selected?>><?=utf8_encode($admin[0]->first_name)?> <?=utf8_encode($admin[0]->family_name)?></option>
-        <?endforeach?>
-    </select>
-    <div><button type="button" class="close"><?=gettext("Ok")?></button></div>
 </div>

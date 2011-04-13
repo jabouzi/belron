@@ -33,9 +33,11 @@
             <? if ($user):?>
                 <? if ($usertype == 1):?>
                     <a href="<?=url::page('admin/admin_index')?>"><?=gettext("Home")?></a>
-                    <a href="<?=STORE_URL?>"><?=gettext("Admin")?></a>
+                    <a href="<?=url::page('admin/make_order')?>"><?=gettext("Make an order")?></a>
+                    <a class="modalInput" rel="#login"  href="#"><?=gettext("Admin")?></a>
                 <? elseif ($usertype == 2):?>
                     <a href="<?=url::page('orders/lists/0')?>"><?=gettext("Home")?></a>
+                    <a href="<?=url::page('orders/make_order')?>"><?=gettext("Make an order")?></a>
                 <? else:?>                    
                     <?if ($hasalist):?>
                         <a href="<?=url::page('wishlist/confirm')?>"><?=gettext("My order")?></a>

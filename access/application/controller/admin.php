@@ -12,7 +12,7 @@ class admin_controller
     {        
         $this->stores = load::model('stores');       
         $this->orders = load::model('orders');       
-        $this->users = load::model('users');     
+        $this->users = load::model('users');             
         load::library('pagination');  
     }    
     
@@ -91,4 +91,10 @@ class admin_controller
         
         url::redirect(input::post('redirect_url'));   
     }    
+    
+    public function make_order()
+    {
+        url::redirect('categories');
+    }
+
 }

@@ -17,12 +17,14 @@ function isPost()
 
 function get_sort_items()
 {
-    return array('Store id', 'Name', 'Address', 'City', 'Postal code', 'Province', 'Phone', 'Fax', 'Manager', 'Cart');
+    return array('Store id', 'Name', 'Address', 'City', 'Postal code', 'Province', 'Phone'
+                    , 'Fax', 'Manager', 'Cart', 'Date created','Date modified');
 }
 
 function get_sort_rows()
 {
-     return array('store_id', 'name', 'address', 'city', 'postal_code', 'province', 'phone', 'fax', 'manager_or_owner', 'cart_active');
+     return array('store_id', 'name', 'address', 'city', 'postal_code', 'province', 'phone'
+                    , 'fax', 'manager_or_owner', 'cart_active','date_created','date_modif');
 }
 
 function get_positions()

@@ -11,21 +11,17 @@ class storesmanager_controller
     function __construct() 
     {
         $this->stores = load::model('stores');     
-        $this->users = load::model('users');     
+        $this->users = load::model('users'); 
+        $this->permissions = load::model('permissions');      
         load::library('pagination');  
         load::library('encrypt');
     }    
     
     public function index()
     {        
-        if (is_logged(session::get('user')))
-        {
-            url::redirect('storesmanager/lists');
-        }
-        else
-        {
-            header('location: '.HOME_URL);
-        }
+        load::view('header');
+        load::view('page-index');
+        load::view('footer');        
     }
     
     public function login($uname,$pwd)
@@ -51,13 +47,13 @@ class storesmanager_controller
     
     public function logout()
     {
-        session::delete('user');  
+        session::delete('store');  
         header('location: '.HOME_URL);
     }
     
     public function lists($current_page = 1, $number = 'all', $sort = 0, $type = 1)
     {       
-        if (is_logged(session::get('user')))
+        if (is_logged(session::get('store')))
         {
             $numbers = array();
             $rows = get_sort_rows();
@@ -89,17 +85,18 @@ class storesmanager_controller
     
     public function edit($id)
     {
-        if (is_logged(session::get('user')))
+        if (is_logged(session::get('store')))
         { 
             $store = $this->stores->get_store_infos($id);
-            $users = $this->users->get_all_type2();
+            $admin_permissions = $this->get_store_permissions($store[0]->store_id);
+            $users = $this->users->get_managers($store[0]->province);
             $admins = array();
             foreach($users as $user)
             {
                 $admins[] =  $this->users->get_name($user->email);
             }
             load::view('header');
-            load::view('edit-store',array('store' => $store, 'admins' => $admins));
+            load::view('edit-store',array('store' => $store, 'admins' => $admins, 'admin_permissions' => $admin_permissions));
             load::view('footer'); 
         }
         else
@@ -110,8 +107,9 @@ class storesmanager_controller
     
     public function update()
     {  
-        if (is_logged(session::get('user')))
+        if (is_logged(session::get('store')))
         {      
+            $data['id'] = mysql_escape_string(input::post('id'));
             $data['store_id'] = mysql_escape_string(input::post('store_id'));
             $data['name'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('name')))));
             $data['address'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('address')))));
@@ -122,12 +120,18 @@ class storesmanager_controller
             $data['fax'] = mysql_escape_string(format_phone(input::post('fax1'),input::post('fax2'),input::post('fax3')));
             $data['manager_or_owner'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('manager_name')))));
             $data['dm_id'] = mysql_escape_string(input::post('dm_id'));
-            $data['cart_active'] = mysql_escape_string(input::post('checkbox_cart_active'));
+            $data['cart_active'] = mysql_escape_string(input::post('checkbox_cart_active'));            
+            $store_permissions = input::post('user-permissions');     
             
-            $res = $this->stores->update_store(input::post('id'),$data);
+            $res = $this->stores->update_store($data['id'],$data);       
+           
+            $this->permissions->delete_store_permissions($data['store_id']);
+
+            $this->add_store_permissions($data['store_id'],$store_permissions);
             
-            $url = HOME_URL."stores/update/";
-            $data['id'] = input::post('id');
+            
+            
+            $url = HOME_URL."stores/update/";           
             $array2 = class_encrypt::keycalc('58hdlDMwol1hhWqAdtap');
             $array = class_encrypt::stringtoarray('4kbTOdrqyysumEu7q0nBTkmjuzfkey');
             $data['post_key'] = class_encrypt::transformstring($array, $array2);
@@ -143,16 +147,10 @@ class storesmanager_controller
     
     public function add()
     {
-        if (is_logged(session::get('user')))
-        { 
-            $users = $this->users->get_all_type2();
-            $admins = array();
-            foreach($users as $user)
-            {
-                $admins[] =  $this->users->get_name($user->email);
-            }
+        if (is_logged(session::get('store')))
+        {
             load::view('header');
-            load::view('add-store',array('admins' => $admins));
+            load::view('add-store');
             load::view('footer'); 
         }
         else
@@ -163,7 +161,7 @@ class storesmanager_controller
     
     public function insert()
     {   
-        if (is_logged(session::get('user')))
+        if (is_logged(session::get('store')))
         {      
             $data['store_id'] = mysql_escape_string(input::post('store_id'));
             $data['name'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('name')))));
@@ -235,4 +233,24 @@ class storesmanager_controller
 
         url::redirect(input::post('redirect_url'));   
     }    
+    
+    public function get_store_permissions($id)
+    {
+        $store_permissions = $this->permissions->get_store_permissions($id);        
+        foreach($store_permissions as $store)
+        {
+            $supervisers[] = $store->superviser;
+        }
+        return $supervisers;
+    }
+    
+    public function add_store_permissions($store,$store_permissions)
+    {
+        foreach($store_permissions as $permissions)
+        {        
+            $data['superviser'] = $permissions;
+            $data['store'] = $store;
+            $this->permissions->update_store_permissions($data);
+        }
+    }
 }

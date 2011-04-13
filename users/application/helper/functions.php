@@ -24,7 +24,7 @@ function get_sort_items()
 function get_sort_rows()
 {
      return array('position', 'family_name', 'first_name', 'address', 'town', 'province', 'postal_code', 'phone'
-                    , 'email', 'active','date_created','date_modif',);
+                    , 'email', 'active','date_created','date_modif');
 }
 
 function get_positions()

@@ -8,6 +8,7 @@ class orders_controller
     {        
         $this->orders = load::model('orders');    
         $this->stores = load::model('stores');   
+        $this->permissions = load::model('permissions');    
         load::library('phpmailer'); 
         load::library('pagination');
     }    
@@ -279,4 +280,31 @@ class orders_controller
 
         return $array;
     }    
+    
+    public function get_users_supevised($id)
+    {
+        $datas = $this->permissions->get_user_permissions($user_id);
+        foreach($datas as $data)
+        {
+            $users[] = $data[0]->user;
+        }
+        
+        return $users;
+    }
+    
+    public function get_stores_supevised($id)
+    {
+        $data = $this->permissions->get_store_permissions($user_id);
+        foreach($datas as $data)
+        {
+            $stores[] = $data[0]->user;
+        }
+        
+        return $stores;
+    }
+    
+    public function make_order()
+    {
+        url::redirect('categories');
+    }
 }

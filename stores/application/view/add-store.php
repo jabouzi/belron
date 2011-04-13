@@ -31,7 +31,7 @@
             <div class="Produit_liste_item"><label><?=gettext("Fax")?> : </label><input type='text' id='fax1' name='fax1' value="" size="3" maxlength="3" onkeyup="jump('fax1', 'fax2', '3')"/>
                                                                                    <input type='text' id='fax2' name='fax2' value="" size="3" maxlength="3" onkeyup="jump('fax2', 'fax3', '3')"/>
                                                                                    <input type='text' id='fax3' name='fax3' value="" size="4" maxlength="4" /></div>
-            <div class="Produit_liste_item"><label><?=gettext("Manager")?> : </label><input type='text' id='manager_name' name='manager_name' value="" /><a href="#" class="modalInput" rel="#managers"><?=gettext("Select a manager")?></a>  </div>
+            <div class="Produit_liste_item"><label><?=gettext("Manager")?> : </label><input type='text' id='manager_name' name='manager_name' value="" /></div>
             <div class="Produit_liste_item"><label><?=gettext("Cart active")?> : </label><input type="checkbox" value="1" id="checkbox_cart_active" name="checkbox_cart_active"/></div>
             <br/>
             <input type='hidden' id='id' name='id' value="" />
@@ -41,13 +41,4 @@
             <input type="button" class="commande" name="submit_update" value="<?=gettext("Add store")?>" onclick="add_update_store()"/>
         </form>
     </div>
-</div>
-
-<div class="modal" id="managers">
-    </label><select id="manager" name="manager">
-        <?foreach($admins as $key => $admin) :?>                
-            <option value="<?=$admin[0]->id?>" <?=$selected?>><?=utf8_encode($admin[0]->first_name)?> <?=utf8_encode($admin[0]->family_name)?></option>
-        <?endforeach?>
-    </select>
-    <div><button type="button" class="close"><?=gettext("Ok")?></button></div>
 </div>

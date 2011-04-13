@@ -54,6 +54,7 @@ class products_model
             'id' => $data['id'],
             'group_id' => $data['group_id'],
             'category_id' => $data['category_id'], 
+            'brand' => $data['brand'], 
             'name' => $data['name'],
             'lang' => $data['lang'],
             'description' => $data['description'],

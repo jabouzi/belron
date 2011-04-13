@@ -230,7 +230,7 @@ class usersmanager_controller
         foreach($store_permissions as $store)
         {
             $data = $this->stores->get_store_infos($store->store);
-            $stores[] = $data[0]->id;
+            $stores[] = $data[0]->store_id;
         }
         return $stores;
     }
@@ -261,8 +261,8 @@ class usersmanager_controller
     {
         foreach($user_permissions as $permissions)
         {
-            $data['superviser'] = mysql_escape_string($user);
-            $data['user'] = mysql_escape_string($permissions);
+            $data['superviser'] = $user;
+            $data['user'] = $permissions;
             $this->permissions->update_user_permissions($data);
         }
     }
@@ -271,8 +271,8 @@ class usersmanager_controller
     {
         foreach($store_permissions as $permissions)
         {        
-            $data['superviser'] = mysql_escape_string($user);
-            $data['store'] = mysql_escape_string($permissions);
+            $data['superviser'] = $user;
+            $data['store'] = $permissions;
             $this->permissions->update_store_permissions($data);
         }
     }

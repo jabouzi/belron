@@ -79,16 +79,17 @@ class orders_model
         return $orders;
     }
     
-    public function manager_count($manager_id)
+    public function manager_count($id)
     {
-        $table = db('access_orders');       
-        return $table->count()->where('manager','=',$manager_id)->execute();
+        $sql = "SELECT COUNT(access_orders.id) as count FROM access_orders, access_store_permissions WHERE superviser = {$id} AND access_orders.store_id = store";
+        $orders = db::query($sql);
+        return $orders;
     }
     
-    public function order_manager_page($manager_id,$limit,$offset,$order_by, $type)
+    public function order_manager_page($id,$limit,$offset,$order_by, $type)
     {
-        $table = db('access_orders');
-        $orders = $table->select('*')->where('manager','=',$manager_id)->order_by($order_by, $type)->limit($limit)->offset($offset)->execute();
+        $sql = "SELECT * FROM access_store_permissions, access_orders  WHERE access_orders.store_id = access_store_permissions.store AND access_store_permissions.superviser = {$id} ORDER BY {$order_by} {$type} LIMIT {$limit} OFFSET {$offset} ";
+        $orders = db::query($sql);
         return $orders;
     }
     

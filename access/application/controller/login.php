@@ -109,6 +109,7 @@ class login_controller
         {
             session::set('user_type',$this->get_user_type());
             session::set('user',input::post('username'));            
+            session::set('user_id',$this->users->get_id(input::post('username')));            
 
             if ($this->get_user_type() == 2)
             {                
@@ -131,6 +132,7 @@ class login_controller
     public function logout()
     {
         session::delete('user');
+        session::delete('user_id');
         session::delete('user_type');
         session::delete('wishlist');
         session::delete('store_type');

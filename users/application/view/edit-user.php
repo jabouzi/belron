@@ -62,7 +62,7 @@
                     <?endforeach?>
                 <br/>
                 </div>
-                <input type="button" class="close" name="submit_update" value="<?=gettext("Add users")?>" onclick="add_permissions()"/>
+                <input type="button" class="close" name="submit_update" value="<?=gettext("Add users")?>" />
             </div>
 
             <div class="modal" id="stores">
@@ -71,12 +71,13 @@
                     <h1><?= gettext("Add stores"); ?></h1>
                 </div>    
                 <div>                
+                    
                     <?foreach($stores as $store_item):?>
                         <?$checked = '';?>
-                        <?if (in_array($store_item->id,$store_permissions)):?>
+                        <?if (in_array($store_item->store_id,$store_permissions)):?>
                             <?$checked = 'checked';?>
                         <?endif?>
-                        <div class="Produit_liste_item"><input type='text' id='<?=$store_item->id?>' value="<?=$store_item->id?>" readonly />
+                        <div class="Produit_liste_item"><input type='text' id='<?=$store_item->store_id?>' value="<?=$store_item->store_id?>" readonly />
                         <input type="checkbox" value="<?=$store_item->id?>" id="active" name="store-permissions[]" <?=$checked?>/></div>            
                     <?endforeach?>
                 <br/>

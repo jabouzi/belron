@@ -87,6 +87,8 @@
                     <th style="cursor:pointer;" scope="col"><?=gettext("Fax")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Manager")?></th>
                     <th style="cursor:pointer;" scope="col"><?=gettext("Cart")?></th>
+                    <th style="cursor:pointer;" scope="col"><?=gettext("Creation date")?></th>
+                    <th style="cursor:pointer;" scope="col"><?=gettext("Modification date")?></th>
                 </tr>
             </thead>
             <tbody>
@@ -108,6 +110,8 @@
                             <?$active = 'Active';?>
                         <?endif?>
                         <td><?=$active?></td>   
+                        <td><?=date("Y-m-d", strtotime($store->date_created))?></td>
+                        <td><?=date("Y-m-d", strtotime($store->date_modif))?></td>  
                         <td><a href="<?=url::page("storesmanager/edit/{$store->id}/")?>"><?=gettext("Edit")?></a></td>
                     </tr>
                 <?endforeach?>

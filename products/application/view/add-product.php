@@ -17,12 +17,7 @@
                     </select>
                 </div>             
                 <span id="product_span" style="display:none">
-                <div class="Produit_liste_item"><label><?=gettext("Brand")?> : </label>                    
-                    <select id='brand' name='brand' >                            
-                            <option value="Lebeau">LeBeau</option>
-                            <option value="Speedy">Speedy</option>
-                    </select>
-                </div>     
+                <div class="Produit_liste_item"><label><?=gettext("Brand")?> : </label><input type='text' id='brand' name='brand'  value="" /></div>                    
                 <div class="Produit_liste_item"><label><?=gettext("product id")?> : </label><input type='text' id='product_id' name='product_id' readonly value="" /></div>
                 <div class="Produit_liste_item"><label><?=gettext("Name")?> : </label><input type='text' id='name' name='name' value="" /></div>            
                 <div class="Produit_liste_item"><label><?=gettext("Language")?> : </label>                    

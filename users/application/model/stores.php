@@ -25,7 +25,7 @@ class stores_model
     public function get_store_infos($id)
     {
         $table = db('access_stores');
-        $data = $table->select('*')->where('id','=',$id)->execute();
+        $data = $table->select('*')->where('store_id','=',$id)->execute();
         return $data;
     }
 }

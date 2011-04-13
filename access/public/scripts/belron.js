@@ -1,10 +1,64 @@
 var root_url = "/belron_pp/access";
+var products_url = "/belron_pp/stores";
 
 $(document).ready(function() {
    if ($('#wish_list').length)
    {
        display_wish_list($('#store_id').val())
    }
+   
+   var triggers = $(".modalInput").overlay({
+
+        mask: {
+            color: '#ebecff',
+            loadSpeed: 200,
+            opacity: 0.9
+        },
+
+        closeOnClick: false
+    });
+
+    //$("#users_table").tablesorter({widgets: ['zebra']}); 
+
+    var buttons = $("#login button").click(function(e) {
+        
+        var en = ["You must type your username<br />","You must type your password<br />"];
+        var fr = ["Le nom d'usager est obligatoire<br />","Le mot de passe est obligatoire<br />"];
+        
+        var submit = buttons.index(this) === 0;
+        if (submit)
+        {            
+            var error = '';
+            if ($("#uname").val() == '') 
+            {
+                if ($("#lang").val() == 'fr') error += fr[0];
+                else error += en[0];
+            }
+            if ($("#pwd").val() == '') 
+            {
+                if ($("#lang").val() == 'fr') error += fr[1];
+                else error += en[1];
+            }
+            if (error == '')
+            {
+                $.get(products_url+"/storesmanager/login/"+$("#uname").val()+'/'+$("#pwd").val()+'/',{uid : String((new Date()).getTime()).replace(/\D/gi, '') },
+                    function(ok) {
+                        if (ok != 0)
+                        {
+                            $(window.location).attr('href', products_url+'/storesmanager/lists/');
+                        }
+                        else
+                        {
+                            if ($("#lang").val() == 'fr') $("#error").html("Le nom d'usager ou le mot de passe est invalide");
+                            else $("#error").html("The username or the password are invalid");
+                        }
+                    }
+                );
+            }
+            else $("#error").html(error);
+        }    
+    });
+   
 });
 
 
