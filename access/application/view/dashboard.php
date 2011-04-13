@@ -91,7 +91,12 @@
                     <td><?=$users[$key][0].' '.$users[$key][1]?></td>                    
                     <td><?=$order->id?></td>
                     <td><?=printf("%01.1f",$order_detail['shipping']['total'])?></td>
-                    <td><span class="<?=$class_approved?>"><?=$approved?></span></td>   
+                    <td><span class="<?=$class_approved?>"><?=$approved?></span></td> 
+                    <?if (!$order->approved):?>
+                        <td><a href="<?=url::base()?>orders/approve_order/<?=$order->id?>"><?=gettext("Approve")?></a></td>   
+                    <?else:?>
+                        <td></td>
+                    <?endif?>  
                     <?if (count(unserialize($order->wish_list))):?>                
                         <td><a href="<?=url::base()?>orders/lists/<?=$order->id?>"><?=gettext("Details")?></a></td>
                     <?endif?>

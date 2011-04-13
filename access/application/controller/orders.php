@@ -55,12 +55,14 @@ class orders_controller
                 if (session::get('user_type') == 1)
                 {
                     $order = $this->orders->get($id);
-                    $order_list = unserialize($order[0]->wish_list);                                          
+                    $order_list = unserialize($order[0]->wish_list);  
+                    $stores_supervised = $this->get_all_stores();                                       
                 }
                 else
                 {
                     $order = $this->orders->get($id);
-                    $order_list = unserialize($order[0]->wish_list);                
+                    $order_list = unserialize($order[0]->wish_list);    
+                    $stores_supervised = $this->get_stores_supevised(session::get('user_id'));            
                 }         
                 
                 if (empty($order_list))
@@ -82,7 +84,8 @@ class orders_controller
                     load::view('header');
                     if ($order[0]->approved)
                     {
-                        load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 'order_id' => $id, 'rows' => get_quantities(), 'stores_supervised' => $this->get_stores_supevised(session::get('user_id'))));
+                        
+                        load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 'order_id' => $id, 'rows' => get_quantities(), 'stores_supervised' => $stores_supervised));
                     }
                     else
                     {
@@ -239,6 +242,17 @@ class orders_controller
         url::redirect('orders/lists/0');
     }
     
+    public function order_again($id)
+    {        
+        $order = $this->orders->get($id);
+        $stores = input::post('store-orders');
+        foreach($stores as $store)
+        {
+            $this->orders->duplicate($order[0]->wish_list, $store, session::get('user'), $order[0]->total_cost);
+        }
+        url::redirect('orders/confirmation');
+    }
+    
     public function confirmation()
     {
         load::view('header');
@@ -304,6 +318,16 @@ class orders_controller
         foreach($datas as $data)
         {
             $stores[] = $data->store;
+        }
+        return $stores;
+    }
+    
+    public function get_all_stores()
+    {
+        $datas = $this->stores->get_all();
+        foreach($datas as $data)
+        {
+            $stores[] = $data->store_id;
         }
         return $stores;
     }

@@ -54,6 +54,21 @@ class orders_model
         return $row->id;
     }
     
+    public function duplicate($list, $store_id, $approved_by, $total_cost)
+    {
+        $table = db('access_orders');
+        $row = $table->insert(array(            
+            'store_id' => $store_id,
+            'wish_list' => $list,
+            'changed_by' => $approved_by,
+            'save_data' => date('Y-m-d H:i:s'),
+            'approve_date' => date('Y-m-d H:i:s'),
+            'approved' => '1',
+            'total_cost' =>  $total_cost,
+        ));
+        return $row->id;
+    }
+    
     public function update($list, $id, $user_id)
     {
         $table = db('access_orders');
@@ -112,5 +127,4 @@ class orders_model
         $data = $table->select('*')->where('store_id','=',$store_id)->order_by($order_by, $type)->limit($limit)->offset($offset)->execute();
         return $data;
     }
-    
 }

@@ -79,7 +79,7 @@
 </div>
 </form>
 
-<div class="modal" id="stores">
+<div class="modal2" id="stores">
     <div id="Page_haut">
         <div id="Breadcrumb"><a href="#">&nbsp;</a></div>
         <h1><?= gettext("Add stores"); ?></h1>
