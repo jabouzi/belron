@@ -110,7 +110,8 @@ class orders_controller
             {
                 $order = $this->orders->get($id);
                 $order_list = unserialize($order[0]->wish_list);   
-                $product = load::model('products');                    
+                $product = load::model('products');        
+                $approved = $this->orders->is_approved($id);            
                 foreach($order_list['items'] as $key => $item)
                 {                        
                     $product_price = $product->get_product_price($item, $order_list['quantity'][$item]);
@@ -120,7 +121,7 @@ class orders_controller
                     $order_list['price'][$item] = $price[$order_list['quantity'][$item]];
                 } 
                 load::view('header');                    
-                load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 'order_id' => $id, 'rows' => get_quantities()));
+                load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 'order_id' => $id, 'rows' => get_quantities(), 'approved' => $approved[0]->approved));
                 load::view('footer');  
             }
             else
@@ -243,14 +244,22 @@ class orders_controller
     }
     
     public function order_again($id)
-    {        
+    {                
         $order = $this->orders->get($id);
-        $stores = input::post('store-orders');
-        foreach($stores as $store)
+        if (session::get('user_type') == 3)
         {
-            $this->orders->duplicate($order[0]->wish_list, $store, session::get('user'), $order[0]->total_cost);
+             $order_id = $this->orders->duplicate($order[0]->wish_list, session::get('user'), '', $order[0]->total_cost);
         }
-        url::redirect('orders/confirmation');
+        else
+        {
+            $stores = input::post('store-orders');
+            foreach($stores as $store)
+            {
+                $order_id = $this->orders->duplicate($order[0]->wish_list, $store, session::get('user'), $order[0]->total_cost);
+            }
+        }
+        
+        url::redirect("wishlist/pos/".$order_id);
     }
     
     public function confirmation()

@@ -140,4 +140,10 @@ class orders_model
         $data = $table->select('*')->where('store_id','=',$store_id)->order_by($order_by, $type)->limit($limit)->offset($offset)->execute();
         return $data;
     }
+    
+    public function is_approved($id)
+    {
+        $table = db('access_orders');       
+        return $table->select('approved')->where('id','=',$id)->execute();
+    }
 }

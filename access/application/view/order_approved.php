@@ -73,7 +73,15 @@
                 <input type="hidden" value="<?=$store[0]->id?>" id="store_id">
             </div>            
         </div>
-        <input type="button" class="modalInput" rel="#stores" value="<?=gettext("Order again")?>" />
+        <?if ($approved):?>
+            <?if (session::get('user_type') == 3):?>
+                <form id="edit_user" method="post" action="<?=url::page("orders/order_again/".$order_id); ?>">
+                    <input type="submit" value="<?=gettext("Order again")?>" onclick=""/>
+                </form>            
+            <?else:?>
+                <input type="button" class="modalInput" rel="#stores" value="<?=gettext("Order again")?>" />
+            <?endif?>
+        <?endif?>
     </div>
   
 </div>
