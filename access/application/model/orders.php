@@ -125,7 +125,7 @@ class orders_model
     public function order_manager_page($id,$limit,$offset,$order_by, $type)
     {
         $sql = "SELECT * FROM access_store_permissions, access_orders  WHERE access_orders.store_id = access_store_permissions.store AND access_store_permissions.superviser = {$id} ORDER BY {$order_by} {$type} LIMIT {$limit} OFFSET {$offset} ";
-        $orders = db::query($sql);        
+        $orders = db::query($sql);   
         return $orders;
     }
     

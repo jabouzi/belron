@@ -71,8 +71,7 @@
                 <th scope="col"><?=gettext("Total in")?> $</th>
                 <th scope="col"><?=gettext("Status")?></th>
                 <th scope="col" width="50"><?= gettext("Actions")?></th>           
-            </tr>
-            
+            </tr>            
             <?foreach ($orders as $key => $order):?>
                 <?$order_detail = unserialize($order->wish_list);?>
                 <?if (count($order_detail)):?>                    
@@ -82,6 +81,9 @@
                     <?endif?>
                     <?if ($order->pos == ''):?>
                         <? $class_approved = 'order_cancelled'; $approved = gettext("no pos"); ?>     
+                    <?endif?>
+                    <?if ($orders_status[$order->id] != '0' && $orders_status[$order->id] !=NULL ):?>
+                        <? $class_approved = 'order_approuved'; $approved = gettext($orders_status[$order->id]); ?>   
                     <?endif?>
                 <?$tr_class = 'outline'?>
                     <?if ($key % 2) $tr_class = ''?>

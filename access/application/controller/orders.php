@@ -9,6 +9,7 @@ class orders_controller
         $this->orders = load::model('orders');    
         $this->stores = load::model('stores');   
         $this->permissions = load::model('permissions');    
+        $this->status = load::model('status');    
         load::library('phpmailer'); 
         load::library('pagination');
     }    
@@ -44,7 +45,7 @@ class orders_controller
                     {                    
                         $name = $user->get_name($order->changed_by);
                         $users[$key][] = $name[0]->first_name;
-                        $users[$key][] = $name[0]->family_name;
+                        $users[$key][] = $name[0]->family_name;                        
                     }   
                 }
                 load::view('header');
@@ -143,9 +144,9 @@ class orders_controller
         {            
             if (session::get('user_type') == 3)
             {
-                $rows = get_sort_rows();
+                $rows = get_sort_rows2();
                 $user = load::model('users');   
-                $total_orders = $this->orders->store_count(load::model('users'));
+                $total_orders = $this->orders->store_count(session::get('user'));
                 $page = new pagination($total_orders,$current_page,10);
                 $sort_order = 'DESC';
                 if ($type == 1) $sort_order = 'ASC';
@@ -153,13 +154,17 @@ class orders_controller
                 $users = array();
                 foreach($orders as $key => $order)
                 {
+                    $status_list = array('0','Recieved','In treatment','Send','Problem','Cancelled');
                     $name = $user->get_name($order->changed_by);
                     $users[$key][] = $name[0]->first_name;
                     $users[$key][] = $name[0]->family_name;
+                    $status = $this->status->get($order->id);
+                    $orders_status[$order->id] = $status_list[$status[0]->status];
                 }                        
-            }
+            }           
+             
             load::view('header');
-            load::view('historique',array('orders' => $orders,'page' => $page, 'users' => $users, 'current' => $current_page, 'total' => $page->total(), 'sort' => $sort, 'type' => $type));
+            load::view('historique',array('orders' => $orders,'page' => $page, 'users' => $users, 'current' => $current_page, 'total' => $page->total(), 'sort' => $sort, 'type' => $type, 'orders_status' => $orders_status));
             load::view('footer');    
         }
         else
@@ -220,7 +225,7 @@ class orders_controller
             {
                 $this->stores->update_address(session::get('user'),$address);
                 
-                $mailer = new phpmailer();
+                /*$mailer = new phpmailer();
                 $mailer->IsSendmail();
                 $mailer->From = 'noreply@domain.com';
                 $mailer->FromName = 'Name';
@@ -228,7 +233,7 @@ class orders_controller
                 $email_message = "<a href='".url::base()."login/userlogin/".input::post('order_id')."/'>Click ici</a>";             
                 $mailer->MsgHTML($email_message);
                 $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
-                $mailer->Send();
+                $mailer->Send();*/
             }
             
             url::redirect('orders/confirmation');
@@ -389,5 +394,43 @@ class orders_controller
     public function make_order()
     {
         url::redirect('categories');
+    }
+    
+    public function recieved($order_id, $code_verif)
+    {
+        $order_status = $this->status->get($order_id);
+        if ($order_status[0]->code_verif == $code_verif)
+        {
+            $this->status->update($order_id,'1',$code_verif);
+        }
+    }
+    
+    public function submit($order_id, $code_verif)
+    {
+        $order_status = $this->status->get($order_id);
+        if ($order_status[0]->code_verif == $code_verif)
+        {
+            $this->status->update($order_id,'2',$code_verif);
+        }
+    }
+    
+    public function send($order_id, $code_verif)
+    {
+        $order_status = $this->status->get($order_id);
+        if ($order_status[0]->code_verif == $code_verif)
+        {
+            $this->status->update($order_id,'3',$code_verif);
+        }
+    }
+    
+    public function problem($order_id, $code_verif)
+    {
+        $order_status = $this->status->get($order_id);
+        
+    }    
+    
+    public function cancel($order_id, $code_verif)
+    {
+        $order_status = $this->status->get($order_id);
     }
 }

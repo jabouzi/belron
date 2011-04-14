@@ -18,9 +18,9 @@
 <body>
 <div id="header_full">
     <div id="header_960">
-        <? if (session::get('store_type') == 'lebeau'):?>
+        <? if (session::get('store_type') == 'Lebeau'):?>
             <div id="logo"><img src="<?=url::base()?>public/styles/images/Lebeau_Logo.gif" alt="" border="0" /></div>
-        <? elseif (session::get('store_type') == 'speedy'):?>
+        <? elseif (session::get('store_type') == 'Speedy'):?>
             <div id="logo"><img src="<?=url::base()?>public/styles/images/Logo_Speedy.gif" alt="" border="0" /></div>
         <?else:?>
             <div id="logo"><img src="<?=url::base()?>public/styles/images/logo.gif" alt="" border="0" /></div>

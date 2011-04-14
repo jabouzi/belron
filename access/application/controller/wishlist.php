@@ -303,6 +303,7 @@ class wishlist_controller
         if (is_logged(session::get('user')))
         {
             $orders = load::model('orders');
+            $status = load::model('status');
             $pos = input::post('pos');
             
             $has_supervier = false;
@@ -320,6 +321,7 @@ class wishlist_controller
                  foreach($pos as $key => $item)
                  {
                     $orders->add_pos($key,mysql_escape_string($item));
+                    $status->insert();
                  }
             }
             else
@@ -327,16 +329,23 @@ class wishlist_controller
                 foreach($pos as $key => $item)
 				{
 					$orders->approve_pos($key,mysql_escape_string($item));
+                    $verif_code = md5(time());
+                    $status->insert($key,0,$verif_code);
+                    
+                    $mailer = new phpmailer();
+                    $mailer->IsSendmail();
+                    $mailer->From = 'noreply@domain.com';
+                    $mailer->FromName = 'Belron admin';
+                    $mailer->Subject = utf8_decode('Nouvelle commande ajoutée');
+                    $email_message = "Une nouvelle commande vient d'être ajoutée <br/> 
+                        Pour confirmer la receprion :<a href='".url::base()."orders/recieved/".$key."/".$verif_code."/'>" .url::base()."orders/recieved/".$key."/".$verif_code."/ </a><br/>
+                        Pour confirmer le traitement :<a href='".url::base()."orders/submit/".$key."/".$verif_code."/'>" .url::base()."orders/submit/".$key."/".$verif_code."/ </a><br/>
+                        Pour confirmer l'envoie :<a href='".url::base()."orders/send/".$key."/".$verif_code."/'>" .url::base()."orders/send/".$key."/".$verif_code."/ </a>";
+                    $mailer->MsgHTML($email_message);
+                    $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
+                    $mailer->Send();
 				}
-                /*$mailer = new phpmailer();
-                $mailer->IsSendmail();
-                $mailer->From = 'noreply@domain.com';
-                $mailer->FromName = 'Name';
-                $mailer->Subject = 'Order approved';
-                $email_message = "<a href='".url::base()."login/userlogin/".$last_id."/'>Click ici </a>";
-                $mailer->MsgHTML($email_message);
-                $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
-                $mailer->Send();*/
+                
             }
             url::redirect('wishlist/confirmation/');
         }
