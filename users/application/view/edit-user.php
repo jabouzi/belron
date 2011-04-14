@@ -35,7 +35,7 @@
                                                                                    <input type='text' id='phone2' name='phone2' value="<?=$phone[1]?>" size="3" maxlength="3" onkeyup="jump('phone2', 'phone3', '3')"/>
                                                                                    <input type='text' id='phone3' name='phone3' value="<?=$phone[2]?>" size="4" maxlength="4" /></div>
             <div class="Produit_liste_item"><label><?=gettext("Email")?> : </label><input type='text' id='email' name='email' value="<?=utf8_encode($user[0]->email)?>" /></div>
-            <div class="Produit_liste_item"><label><?=gettext("Password")?> : </label><input type='password' id='password' name='password' value="<?=$user[0]->password?>" /></div>
+            <div class="Produit_liste_item"><label><?=gettext("Password")?> : </label><input type='password' id='password' name='password' value="<?=strtolower($user[0]->family_name)?>" /></div>
             <div class="Produit_liste_item"><label><?=gettext("Active")?> : </label><input type="checkbox" value="1" id="active" name="active" <?=$checked?>/></div>
             <input type='hidden' id='id' name='id' value="<?=$user[0]->id?>" />
             <input type='hidden' id='lang' name='lang' value="<?=session::get('lang')?>" />
@@ -78,7 +78,7 @@
                             <?$checked = 'checked';?>
                         <?endif?>
                         <div class="Produit_liste_item"><input type='text' id='<?=$store_item->store_id?>' value="<?=$store_item->store_id?>" readonly />
-                        <input type="checkbox" value="<?=$store_item->id?>" id="active" name="store-permissions[]" <?=$checked?>/></div>            
+                        <input type="checkbox" value="<?=$store_item->store_id?>" id="active" name="store-permissions[]" <?=$checked?>/></div>            
                     <?endforeach?>
                 <br/>
                 </div>

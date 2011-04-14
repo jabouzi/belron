@@ -33,7 +33,8 @@ class orders_controller
                     $rows = get_sort_rows();
                     $user = load::model('users'); 
                     $user_id = $user->get_id(session::get('user'));
-                    $total_orders = $this->orders->manager_count($user_id);                               
+                    $total_orders = $this->orders->manager_count($user_id);   
+                    $total_orders = $total_orders[0]->count;                 
                     $page = new pagination($total_orders,$current_page,10);
                     $sort_order = 'DESC';
                     if ($type == 1) $sort_order = 'ASC';
@@ -84,8 +85,8 @@ class orders_controller
                     load::view('header');
                     if ($order[0]->approved)
                     {
-                        
-                        load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 'order_id' => $id, 'rows' => get_quantities(), 'stores_supervised' => $stores_supervised));
+                        $approved = $this->orders->is_approved($id);
+                        load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 'order_id' => $id, 'rows' => get_quantities(), 'stores_supervised' => $stores_supervised, 'approved' => $approved[0]->approved));
                     }
                     else
                     {
@@ -110,8 +111,7 @@ class orders_controller
             {
                 $order = $this->orders->get($id);
                 $order_list = unserialize($order[0]->wish_list);   
-                $product = load::model('products');        
-                $approved = $this->orders->is_approved($id);            
+                $product = load::model('products');                         
                 foreach($order_list['items'] as $key => $item)
                 {                        
                     $product_price = $product->get_product_price($item, $order_list['quantity'][$item]);
@@ -120,6 +120,8 @@ class orders_controller
                     $order_list['items'][$key] = $prod_data;
                     $order_list['price'][$item] = $price[$order_list['quantity'][$item]];
                 } 
+                
+                $approved = $this->orders->is_approved($id);
                 load::view('header');                    
                 load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 'order_id' => $id, 'rows' => get_quantities(), 'approved' => $approved[0]->approved));
                 load::view('footer');  
@@ -244,22 +246,40 @@ class orders_controller
     }
     
     public function order_again($id)
-    {                
-        $order = $this->orders->get($id);
-        if (session::get('user_type') == 3)
-        {
-             $order_id = $this->orders->duplicate($order[0]->wish_list, session::get('user'), '', $order[0]->total_cost);
-        }
-        else
-        {
-            $stores = input::post('store-orders');
-            foreach($stores as $store)
-            {
-                $order_id = $this->orders->duplicate($order[0]->wish_list, $store, session::get('user'), $order[0]->total_cost);
-            }
-        }
-        
-        url::redirect("wishlist/pos/".$order_id);
+    {           
+		if (is_logged(session::get('user')))
+        { 
+			$stores = input::post('store-orders');     
+			if (!empty($stores))
+			{
+				$order = $this->orders->get($id);
+				if (session::get('user_type') == 3)
+				{
+					 
+					 $order_id[] = $this->orders->duplicate($order[0]->wish_list, session::get('user'), '', $order[0]->total_cost);
+				}
+				else
+				{
+					foreach($stores as $store)
+					{
+						$order_id[] = $this->orders->duplicate($order[0]->wish_list, $store, session::get('user'), $order[0]->total_cost);
+					}
+				}        
+			  
+				session::set('stores_ids',serialize($stores));
+				session::set('orders_ids',serialize($order_id));
+				
+				url::redirect("wishlist/pos/".$order_id[0]);
+			}
+			else
+			{
+				url::redirect("orders/lists/0");
+			}
+		}
+		else
+		{
+			url::redirect('login/storelogin');
+		}
     }
     
     public function confirmation()

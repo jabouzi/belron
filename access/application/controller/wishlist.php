@@ -100,6 +100,7 @@ class wishlist_controller
         { 
             $product = load::model('products');  
             $store = load::model('stores');  
+            $user = load::model('users');  
             $prods_id = input::post('product_id');
             $list = $this->wishlist->get(session::get('user'));
             
@@ -114,9 +115,16 @@ class wishlist_controller
                     $prod_data = $product->get_products_by_id($item);
                     $wish_list['items'][$key] = $prod_data;
                 } 
+                
+                $stores = array();
+                
+                if (session::get('user_type') < 3)
+                {
+                    $stores = $this->get_stores_supevised($user->get_id(session::get('user')));
+                }                
 
                 load::view('header');
-                load::view('confirm',array('wish_list' => $wish_list, 'prods_id' => $prods_id, 'store' => $store->get(session::get('user')), 'rows' => $rows));
+                load::view('confirm',array('wish_list' => $wish_list, 'prods_id' => $prods_id, 'store' => $store->get(session::get('user')), 'rows' => $rows, 'stores' => $stores));
                 load::view('footer');
             }     
         }  
@@ -156,25 +164,44 @@ class wishlist_controller
             
             if (!empty($saved_wish_list))
             {
-                $last_id = $order->insert(serialize($saved_wish_list), session::get('user'), $dm_id[0]->dm_id, input::post('hidden_total'));
+                if (session::get('user_type') == 3)
+                {
+                    $stores[] = session::get('user');
+                    $approved = '';
+                    if ($this->has_superviser())
+                    {
+                        $approved = 'approved';
+                    }
+                    $order_id[] = $order->insert(serialize($saved_wish_list), session::get('user'), '', input::post('hidden_total'));
+                    if (!empty($saved_wish_list))
+                    {
+                        $address = array('address' => input::post('address'), 
+                                        'city' => input::post('city'), 
+                                        'postal_code' => input::post('postal_code'), 
+                                        'province' => input::post('province'), 
+                                        'phone' => input::post('phone'),
+                                        'fax' => input::post('fax'));
+                        
+                        $store->update_address(session::get('user'),$address);                
+                    }
+                }
+                else
+                {
+                    $stores = input::post('store-orders');
+                    foreach($stores as $store)
+                    {
+                        $order_id[] = $order->insert(serialize($saved_wish_list), $store, '1', input::post('hidden_total'));
+                    }
+                }
             }
             
             session::delete('wishlist');
-            $this->wishlist->delete(session::get('user'));
-            
-            if (!empty($saved_wish_list))
-            {
-                $address = array('address' => input::post('address'), 
-                                'city' => input::post('city'), 
-                                'postal_code' => input::post('postal_code'), 
-                                'province' => input::post('province'), 
-                                'phone' => input::post('phone'),
-                                'fax' => input::post('fax'));
-                
-                $store->update_address(session::get('user'),$address);                
-            }
+            $this->wishlist->delete(session::get('user'));            
+        
+            session::set('stores_ids',serialize($stores));
+            session::set('orders_ids',serialize($order_id));
                         
-            url::redirect('wishlist/pos/'.$last_id);
+            url::redirect('wishlist/pos/'.$order_id[0]);
             //url::redirect('wishlist/confirmation/'.$dm_id[0]->dm_id);
         }
         else
@@ -225,12 +252,19 @@ class wishlist_controller
                 
                 $products_list[] = array($prod[0]->name,$prod[0]->description,$price[$prices[$item]]);
             }
+            
+            $stores_ids = unserialize(session::get('stores_ids'));
+			$orders_ids = unserialize(session::get('orders_ids'));			
+		
+			session::delete('stores_ids');
+			session::delete('orders_ids');
                           
             $store_id = $order[0]->store_id;
             $total_cost = $order[0]->total_cost;
            
             load::view('header');
-            load::view('order_pos',array('id' => $id, 'products_list' => $products_list,'shipping' => $shipping, 'store_id' => $store_id, 'total_cost' => $total_cost ));
+            load::view('order_pos',array('id' => $id, 'products_list' => $products_list,'shipping' => $shipping, 
+						'store_id' => $store_id, 'total_cost' => $total_cost, 'stores_ids' => $stores_ids, 'orders_ids' => $orders_ids ));
             load::view('footer');
         }
         else
@@ -257,13 +291,20 @@ class wishlist_controller
         if (is_logged(session::get('user')))
         {
             $orders = load::model('orders');
+            $pos = input::post('pos');
             if ($this->has_superviser())
             {
-                 $orders->add_pos($id,mysql_escape_string(input::post('pos')));
+				 foreach($pos as $key => $item)
+				 {
+					$orders->add_pos($key,mysql_escape_string($item));
+				 }
             }
             else
             {
-                $orders->approve_pos($id,mysql_escape_string(input::post('pos')));
+                foreach($pos as $key => $item)
+				{
+					$orders->approve_pos($key,mysql_escape_string($item));
+				}
                 $mailer = new phpmailer();
                 $mailer->IsSendmail();
                 $mailer->From = 'noreply@domain.com';
@@ -286,5 +327,16 @@ class wishlist_controller
     {
         $permissions = load::model('permissions');
         return $permissions->get_supervisers(session::get('user'));
+    }
+    
+    public function get_stores_supevised($user_id)
+    {
+        $permissions = load::model('permissions');
+        $datas = $permissions->get_store_permissions($user_id);
+        foreach($datas as $data)
+        {
+            $stores[] = $data->store;
+        }
+        return $stores;
     }
 }

@@ -70,13 +70,15 @@
                     <p><?=gettext("Fax")?> : <?=$store[0]->fax?></p>   
                 <?endif?>
                 </div>                   
-                <input type="hidden" value="<?=$store[0]->id?>" id="store_id">
+                <input type="hidden" value="<?=$store[0]->store_id?>" id="store_id">
             </div>            
         </div>
+        
         <?if ($approved):?>
             <?if (session::get('user_type') == 3):?>
                 <form id="edit_user" method="post" action="<?=url::page("orders/order_again/".$order_id); ?>">
-                    <input type="submit" value="<?=gettext("Order again")?>" onclick=""/>
+					<input type="hidden" value="<?=$store[0]->store_id?>" name="store-orders[]" /></div>
+                    <input type="submit" class="modalInput" value="<?=gettext("Order again")?>" />
                 </form>            
             <?else:?>
                 <input type="button" class="modalInput" rel="#stores" value="<?=gettext("Order again")?>" />

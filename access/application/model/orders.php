@@ -41,13 +41,13 @@ class orders_model
         return $data;
     }
     
-    public function insert($list, $store_id, $dm_id, $total_cost)
+    public function insert($list, $store_id, $approved, $total_cost)
     {
         $table = db('access_orders');
         $row = $table->insert(array(            
             'store_id' => $store_id,
             'wish_list' => $list,
-            'manager' => $dm_id,
+            'approved' => $approved,
             'save_data' => date('Y-m-d H:i:s'),
             'total_cost' =>  $total_cost
         ));
@@ -124,7 +124,7 @@ class orders_model
     public function order_manager_page($id,$limit,$offset,$order_by, $type)
     {
         $sql = "SELECT * FROM access_store_permissions, access_orders  WHERE access_orders.store_id = access_store_permissions.store AND access_store_permissions.superviser = {$id} ORDER BY {$order_by} {$type} LIMIT {$limit} OFFSET {$offset} ";
-        $orders = db::query($sql);
+        $orders = db::query($sql);        
         return $orders;
     }
     

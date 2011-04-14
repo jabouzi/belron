@@ -23,6 +23,13 @@ class users_model
         return $data[0]->id;
     }
     
+    public function get_province($email)
+    {        
+        $table = db('access_users');
+        $data = $table->select('province')->where('email','=',$email)->execute();
+        return $data[0]->id;
+    }
+    
     public function get_name($email)
     {
         $table = db('access_users');

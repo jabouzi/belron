@@ -54,7 +54,7 @@
                     </div>
                 <?endforeach?>
 
-                <input type="button" name="update_order" onclick='remove_from_wish_list(<?=json_encode($ids)?>,<?=$store[0]->store_id?>)' value="<?=gettext("Remove")?>" />
+                <input type="button" name="update_order" onclick='remove_from_wish_list(<?=json_encode($ids)?>,"<?=session::get('user')?>")' value="<?=gettext("Remove")?>" />
                 <input style="float:right" type="button" id="getShipping" onclick='get_shipping(<?=json_encode($ids)?>)' value="<?=gettext("Get shipping rates")?>" />
                 <table width="100%" border="0" cellspacing="0" cellpadding="0" id="table_shipping">
                     <tr>
@@ -91,13 +91,18 @@
                 <h2><?=gettext("Store address")?></h2>
                 <div class="Boite">   
                     <div class="boite_confirm">         
-                        <?if (isset($wish_list)):?>
+                        <?if (session::get('user_type') == 3 && isset($wish_list)):?>
                             <p><?=gettext("Address")?><br /> <input type="text" value="<?=utf8_encode($store[0]->address)?>" name="address"> </p>   
                             <p><?=gettext("City")?><br /> <input type="text" value="<?=utf8_encode($store[0]->city)?>" name="city"> </p>   
                             <p><?=gettext("Postal Code")?><br /><input type="text" value="<?=$store[0]->postal_code?>" name="postal_code"> </p>   
                             <p><?=gettext("Province")?><br /> <input type="text" value="<?=utf8_encode($store[0]->province)?>" name="province"> </p>   
                             <p><?=gettext("Tel")?><br /> <input type="text" value="<?=$store[0]->phone?>" name="phone"> </p>   
                             <p><?=gettext("Fax")?><br /> <input type="text" value="<?=$store[0]->fax?>" name="fax"></p>   
+                        <?else:?>
+                            <?foreach($stores as $store_item):?>            
+                                <div class="Produit_liste_item"><input type='text' id='<?=$store_item?>' value="<?=$store_item?>" readonly />
+                                <input type="checkbox" value="<?=$store_item?>" id="active" name="store-orders[]" /></div>            
+                            <?endforeach?>
                         <?endif?> 
                     </div>                   
                     <input type="button" class="commande" name="orderWishlist" value="<?=gettext("Confirm the order")?>" onclick='order_wishlist(<?=json_encode($ids)?>)'/>

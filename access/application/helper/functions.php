@@ -45,5 +45,5 @@ function get_sort_items()
 
 function get_sort_rows()
 {
-     return array("store_id", "save_data", "approve_date", "changed_by", "id", "total_cost", "approved");
+     return array("store_id", "save_data", "approve_date", "changed_by", "access_orders.id", "total_cost", "approved");
 }

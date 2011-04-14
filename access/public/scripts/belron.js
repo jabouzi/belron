@@ -183,7 +183,7 @@ function get_product_price(product_id)
 
 function get_product_shipping(product_id,prods)
 {
-    $("#wait").html('<img src='+root_url+'"/public/images/loadinfo.gif"/>');
+    $("#wait").html('<img src="'+root_url+'/public/images/loadinfo.gif">');
     $.getJSON(root_url+"/products/get_product_shipping/"+product_id+'/'+$("#select_"+product_id).val()+'/',{uid : String((new Date()).getTime()).replace(/\D/gi, '') },
         function(shipping) {            
             if (shipping != 0)
@@ -351,20 +351,26 @@ function order_wishlist(prods)
 
 function submit_pos()
 {
-    //alert($("#pos").val());
-    if ($("#pos").val() == '')
-    {            
-        if ($("#lang").val() == 'fr')
-            $errors = "Il faut entrer le P.O.S<br />";     
-        else $errors = "You must type the P.O.S<br />";  
-        $("#error").html($errors);   
-        
-    }     
-    else 
+    var error = 0;
+    for(var i = 0; i < $("#count_pos").val(); i++)
     {
-        $("#error").html('');
-        document.forms["pos_form"].submit();
-    }
+		if ($("#pos_"+i).val() == '')
+		{            
+			error++;			
+		}     
+		if (error)
+		{
+			if ($("#lang").val() == 'fr')
+				errors = "Il faut entrer le(s) P.O.S<br />";     
+			else errors = "You must type the P.O.S (es)<br />";  
+			$("#error").html(errors);   
+		}
+		else 
+		{
+			$("#error").html('');
+			document.forms["pos_form"].submit();
+		}
+	}
 }
 
 function submit_dashboard(form)
