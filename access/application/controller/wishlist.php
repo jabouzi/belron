@@ -157,10 +157,7 @@ class wishlist_controller
                         $saved_wish_list['shipping'] = array(input::post('radio_shipping'),'shipping0' => input::post('hidden_shipping0'),'shipping1' => input::post('hidden_shipping1'),'shipping2' => input::post('hidden_shipping2'), 'total' => input::post('hidden_total'));
                     }
                 }
-            }            
-
-            //$dm_id = $store->get_store_dm_id(session::get('user'));
-            //$dm_infos = $user->get_user_infos($dm_id[0]->dm_id);
+            }
             
             if (!empty($saved_wish_list))
             {
@@ -214,7 +211,6 @@ class wishlist_controller
             session::set('orders_ids',serialize($order_id));
                         
             url::redirect('wishlist/pos/'.$order_id[0]);
-            //url::redirect('wishlist/confirmation/'.$dm_id[0]->dm_id);
         }
         else
         {
@@ -282,20 +278,7 @@ class wishlist_controller
         else
         {
             url::redirect('login/storelogin');
-        }
-/*
-        $mailer = new phpmailer();
-        $mailer->IsSendmail();
-        $mailer->From = 'noreply@domain.com';
-        $mailer->FromName = 'Name';
-        $mailer->Subject = 'Order approved';
-        $email_message = "<a href='".url::base()."login/userlogin/".$last_id."/'>Click ici </a>";
-        $mailer->MsgHTML($email_message);
-        $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
-        //$mailer->AddAddress($dm_infos[0]->email, $dm_infos[0]->first_name.' '.$dm_infos[0]->family_name);
-        $mailer->Send();
-*/
-        
+        }       
     }
     
     public function approve_pos($id)
@@ -315,13 +298,13 @@ class wishlist_controller
             {
                 if ($this->has_user_superviser()) $has_supervier = true;
             }
+            
             if ($has_supervier)
             {
                 
                  foreach($pos as $key => $item)
                  {
                     $orders->add_pos($key,mysql_escape_string($item));
-                    $status->insert();
                  }
             }
             else

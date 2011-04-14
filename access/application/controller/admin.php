@@ -12,7 +12,8 @@ class admin_controller
     {        
         $this->stores = load::model('stores');       
         $this->orders = load::model('orders');       
-        $this->users = load::model('users');             
+        $this->users = load::model('users');          
+        $this->status = load::model('status');    
         load::library('pagination');  
     }    
     
@@ -61,12 +62,16 @@ class admin_controller
                 $users = array();
                 foreach($orders as $key => $order)
                 {                    
+                    $status_list = array('0','Recieved','In treatment','Send','Problem','Cancelled');
                     $name = $this->users->get_name($order->changed_by);
                     $users[$key][] = $name[0]->first_name;
                     $users[$key][] = $name[0]->family_name;
+                    $status = $this->status->get($order->id);
+                    $orders_status[$order->id] = $status_list[$status[0]->status]; 
                 }                             
                 load::view('header');
-                load::view('dashboard',array('orders' => $orders, 'page' => $page, 'users' => $users, 'current' => $current_page, 'total' => $page->total(), 'sort' => $sort, 'type' => $type));
+                load::view('dashboard',array('orders' => $orders, 'page' => $page, 'users' => $users, 'current' => $current_page, 
+                            'total' => $page->total(), 'sort' => $sort, 'type' => $type, 'orders_status' => $orders_status));
                 load::view('footer');
             }
             else if (session::get('user_type') == 2)

@@ -46,7 +46,7 @@ class login_controller
     
     public function adminlogin()
     {
-        load::view('header');
+        load::view('header',array('admin' => 1));
         load::view('admin_index');
         load::view('footer');
     }
@@ -54,7 +54,7 @@ class login_controller
     public function storelogin()
     { 
         $this->errors = array();
-        load::view('header');
+        load::view('header',array('admin' => 0));
         load::view('storelogin',array('stores'=>$this->get_stores_list()));
         load::view('footer');
     }
@@ -62,7 +62,7 @@ class login_controller
     public function userlogin($id = '')
     { 
         $this->errors = array();
-        load::view('header');
+        load::view('header',array('admin' => 0));
         load::view('userlogin',array('id' => $id));
         load::view('footer');
     }

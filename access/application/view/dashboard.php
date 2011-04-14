@@ -11,7 +11,7 @@
             <select id="orders_page" onchange="change_dashboard_page()">
                 <?for($t = 1; $t <= $total; $t++) :?>
                     <?$selected = "";?>
-                    <? if ($t == $current):?>
+                    <? if ($t == $current_page):?>
                             <?$selected = "selected";?>
                     <?endif?>
                     <option value="<?=$t?>" <?=$selected?>><?=$t?></option>
@@ -52,11 +52,11 @@
         
         <div class="admin_pagination">
             <? if($page->prev()): ?>
-                <a href="<?=url::page("admin/dashboard/{$page->prev_page()}"); ?>"><?=gettext("Previous")?></a>
+                <a href="<?=url::page("admin/dashboard/{$page->prev_page()}/{$sort}/"); ?>"><?=gettext("Previous")?></a>
             <? endif; ?>
             
             <? if($page->next()): ?>
-                <a href="<?=url::page("admin/dashboard/{$page->next_page()}"); ?>"><?=gettext("Next")?></a>
+                <a href="<?=url::page("admin/dashboard/{$page->next_page()}/{$sort}/"); ?>"><?=gettext("Next")?></a>
             <? endif; ?>
         </div>
         
@@ -81,6 +81,9 @@
                     <?endif?>
                     <?if ($order->pos == ''):?>
                         <? $class_approved = 'order_cancelled'; $approved = gettext("no pos"); ?>     
+                    <?endif?>
+                    <?if ($orders_status[$order->id] != '0' && $orders_status[$order->id] !=NULL ):?>
+                        <? $class_approved = 'order_approuved'; $approved = gettext($orders_status[$order->id]); ?>   
                     <?endif?>
                 <?$tr_class = 'outline'?>
                     <?if ($key % 2) $tr_class = ''?>
@@ -107,11 +110,11 @@
         
         <div class="admin_pagination">
             <? if($page->prev()): ?>
-                <a href="<?=url::page("admin/dashboard/{$page->prev_page()}"); ?>"><?=gettext("Previous")?></a>
+                <a href="<?=url::page("admin/dashboard/{$page->prev_page()}/{$sort}/"); ?>"><?=gettext("Previous")?></a>
             <? endif; ?>
             
             <? if($page->next()): ?>
-                <a href="<?=url::page("admin/dashboard/{$page->next_page()}"); ?>"><?=gettext("Next")?></a>
+                <a href="<?=url::page("admin/dashboard/{$page->next_page()}/{$current_page}/{$sort}/"); ?>"><?=gettext("Next")?></a>
             <? endif; ?>
         </div>
     </div>

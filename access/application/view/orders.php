@@ -21,6 +21,17 @@
             <input type="hidden" id="orders_page" value="1"/>
         <?endif?>
         
+        <label><?=gettext("User")?></label>       
+        <select id="user_page" onchange="sort_users_page()">
+            <?foreach($users_supervised as $key => $item) :?>
+                <?$selected = "";?>
+                <? if ($key == $user_sup):?>
+                        <?$selected = "selected";?>
+                <?endif?>
+                <option value="<?=$key?>" <?=$selected?>><?=gettext($item)?></option>
+            <?endforeach?>
+        </select>
+        
         <label><?=gettext("Sort by")?></label>
         <?$items = get_sort_items()?>
         <select id="sort_page" onchange="sort_orders_page()">
@@ -52,11 +63,11 @@
         
         <div class="admin_pagination">
             <? if($page->prev()): ?>
-                <a href="<?=url::page("orders/lists/0/{$page->prev_page()}"); ?>"><?=gettext("Previous")?></a>
+                <a href="<?=url::page("orders/lists/0/{$page->prev_page()}/{$sort}/{$type}/{$user_sup}/"); ?>"><?=gettext("Previous")?></a>
             <? endif; ?>
             
             <? if($page->next()): ?>
-                <a href="<?=url::page("orders/lists/0/{$page->next_page()}"); ?>"><?=gettext("Next")?></a>
+                <a href="<?=url::page("orders/lists/0/{$page->next_page()}/{$sort}/{$type}/{$user_sup}/"); ?>"><?=gettext("Next")?></a>
             <? endif; ?>
         </div>
         
@@ -71,7 +82,7 @@
                 <th scope="col"><?=gettext("Status")?></th>
                 <th scope="col" width="50"><?= gettext("Actions")?></th>
             </tr>
-            
+
             <?foreach ($orders as $key => $order):?>
                 <?$order_detail = unserialize($order->wish_list);?>
                 <?if (count($order_detail)):?>                    
@@ -81,6 +92,9 @@
                     <?endif?>   
                     <?if ($order->pos == ''):?>
                         <? $class_approved = 'order_cancelled'; $approved = gettext("no pos"); ?>     
+                    <?endif?>
+                    <?if ($orders_status[$order->id] != '0' && $orders_status[$order->id] !=NULL ):?>
+                        <? $class_approved = 'order_approuved'; $approved = gettext($orders_status[$order->id]); ?>   
                     <?endif?>
                 <?$tr_class = 'outline'?>
                     <?if ($key % 2) $tr_class = ''?>
@@ -92,10 +106,12 @@
                     <td><?=$order->id?></td>
                     <td><?=printf("%01.1f",$order_detail['shipping']['total'])?></td>
                     <td><span class="<?=$class_approved?>"><?=$approved?></span></td>  
-                    <?if (!$order->approved):?>
-                        <td><a href="<?=url::base()?>orders/approve_order/<?=$order->id?>"><?=gettext("Approve")?></a></td>   
-                    <?else:?>
-                        <td></td>
+                    <? if ((!$user_sup && !$has_superviser) || $user_sup):?>
+                        <?if (!$order->approved):?>
+                            <td><a href="<?=url::base()?>orders/approve_order/<?=$order->id?>"><?=gettext("Approve")?></a></td>   
+                        <?else:?>
+                            <td></td>
+                    <?endif?>
                     <?endif?>
                     <?if (count(unserialize($order->wish_list))):?>                
                         <td><a href="<?=url::base()?>orders/lists/<?=$order->id?>"><?=gettext("Details")?></a></td>
@@ -107,11 +123,11 @@
         
         <div class="admin_pagination">
             <? if($page->prev()): ?>
-                <a href="<?=url::page("orders/lists/0/{$page->prev_page()}"); ?>"><?=gettext("Previous")?></a>
+                <a href="<?=url::page("orders/lists/0/{$page->prev_page()}/{$sort}/{$type}/{$user_sup}/"); ?>"><?=gettext("Previous")?></a>
             <? endif; ?>
             
             <? if($page->next()): ?>
-                <a href="<?=url::page("orders/lists/0/{$page->next_page()}"); ?>"><?=gettext("Next")?></a>
+                <a href="<?=url::page("orders/lists/0/{$page->next_page()}/{$sort}/{$type}/{$user_sup}/"); ?>"><?=gettext("Next")?></a>
             <? endif; ?>
         </div>
     </div>

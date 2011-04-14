@@ -46,6 +46,10 @@
                     <a href="<?=url::page('orders/historique')?>"><?=gettext("History")?></a>
                 <?endif?>                
                 <a href="<?=url::page('login/logout')?>"><?=gettext("Logout")?></a>
+            <?else:?>
+                <?if ($admin):?>
+                    <a href="<?=url::page('login/userlogin')?>"><?=gettext("Admin")?></a>
+                <?endif?>
             <?endif?>
             <form name="form" method="post" action="<?=url::page('admin/change_language')?>">
             <select name="lang" onchange="form.submit();">

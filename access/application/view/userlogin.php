@@ -25,10 +25,7 @@
                         <input name="password" type="password" />
                         <input type="submit" name="Soumettre" id="Soumettre" value="<?=gettext("Submit")?>" />
                 </form> 
-                <br />
-                <div>
-                    <label><a href="<?=url::page('login/storelogin'); ?>"><?=gettext("Store login")?></a></label>
-                </div>       
+                <br />                      
                 <div>
                     <label><a href="<?=url::page('login/adminlogin'); ?>"><?=gettext("Home")?></a></label>
                 </div>       

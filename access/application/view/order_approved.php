@@ -21,8 +21,7 @@
                     <div class="thumb"><img src="<?=$product_image?>" alt="" width="70" height="69" /></div>                
                     <div class="desc_conf">
                     <h3><?=utf8_encode($item[0]->name)?></h3>
-                    <p><?=utf8_encode($item[0]->description)?><br />
-                    <a href="<?=url::base()?>orders/product/<?=$item[0]->id?>"><?=gettext("More info")?></a></p>
+                    <p><?=utf8_encode($item[0]->description)?><br /></p>
                     </div>         
                     <div class="quantite_confirm"> 
                         <span><?=$rows[$order['quantity'][$item[0]->id]]?></span>    
@@ -84,6 +83,10 @@
                 <input type="button" class="modalInput" rel="#stores" value="<?=gettext("Order again")?>" />
             <?endif?>
         <?endif?>
+        <?if ($status < 2):?>
+            <input type="button" class="modalInput" rel="#problems" value="<?=gettext("Problem")?>" />
+            <input type="button" class="modalInput" rel="#cancel" value="<?=gettext("Cancel")?>" />
+        <?endif?>
     </div>
   
 </div>
@@ -103,5 +106,93 @@
     <br/>
     </div>
     <input type="submit" name="submit_update" value="<?=gettext("Add stores")?>"/>
+    </form>
+</div>
+
+<div class="modal2" id="problems">
+    <div id="Page_haut">
+        <div id="Breadcrumb"><a href="#">&nbsp;</a></div>
+        <h1><?= gettext("Problem"); ?></h1>
+    </div>    
+    <form id="edit_user" method="post" action="<?=url::page("orders/request_problem/".$order_id); ?>">
+    <div>        
+        <?foreach($order['items'] as $item):?>
+                <?
+                $product_image = url::base().'public/images/products/70x70/0.jpg';
+                if (is_file(url::root().'public/images/products/70x70/'.$item[0]->id.'.jpg'))  $product_image =  url::base().'public/images/products/70x70/'.$item[0]->id.'.jpg';
+                ?>                  
+                <div class="Produit_liste_item">
+                    <div class="suprime">&nbsp;</div>
+                    <div class="thumb"><img src="<?=$product_image?>" alt="" width="70" height="69" /></div>                
+                    <div class="desc_conf">
+                    <h3><?=utf8_encode($item[0]->name)?></h3>
+                    <p><?=utf8_encode($item[0]->description)?><br /></p>
+                    </div>         
+                    <div class="quantite_confirm"> 
+                        <span><?=gettext("quantity")?> : <?=$rows[$order['quantity'][$item[0]->id]]?></span>                            
+                    </div>   
+                    <div class="price">   
+                        <span><?=gettext("price")?> : $<?=$order['price'][$item[0]->id]?></span>   
+                    </div>
+                    <br />
+                    <div class="price">    
+                        <span><?=gettext("reason")?> : </span>   
+                        <input type="text" name="problems[]" value="" />   
+                    </div>                    
+                </div>
+            <?endforeach?>
+            <div class="quantite_confirm"> 
+                <span><?=gettext("summary")?>:</span>                            
+            </div> 
+            <div class="price">     
+                <textarea name="problems[]"></textarea>  
+            </div>
+    <br/>
+    </div>
+    <input type="submit" name="submit_update" value="<?=gettext("Submit problem")?>"/>
+    </form>
+</div>
+
+<div class="modal2" id="cancel">
+    <div id="Page_haut">
+        <div id="Breadcrumb"><a href="#">&nbsp;</a></div>
+        <h1><?= gettext("Cancel"); ?></h1>
+    </div>    
+    <form id="edit_user" method="post" action="<?=url::page("orders/request_cancel/".$order_id); ?>">
+    <div>        
+        <?foreach($order['items'] as $item):?>
+                <?
+                $product_image = url::base().'public/images/products/70x70/0.jpg';
+                if (is_file(url::root().'public/images/products/70x70/'.$item[0]->id.'.jpg'))  $product_image =  url::base().'public/images/products/70x70/'.$item[0]->id.'.jpg';
+                ?>                  
+                <div class="Produit_liste_item">
+                    <div class="suprime">&nbsp;</div>
+                    <div class="thumb"><img src="<?=$product_image?>" alt="" width="70" height="69" /></div>                
+                    <div class="desc_conf">
+                    <h3><?=utf8_encode($item[0]->name)?></h3>
+                    <p><?=utf8_encode($item[0]->description)?><br /></p>
+                    </div>         
+                    <div class="quantite_confirm"> 
+                        <span><?=gettext("quantity")?> : <?=$rows[$order['quantity'][$item[0]->id]]?></span>                            
+                    </div>   
+                    <div class="price">   
+                        <span><?=gettext("price")?> : $<?=$order['price'][$item[0]->id]?></span>   
+                    </div>
+                    <br />
+                    <div class="price">    
+                        <span><?=gettext("reason")?> : </span>   
+                        <input type="text" name="problems[]" value="" />   
+                    </div>                    
+                </div>
+            <?endforeach?>
+            <div class="quantite_confirm"> 
+                <span><?=gettext("summary")?>:</span>                            
+            </div> 
+            <div class="price">     
+                <textarea name="problems[]"></textarea>  
+            </div>
+    <br/>
+    </div>
+    <input type="submit" name="submit_update" value="<?=gettext("Cancel")?>"/>
     </form>
 </div>

@@ -10,6 +10,7 @@ class orders_controller
         $this->stores = load::model('stores');   
         $this->permissions = load::model('permissions');    
         $this->status = load::model('status');    
+        $this->users = load::model('users');    
         load::library('phpmailer'); 
         load::library('pagination');
     }    
@@ -19,9 +20,9 @@ class orders_controller
         $this->lists();
     } 
     
-    public function lists($id = 0 ,$current_page = 1, $sort = 0, $type = 0)
+    public function lists($id = 0 ,$current_page = 1, $sort = 0, $type = 0, $user_sup = 0)
     {
-        if (is_logged(session::get('user')) || session::get('user_type') == 3)
+        if (is_logged(session::get('user')) || session::get('user_type') < 3)
         {
             if ($id == 0)
             {
@@ -31,9 +32,23 @@ class orders_controller
                 }
                 else
                 {
+                    $supervised = $this->get_users_supevised($this->users->get_id(session::get('user')));
+                    $users_supervised[0] = '--';
+                    foreach($supervised as $item)
+                    {
+                        $data = $this->users->get_user_infos($item);
+                        $users_supervised[$item] = $data[0]->first_name . ' ' .$data[0]->family_name;
+                    }
                     $rows = get_sort_rows();
                     $user = load::model('users'); 
-                    $user_id = $user->get_id(session::get('user'));
+                    if ($user_sup == 0)
+                    {
+                        $user_id = $user->get_id(session::get('user'));
+                    }
+                    else
+                    {
+                        $user_id = $user_sup;
+                    }
                     $total_orders = $this->orders->manager_count($user_id);   
                     $total_orders = $total_orders[0]->count;                 
                     $page = new pagination($total_orders,$current_page,10);
@@ -43,13 +58,19 @@ class orders_controller
                     $users = array();
                     foreach($orders as $key => $order)
                     {                    
-                        $name = $user->get_name($order->changed_by);
+                        $status_list = array('0','Recieved','In treatment','Send','Problem','Cancelled');
+                        $name = $this->users->get_name($order->changed_by);
                         $users[$key][] = $name[0]->first_name;
-                        $users[$key][] = $name[0]->family_name;                        
+                        $users[$key][] = $name[0]->family_name;
+                        $status = $this->status->get($order->id);
+                        $orders_status[$order->id] = $status_list[$status[0]->status];                                               
                     }   
                 }
+                
                 load::view('header');
-                load::view('orders',array('orders' => $orders, 'page' => $page, 'users' => $users, 'current' => $current_page, 'total' => $page->total(), 'sort' => $sort, 'type' => $type));
+                load::view('orders',array('orders' => $orders, 'page' => $page, 'users' => $users, 'current' => $current_page, 
+                            'user_sup' => $user_sup, 'total' => $page->total(), 'sort' => $sort, 'type' => $type, 
+                            'users_supervised' => $users_supervised, 'has_superviser' => $this->has_user_superviser(), 'orders_status' => $orders_status));
                 load::view('footer');
             }
             else if ($id > 0)
@@ -120,11 +141,13 @@ class orders_controller
                     $prod_data = $product->get_products_by_id($item);
                     $order_list['items'][$key] = $prod_data;
                     $order_list['price'][$item] = $price[$order_list['quantity'][$item]];
+                    $status = $this->status->get($order->id);
                 } 
                 
                 $approved = $this->orders->is_approved($id);
                 load::view('header');                    
-                load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 'order_id' => $id, 'rows' => get_quantities(), 'approved' => $approved[0]->approved));
+                load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 
+                            'order_id' => $id, 'rows' => get_quantities(), 'approved' => $approved[0]->approved, 'status' => $status[0]->status));
                 load::view('footer');  
             }
             else
@@ -164,7 +187,8 @@ class orders_controller
             }           
              
             load::view('header');
-            load::view('historique',array('orders' => $orders,'page' => $page, 'users' => $users, 'current' => $current_page, 'total' => $page->total(), 'sort' => $sort, 'type' => $type, 'orders_status' => $orders_status));
+            load::view('historique',array('orders' => $orders,'page' => $page, 'users' => $users, 'current' => $current_page, 
+                        'total' => $page->total(), 'sort' => $sort, 'type' => $type, 'orders_status' => $orders_status));
             load::view('footer');    
         }
         else
@@ -223,17 +247,7 @@ class orders_controller
                             
             if (!empty($saved_wish_list))
             {
-                $this->stores->update_address(session::get('user'),$address);
-                
-                /*$mailer = new phpmailer();
-                $mailer->IsSendmail();
-                $mailer->From = 'noreply@domain.com';
-                $mailer->FromName = 'Name';
-                $mailer->Subject = 'Order approved';
-                $email_message = "<a href='".url::base()."login/userlogin/".input::post('order_id')."/'>Click ici</a>";             
-                $mailer->MsgHTML($email_message);
-                $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
-                $mailer->Send();*/
+                $this->stores->update_address(session::get('user'),$address);                
             }
             
             url::redirect('orders/confirmation');
@@ -247,6 +261,22 @@ class orders_controller
     public function approve_order($id)
     {
         $res = $this->orders->approve_direct($id, '1', session::get('user'));
+        
+        $verif_code = md5(time());
+        $this->status->insert($id,0,$verif_code);
+        
+        $mailer = new phpmailer();
+        $mailer->IsSendmail();
+        $mailer->From = 'noreply@domain.com';
+        $mailer->FromName = 'Belron admin';
+        $mailer->Subject = utf8_decode('Nouvelle commande ajoutée');
+        $email_message = "Une nouvelle commande vient d'être ajoutée <br/> 
+            Pour confirmer la receprion :<a href='".url::base()."orders/recieved/".$id."/".$verif_code."/'>" .url::base()."orders/recieved/".$id."/".$verif_code."/ </a><br/>
+            Pour confirmer le traitement :<a href='".url::base()."orders/submit/".$id."/".$verif_code."/'>" .url::base()."orders/submit/".$id."/".$verif_code."/ </a><br/>
+            Pour confirmer l'envoie :<a href='".url::base()."orders/send/".$id."/".$verif_code."/'>" .url::base()."orders/send/".$id."/".$verif_code."/ </a>";
+        $mailer->MsgHTML($email_message);
+        $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
+        $mailer->Send();
         url::redirect('orders/lists/0');
     }
     
@@ -261,27 +291,29 @@ class orders_controller
 				if (session::get('user_type') == 3)
 				{					 
                     $approved = '';
-                    $date_approval = '';
+                    $date_approval = '0000-00-00 00:00:00';
                     if (!$this->has_store_superviser())
                     {
                         $approved = '1';
                         $date_approval = date('Y-m-d H:i:s');
                     }
-					 $order_id[] = $this->orders->duplicate($order[0]->wish_list, session::get('user'), '', $order[0]->total_cost, $approved, $approve_date);
+                    $order_id[] = $this->orders->duplicate($order[0]->wish_list, session::get('user'), '', $order[0]->total_cost, $approved, $approve_date);
 				}
 				else
 				{
                     $approved = '';
-                    $date_approval = '';
+                    $date_approval = '0000-00-00 00:00:00';
                     if (!$this->has_user_superviser())
                     {
                         $approved = '1';
-                        $date_approval = date('Y-m-d H:i:s');                    
-                        foreach($stores as $store)
-                        {
-                            $order_id[] = $this->orders->duplicate($order[0]->wish_list, $store, session::get('user'), $order[0]->total_cost, $approved, $approve_date);
-                        }
+                        $date_approval = date('Y-m-d H:i:s');   
+                    }         
+                            
+                    foreach($stores as $store)
+                    {
+                        $order_id[] = $this->orders->duplicate($order[0]->wish_list, $store, session::get('user'), $order[0]->total_cost, $approved, $approve_date);
                     }
+                    
 				}        
 			  
 				session::set('stores_ids',serialize($stores));
@@ -357,7 +389,7 @@ class orders_controller
     private function has_user_superviser()
     {
         $permissions = load::model('permissions');
-        return $permissions->get_user_supervisers(session::get('user'));
+        return $permissions->get_user_supervisers($this->users->get_id(session::get('user')));
     }
     
     public function get_users_supevised($user_id)
@@ -426,11 +458,55 @@ class orders_controller
     public function problem($order_id, $code_verif)
     {
         $order_status = $this->status->get($order_id);
-        
+        if ($order_status[0]->code_verif == $code_verif)
+        {
+            $this->status->update($order_id,'4',$code_verif);
+        }        
     }    
     
     public function cancel($order_id, $code_verif)
     {
         $order_status = $this->status->get($order_id);
+        if ($order_status[0]->code_verif == $code_verif)
+        {
+            $this->status->update($order_id,'5',$code_verif);
+        }
+    }
+    
+    public function request_problem($order_id)
+    {
+        $order_status = $this->status->get($order_id);        
+        var_dump($order_status);
+        $mailer = new phpmailer();
+        $mailer->IsSendmail();
+        $mailer->From = 'noreply@domain.com';
+        $mailer->FromName = 'Belron admin';
+        $mailer->Subject = utf8_decode('Problème pour une demande');
+        $email_message = "Une signalisation d'un problème pour une demande : <br/> 
+            Pour confirmer le problème :<a href='".url::base()."orders/problem/".$order_id."/".$order_status[0]->code_verif."/'>" .url::base()."orders/problem/".$key."/".$order_status[0]->code_verif."/ </a><br/>";
+        $mailer->MsgHTML($email_message);
+        $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
+        $mailer->Send();
+        
+        url::redirect('orders/confirmation');
+        
+    }    
+    
+    public function request_cancel($order_id)
+    {
+        $order_status = $this->status->get($order_id);
+        var_dump($order_status);
+        $mailer = new phpmailer();
+        $mailer->IsSendmail();
+        $mailer->From = 'noreply@domain.com';
+        $mailer->FromName = 'Belron admin';
+        $mailer->Subject = utf8_decode('Demande pour annuler pour une demande');
+        $email_message = "Une demande pour annuler une demande : <br/> 
+            Pour confirmer l'annulation :<a href='".url::base()."orders/cancel/".$order_id."/".$order_status[0]->code_verif."/'>" .url::base()."orders/cancel/".$key."/".$order_status[0]->code_verif."/ </a><br/>";
+        $mailer->MsgHTML($email_message);
+        $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
+        $mailer->Send();
+        
+        url::redirect('orders/confirmation');
     }
 }

@@ -426,17 +426,22 @@ function sort_history_type()
 
 function change_orders_page()
 {
-    $(window.location).attr('href', root_url+'/orders/lists/0/'+$("#orders_page").val()+'/'+$("#sort_page").val()+'/'+$("#sort_type").val());
+    $(window.location).attr('href', root_url+'/orders/lists/0/'+$("#orders_page").val()+'/'+$("#sort_page").val()+'/'+$("#sort_type").val()+'/'+$("#user_page").val());
 }
 
 function sort_orders_page()
 {
-    $(window.location).attr('href', root_url+'/orders/lists/0/'+$("#orders_page").val()+'/'+$("#sort_page").val()+'/'+$("#sort_type").val());
+    $(window.location).attr('href', root_url+'/orders/lists/0/'+$("#orders_page").val()+'/'+$("#sort_page").val()+'/'+$("#sort_type").val()+'/'+$("#user_page").val());
 }
 
 function sort_orders_type()
 {
-    $(window.location).attr('href', root_url+'/orders/lists/0/'+$("#orders_page").val()+'/'+$("#sort_page").val()+'/'+$("#sort_type").val());
+    $(window.location).attr('href', root_url+'/orders/lists/0/'+$("#orders_page").val()+'/'+$("#sort_page").val()+'/'+$("#sort_type").val()+'/'+$("#user_page").val());
+}
+
+function sort_users_page()
+{
+    $(window.location).attr('href', root_url+'/orders/lists/0/'+$("#orders_page").val()+'/'+$("#sort_page").val()+'/'+$("#sort_type").val()+'/'+$("#user_page").val());
 }
 
 function get_product_infos(id)
