@@ -75,14 +75,14 @@
             
             <?foreach ($orders as $key => $order):?>
                 <?$order_detail = unserialize($order->wish_list);?>
-                <?if (!count($order_detail)):?>
-                    <? $class_approved = 'order_cancelled'; $approved = gettext("Cancelled"); ?>
-                <?else:?>
+                <?if (count($order_detail)):?>                    
                     <? $class_approved = 'order_approuved'; $approved = gettext("approved");?>
                     <? if (!$order->approved):?>
                         <? $class_approved = 'order_cancelled'; $approved = gettext("not approved"); ?>
                     <?endif?>
-                <?endif?>
+                    <?if ($order->pos == ''):?>
+                        <? $class_approved = 'order_cancelled'; $approved = gettext("no pos"); ?>     
+                    <?endif?>
                 <?$tr_class = 'outline'?>
                     <?if ($key % 2) $tr_class = ''?>
                 <tr class="<?=$tr_class?>">
@@ -96,6 +96,7 @@
                         <td><a href="<?=url::base()?>orders/detail/<?=$order->id?>"><?=gettext("Details")?></a></td>
                     <?endif?>                  
                 </tr>
+                <?endif?>
             <?endforeach?>
         </table>
         

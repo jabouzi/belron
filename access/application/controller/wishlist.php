@@ -159,8 +159,8 @@ class wishlist_controller
                 }
             }            
 
-            $dm_id = $store->get_store_dm_id(session::get('user'));
-            $dm_infos = $user->get_user_infos($dm_id[0]->dm_id);
+            //$dm_id = $store->get_store_dm_id(session::get('user'));
+            //$dm_infos = $user->get_user_infos($dm_id[0]->dm_id);
             
             if (!empty($saved_wish_list))
             {
@@ -168,11 +168,13 @@ class wishlist_controller
                 {
                     $stores[] = session::get('user');
                     $approved = '';
-                    if ($this->has_superviser())
+                    $date_approval = '0000-00-00 00:00:00';
+                    if (!$this->has_store_superviser())
                     {
-                        $approved = 'approved';
+                        $approved = 0;
+                        $date_approval = date('Y-m-d H:i:s');
                     }
-                    $order_id[] = $order->insert(serialize($saved_wish_list), session::get('user'), '', input::post('hidden_total'));
+                    $order_id[] = $order->insert(serialize($saved_wish_list), session::get('user'), $approved, input::post('hidden_total'), $date_approval);
                     if (!empty($saved_wish_list))
                     {
                         $address = array('address' => input::post('address'), 
@@ -188,12 +190,22 @@ class wishlist_controller
                 else
                 {
                     $stores = input::post('store-orders');
+                    $approved = '';
+                    $date_approval = '0000-00-00 00:00:00';  
+
+                    if (!$this->has_user_superviser())
+                    {                                           
+                        $approved = '1';
+                        $date_approval = date('Y-m-d H:i:s');    
+                    }                     
+                           
                     foreach($stores as $store)
                     {
-                        $order_id[] = $order->insert(serialize($saved_wish_list), $store, '1', input::post('hidden_total'));
+                        $order_id[] = $order->insert(serialize($saved_wish_list), $store, $approved, input::post('hidden_total'), $date_approval);
                     }
+                    
                 }
-            }
+            }           
             
             session::delete('wishlist');
             $this->wishlist->delete(session::get('user'));            
@@ -292,12 +304,23 @@ class wishlist_controller
         {
             $orders = load::model('orders');
             $pos = input::post('pos');
-            if ($this->has_superviser())
+            
+            $has_supervier = false;
+            if (session::get('user_type') == 3)
             {
-				 foreach($pos as $key => $item)
-				 {
-					$orders->add_pos($key,mysql_escape_string($item));
-				 }
+                if ($this->has_store_superviser()) $has_supervier = true;
+            }
+            else
+            {
+                if ($this->has_user_superviser()) $has_supervier = true;
+            }
+            if ($has_supervier)
+            {
+                
+                 foreach($pos as $key => $item)
+                 {
+                    $orders->add_pos($key,mysql_escape_string($item));
+                 }
             }
             else
             {
@@ -305,7 +328,7 @@ class wishlist_controller
 				{
 					$orders->approve_pos($key,mysql_escape_string($item));
 				}
-                $mailer = new phpmailer();
+                /*$mailer = new phpmailer();
                 $mailer->IsSendmail();
                 $mailer->From = 'noreply@domain.com';
                 $mailer->FromName = 'Name';
@@ -313,7 +336,7 @@ class wishlist_controller
                 $email_message = "<a href='".url::base()."login/userlogin/".$last_id."/'>Click ici </a>";
                 $mailer->MsgHTML($email_message);
                 $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
-                $mailer->Send();
+                $mailer->Send();*/
             }
             url::redirect('wishlist/confirmation/');
         }
@@ -323,10 +346,17 @@ class wishlist_controller
         }
     }
     
-    private function has_superviser()
+    private function has_store_superviser()
     {
         $permissions = load::model('permissions');
-        return $permissions->get_supervisers(session::get('user'));
+        return $permissions->get_store_supervisers(session::get('user'));
+    }
+    
+    private function has_user_superviser()
+    {
+        $user = load::model('users');
+        $permissions = load::model('permissions');       
+        return $permissions->get_user_supervisers($user->get_id(session::get('user')));
     }
     
     public function get_stores_supevised($user_id)

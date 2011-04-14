@@ -41,7 +41,7 @@ class orders_model
         return $data;
     }
     
-    public function insert($list, $store_id, $approved, $total_cost)
+    public function insert($list, $store_id, $approved, $total_cost, $approve_date)
     {
         $table = db('access_orders');
         $row = $table->insert(array(            
@@ -49,12 +49,13 @@ class orders_model
             'wish_list' => $list,
             'approved' => $approved,
             'save_data' => date('Y-m-d H:i:s'),
+            'approve_date' => $approve_date,
             'total_cost' =>  $total_cost
         ));
         return $row->id;
     }
     
-    public function duplicate($list, $store_id, $approved_by, $total_cost)
+    public function duplicate($list, $store_id, $approved_by, $total_cost, $approved, $approve_date)
     {
         $table = db('access_orders');
         $row = $table->insert(array(            
@@ -63,7 +64,7 @@ class orders_model
             'changed_by' => $approved_by,
             'save_data' => date('Y-m-d H:i:s'),
             'approve_date' => date('Y-m-d H:i:s'),
-            'approved' => '1',
+            'approved' => $approved,
             'total_cost' =>  $total_cost,
         ));
         return $row->id;

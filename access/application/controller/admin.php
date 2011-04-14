@@ -52,7 +52,7 @@ class admin_controller
         {
             if (session::get('user_type') == 1)
             {
-                $rows = get_sort_rows();
+                $rows = get_sort_rows2();
                 $total_orders = $this->orders->count();
                 $page = new pagination($total_orders,$current_page,10);
                 $sort_order = 'DESC';

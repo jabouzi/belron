@@ -254,16 +254,29 @@ class orders_controller
 			{
 				$order = $this->orders->get($id);
 				if (session::get('user_type') == 3)
-				{
-					 
-					 $order_id[] = $this->orders->duplicate($order[0]->wish_list, session::get('user'), '', $order[0]->total_cost);
+				{					 
+                    $approved = '';
+                    $date_approval = '';
+                    if (!$this->has_store_superviser())
+                    {
+                        $approved = '1';
+                        $date_approval = date('Y-m-d H:i:s');
+                    }
+					 $order_id[] = $this->orders->duplicate($order[0]->wish_list, session::get('user'), '', $order[0]->total_cost, $approved, $approve_date);
 				}
 				else
 				{
-					foreach($stores as $store)
-					{
-						$order_id[] = $this->orders->duplicate($order[0]->wish_list, $store, session::get('user'), $order[0]->total_cost);
-					}
+                    $approved = '';
+                    $date_approval = '';
+                    if (!$this->has_user_superviser())
+                    {
+                        $approved = '1';
+                        $date_approval = date('Y-m-d H:i:s');                    
+                        foreach($stores as $store)
+                        {
+                            $order_id[] = $this->orders->duplicate($order[0]->wish_list, $store, session::get('user'), $order[0]->total_cost, $approved, $approve_date);
+                        }
+                    }
 				}        
 			  
 				session::set('stores_ids',serialize($stores));
@@ -329,6 +342,18 @@ class orders_controller
 
         return $array;
     }    
+    
+    private function has_store_superviser()
+    {
+        $permissions = load::model('permissions');
+        return $permissions->get_store_supervisers(session::get('user'));
+    }
+    
+    private function has_user_superviser()
+    {
+        $permissions = load::model('permissions');
+        return $permissions->get_user_supervisers(session::get('user'));
+    }
     
     public function get_users_supevised($user_id)
     {
