@@ -182,7 +182,7 @@ function get_product_price(product_id)
 }
 
 function get_product_shipping(product_id,prods)
-{
+{    
     $("#wait").html('<img src="'+root_url+'/public/images/loadinfo.gif">');
     $.getJSON(root_url+"/products/get_product_shipping/"+product_id+'/'+$("#select_"+product_id).val()+'/',{uid : String((new Date()).getTime()).replace(/\D/gi, '') },
         function(shipping) {            
@@ -199,6 +199,7 @@ function get_product_shipping(product_id,prods)
                     for (var i = 0; i < shipping.length; i++)
                     {                    
                         $("#shipping"+i+"_"+product_id).val(parseFloat(shipping[i].rate).toFixed(2));
+                        $("#shipping"+i+"_"+product_id).val(parseFloat(shipping[i].rate).toFixed(2));
                     }
                 }
                 
@@ -209,13 +210,16 @@ function get_product_shipping(product_id,prods)
                     var total0 = 0;
                     var total1 = 0;
                     var total2 = 0;
+                    var date0 = '';
+                    var date1 = '';  
+                    var date2 = '';
                     for(var i = 0; i < prods.length; i++)
                     {
                         if (!$("#checkbox_"+prods[i]).attr("checked"))
                         {
                             total0 += parseFloat($("#shipping0_"+prods[i]).val());
                             total1 += parseFloat($("#shipping1_"+prods[i]).val());
-                            total2 += parseFloat($("#shipping2_"+prods[i]).val());      
+                            total2 += parseFloat($("#shipping2_"+prods[i]).val());                                
                         }                  
                     }
                     
@@ -225,9 +229,16 @@ function get_product_shipping(product_id,prods)
                     }
                     else
                     {
-                        $("#shipping0").html("<input type='radio' name='radio_shipping' value='shipping0' onclick='get_sum(["+prods+"])'/> Colis standard: $"+parseFloat(total0).toFixed(2));
-                        $("#shipping1").html("<input type='radio' name='radio_shipping' value='shipping1' onclick='get_sum(["+prods+"])'/> Colis accélérés: $"+parseFloat(total1).toFixed(2));
-                        $("#shipping2").html("<input type='radio' name='radio_shipping' value='shipping2' onclick='get_sum(["+prods+"])'/> Messageries prioritaires: $"+parseFloat(total2).toFixed(2));
+                        $("#shipping0").html("<input type='radio' name='radio_shipping' value='shipping0' onclick='get_sum(["+prods+"])'/> "+shipping[0].name+" : $"+parseFloat(total0).toFixed(2));
+                        $("#shipping1").html("<input type='radio' name='radio_shipping' value='shipping1' onclick='get_sum(["+prods+"])'/> "+shipping[1].name+" : $"+parseFloat(total1).toFixed(2));
+                        $("#shipping2").html("<input type='radio' name='radio_shipping' value='shipping2' onclick='get_sum(["+prods+"])'/> "+shipping[2].name+" : $"+parseFloat(total2).toFixed(2));
+                        
+                        var delivery_text = 'Estimation de livraison le';
+                        if ($('#lang').val() == 'en') delivery_text = 'Delevry estimation for ';
+                        
+                        $("#date0").html(" &nbsp; "+delivery_text+" : "+shipping[0].deliveryDate);
+                        $("#date1").html(" &nbsp; "+delivery_text+" : "+shipping[1].deliveryDate);
+                        $("#date2").html(" &nbsp; "+delivery_text+" : "+shipping[2].deliveryDate);
                     }                    
                     $("#hidden_shipping0").val(parseFloat(total0).toFixed(2));
                     $("#hidden_shipping1").val(parseFloat(total1).toFixed(2));
@@ -243,6 +254,9 @@ function get_shipping(prods)
     $("#shipping0").html('');
     $("#shipping1").html('');
     $("#shipping2").html('');
+    $("#date0").html('');
+    $("#date1").html('');
+    $("#date2").html('');
     var langen = ['You must select a product quantity for the product #', 'You can\'t get shipping rates'];
     var langfr = ['Aucune quantité d\'un produit n\'a été sélectionnée pour le produit #', 'Vous ne pouvez pas obtenir les frais de livraisons'];
     var errors = '';

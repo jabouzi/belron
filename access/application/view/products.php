@@ -8,25 +8,26 @@
             <?foreach($products_list as $products):?>                
                 <?
                 $product_image = url::base().'public/images/products/70x70/0.jpg';
-                if (is_file(url::root().'public/images/products/70x70/'.$products[0]->id.'.jpg'))  $product_image =  url::base().'public/images/products/70x70/'.$products[0]->id.'.jpg';
+                $rel_image = url::base().'public/images/products/250x381/0.jpg';
+                if (is_file(url::root().'public/images/products/70x70/'.$products[0]->id.'.jpg')) 
+                {
+                    $product_image =  url::base().'public/images/products/70x70/'.$products[0]->id.'.jpg';
+                    $rel_image = url::base().'public/images/products/250x381/'.$products[0]->id.'.jpg';
+                }
                 ?>               
                 <div class="Produit_liste_item">
-                    <div class="thumb"><img src="<?=$product_image?>" alt="" width="70" height="69" /></div>                
-                    <div class="desc">
-                        <select id="product_group_<?=$products[0]->group_id?>" name="product_group_<?=$products[0]->group_id?>" onchange="get_product_infos('<?=$products[0]->group_id?>')">
-                            <?for($i = 0; $i< count($products); $i++):?>
-                                <option value='<?=$products[$i]->id?>'><?=utf8_encode($products[$i]->description)?></option>                               
-                            <?endfor?>
-                        </select>  
-                        <br />                                 
+                    <div class="thumb"><img src="<?=$product_image?>" alt="" width="70" height="69" rel="#img_<?=$products[0]->id?>" /></div>                
+                    <div class="desc"><?=utf8_encode($products[0]->description)?> <br />                                 
                     <h3 id="h3_<?=$products[0]->group_id?>"><?=utf8_encode($products[0]->name)?></h3>
-                    <p id="p_<?=$products[0]->group_id?>">Dimensions : <?=utf8_encode($products[0]->dimension)?><br />  
-                    <a href="<?=url::base()?>products/product/<?=$products[0]->id?>"><?=gettext("More info")?></a></p>
+                    <p id="p_<?=$products[0]->group_id?>">Dimensions : <?=utf8_encode($products[0]->dimension)?><br />                      
                     </div>                
                     <div class="ajouter">
                         <label></label>
                         <a href="javascript:;"  onclick="add_product_to_wish_list('<?=$store_id?>','<?=$products[0]->id?>')"><?=gettext("Add to cart")?></a>
                     </div>
+                </div>
+                <div class="simple_overlay" id="img_<?=$products[0]->id?>">
+                <img src="<?=$rel_image?>">
                 </div>
             <?endforeach?>
         </div> 
@@ -50,7 +51,13 @@
                 </div>            
             </div>        
         </div> 
-    </div>   
-    
+    </div>    
 </div>
+
+
+<script>
+$(document).ready(function() {
+$("img[rel]").overlay();
+});
+</script>
 

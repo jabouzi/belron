@@ -171,7 +171,7 @@ class wishlist_controller
                         $approved = 0;
                         $date_approval = date('Y-m-d H:i:s');
                     }
-                    $order_id[] = $order->insert(serialize($saved_wish_list), session::get('user'), $approved, input::post('hidden_total'), $date_approval);
+                    $order_id[] = $order->insert(serialize($saved_wish_list), '', session::get('user'), $approved, input::post('hidden_total'), $date_approval);
                     if (!empty($saved_wish_list))
                     {
                         $address = array('address' => input::post('address'), 
@@ -189,16 +189,18 @@ class wishlist_controller
                     $stores = input::post('store-orders');
                     $approved = '';
                     $date_approval = '0000-00-00 00:00:00';  
+                    $approved_by = '';
 
                     if (!$this->has_user_superviser())
                     {                                           
                         $approved = '1';
-                        $date_approval = date('Y-m-d H:i:s');    
+                        $date_approval = date('Y-m-d H:i:s');   
+                        $approved_by = session::get('user'); 
                     }                     
                            
                     foreach($stores as $store)
                     {
-                        $order_id[] = $order->insert(serialize($saved_wish_list), $store, $approved, input::post('hidden_total'), $date_approval);
+                        $order_id[] = $order->insert(serialize($saved_wish_list), $approved_by, $store, $approved, input::post('hidden_total'), $date_approval);
                     }
                     
                 }
@@ -272,7 +274,8 @@ class wishlist_controller
            
             load::view('header');
             load::view('order_pos',array('id' => $id, 'products_list' => $products_list,'shipping' => $shipping, 
-						'store_id' => $store_id, 'total_cost' => $total_cost, 'stores_ids' => $stores_ids, 'orders_ids' => $orders_ids ));
+						'store_id' => $store_id, 'total_cost' => $total_cost, 'stores_ids' => $stores_ids, 'orders_ids' => $orders_ids,
+                        'sups1' => $this->get_user_superviser(), 'sups2' => $this->get_store_superviser($stores_ids) ));
             load::view('footer');
         }
         else
@@ -289,17 +292,17 @@ class wishlist_controller
             $status = load::model('status');
             $pos = input::post('pos');
             
-            $has_supervier = false;
+            $has_superviser = false;
             if (session::get('user_type') == 3)
             {
-                if ($this->has_store_superviser()) $has_supervier = true;
+                if ($this->has_store_superviser()) $has_superviser = true;
             }
             else
             {
-                if ($this->has_user_superviser()) $has_supervier = true;
+                if ($this->has_user_superviser()) $has_superviser = true;
             }
             
-            if ($has_supervier)
+            if ($has_superviser)
             {
                 
                  foreach($pos as $key => $item)
@@ -351,13 +354,56 @@ class wishlist_controller
         return $permissions->get_user_supervisers($user->get_id(session::get('user')));
     }
     
+    private function get_store_superviser($stores_ids)
+    {
+        foreach($stores_ids as $store_id)
+        {
+            $permissions = load::model('permissions');
+            $user = load::model('users');
+            $sups = $permissions->get_store_supervisers_names($store_id);
+            foreach($sups as $sup)
+            {            
+                $data = $user->get_user_infos($sup->superviser);
+                $supervisers[$data[0]->id] = $data[0]->first_name .' ' . $data[0]->family_name;
+            }
+        }
+        
+        return $supervisers;
+    }
+    
+    private function get_user_superviser()
+    {
+        $user = load::model('users');
+        $permissions = load::model('permissions');       
+        $sups = $permissions->get_user_supervisers_names($user->get_id(session::get('user')));
+        foreach($sups as $sup)
+        {            
+            $data = $user->get_user_infos($sup->superviser);
+            $supervisers[] = $data[0]->first_name .' ' . $data[0]->family_name;
+        }
+        
+        return $supervisers;
+    }
+    
     public function get_stores_supevised($user_id)
     {
-        $permissions = load::model('permissions');
-        $datas = $permissions->get_store_permissions($user_id);
-        foreach($datas as $data)
+        if (session::get('user_type') == 2)
         {
-            $stores[] = $data->store;
+            $permissions = load::model('permissions');
+            $datas = $permissions->get_store_permissions($user_id);            
+            foreach($datas as $data)
+            {
+                $stores[] = $data->store;
+            }
+        }
+        else if (session::get('user_type') == 1)
+        {
+            $stores_data = load::model('stores');
+            $datas = $stores_data->get_all();     
+            foreach($datas as $data)
+            {
+                $stores[] = $data->store_id;
+            }
         }
         return $stores;
     }

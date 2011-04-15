@@ -3,7 +3,16 @@
         <div id="Container_Principale_960">
             <div id="Page_haut">
                 <div id="Breadcrumb"><a href="#">&nbsp;</a></div>
-                <h1><?=gettext("Order confirmation")?></h1>
+                <h1><?=gettext("Order confirmation")?>
+                <?=gettext("Order details")?> # <?=$order_id?>
+                <? if (session::get('user_type') == 1):?>
+                    <a href="<?=url::page('admin/admin_index')?>"><?=gettext("Back")?></a>
+                <? elseif (session::get('user_type') == 2):?>
+                    <a href="<?=url::page('orders/lists/0')?>"><?=gettext("Back")?></a>
+                <? else:?>                
+                    <a href="<?=url::page('categories')?>"><?=gettext("Back")?></a>
+                <?endif?>
+                </h1>
             </div>
             
             <div id="Collone1">
@@ -30,7 +39,6 @@
                         <div class="desc_conf">
                             <h3><?=utf8_encode($item[0]->name)?></h3>
                             <p><?=utf8_encode($item[0]->description)?><br />
-                            <a href="<?=url::base()?>products/product/<?=$item[0]->id?>"><?=gettext("More info")?></a></p>
                         </div>         
                         <div class="quantite_confirm">
                             <label>      
@@ -70,9 +78,9 @@
                             <div id="shipping_choice">
                                 <div id="wait">                        
                                 </div>
-                                <div id="shpgtype0"><span id="shipping0"></span></div>
-                                <div id="shpgtype1"><span id="shipping1"></span></div>
-                                <div id="shpgtype2"><span id="shipping2"></span></div>
+                                <div id="shpgtype0"><span id="shipping0"></span><span style="color:#ff0000" id="date0"></span></div>
+                                <div id="shpgtype1"><span id="shipping1"></span><span style="color:#ff0000" id="date1"></span></div>
+                                <div id="shpgtype2"><span id="shipping2"></span><span style="color:#ff0000" id="date2"></span></div>
                             </div>
                             <input type="hidden" id="hidden_shipping0" name="hidden_shipping0" value="0">
                             <input type="hidden" id="hidden_shipping1" name="hidden_shipping1" value="0">
@@ -85,6 +93,8 @@
                         </td>
                     </tr>
                 </table>
+                <div style="color:#ff0000"><strong>*<?=gettext("The delivery fees may change")?></strong></div>
+                <div style="color:#ff0000"><strong>*<?=gettext("Print delay not included")?></strong></div>
             </div>        
         
             <div id="Collone2">            
@@ -100,8 +110,9 @@
                             <p><?=gettext("Fax")?><br /> <input type="text" value="<?=$store[0]->fax?>" name="fax"></p>   
                         <?else:?>
                             <?foreach($stores as $store_item):?>            
-                                <div class="Produit_liste_item"><input type='text' id='<?=$store_item?>' value="<?=$store_item?>" readonly />
-                                <input type="checkbox" value="<?=$store_item?>" id="active" name="store-orders[]" /></div>            
+                                <div class="Produit_liste_item"><input type="checkbox" value="<?=$store_item?>" id="active" name="store-orders[]" />
+                                <input type='text' id='<?=$store_item?>' value="<?=$store_item?>" readonly style="width: 80px;" />
+                                </div>            
                             <?endforeach?>
                         <?endif?> 
                     </div>                   
@@ -109,7 +120,13 @@
                     <input type="hidden" value="<?=$store[0]->id?>" id="store_id">
                     <input type="hidden" value="<?=session::get('lang')?>" id="lang">
                 </div>            
-            </div>
+            </div>            
         </div>    
     </div>
 </form>
+
+<script>
+$(document).ready(function() {
+$("select").val(0);
+});
+</script>

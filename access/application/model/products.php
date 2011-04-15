@@ -14,7 +14,7 @@ class products_model
                 WHERE access_products.category_id = access_category.id 
                 AND access_category.id = '{$cat_id}'
                 AND (access_products.brand = '{$brand}' OR brand = 'Generic' OR brand = '')
-                AND access_products.lang = '{$lang}'";        
+                ";        
         $data = db::query($sql);
         return $data;
     }

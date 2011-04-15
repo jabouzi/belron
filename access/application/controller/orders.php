@@ -108,7 +108,8 @@ class orders_controller
                     if ($order[0]->approved)
                     {
                         $approved = $this->orders->is_approved($id);
-                        load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 'order_id' => $id, 'rows' => get_quantities(), 'stores_supervised' => $stores_supervised, 'approved' => $approved[0]->approved));
+                        load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 'pos' => $order[0]->pos, 
+                        'order_id' => $id, 'rows' => get_quantities(), 'stores_supervised' => $stores_supervised, 'approved' => $approved[0]->approved));
                     }
                     else
                     {
@@ -146,7 +147,7 @@ class orders_controller
                 
                 $approved = $this->orders->is_approved($id);
                 load::view('header');                    
-                load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 
+                load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 'pos' => $order[0]->pos, 
                             'order_id' => $id, 'rows' => get_quantities(), 'approved' => $approved[0]->approved, 'status' => $status[0]->status));
                 load::view('footer');  
             }
@@ -314,7 +315,7 @@ class orders_controller
                         $order_id[] = $this->orders->duplicate($order[0]->wish_list, $store, session::get('user'), $order[0]->total_cost, $approved, $approve_date);
                     }
                     
-				}        
+				}                
 			  
 				session::set('stores_ids',serialize($stores));
 				session::set('orders_ids',serialize($order_id));
@@ -336,6 +337,20 @@ class orders_controller
     {
         load::view('header');
         load::view('store_confirmation');
+        load::view('footer');
+    }
+    
+    public function request_confirmation()
+    {
+        load::view('header');
+        load::view('request_confirmation');
+        load::view('footer');
+    }
+    
+    public function status_confirmation()
+    {
+        load::view('header');
+        load::view('status_confirmation');
         load::view('footer');
     }
     
@@ -425,7 +440,14 @@ class orders_controller
     
     public function make_order()
     {
-        url::redirect('categories');
+        if (count($this->get_stores_supevised(session::get('user'))))
+        {
+            url::redirect('categories');
+        }
+        else
+        {
+            url::redirect('orders/lists/0');
+        }
     }
     
     public function recieved($order_id, $code_verif)
@@ -435,6 +457,8 @@ class orders_controller
         {
             $this->status->update($order_id,'1',$code_verif);
         }
+        
+        url::redirect('orders/status_confirmation');
     }
     
     public function submit($order_id, $code_verif)
@@ -444,6 +468,8 @@ class orders_controller
         {
             $this->status->update($order_id,'2',$code_verif);
         }
+        
+        url::redirect('orders/status_confirmation');
     }
     
     public function send($order_id, $code_verif)
@@ -453,6 +479,8 @@ class orders_controller
         {
             $this->status->update($order_id,'3',$code_verif);
         }
+        
+        url::redirect('orders/status_confirmation');
     }
     
     public function problem($order_id, $code_verif)
@@ -461,7 +489,9 @@ class orders_controller
         if ($order_status[0]->code_verif == $code_verif)
         {
             $this->status->update($order_id,'4',$code_verif);
-        }        
+        }  
+        
+        url::redirect('orders/status_confirmation');      
     }    
     
     public function cancel($order_id, $code_verif)
@@ -471,42 +501,55 @@ class orders_controller
         {
             $this->status->update($order_id,'5',$code_verif);
         }
+        
+        url::redirect('orders/status_confirmation');
     }
     
     public function request_problem($order_id)
     {
         $order_status = $this->status->get($order_id);        
-        var_dump($order_status);
+        $problems = input::post('problems');  
         $mailer = new phpmailer();
         $mailer->IsSendmail();
         $mailer->From = 'noreply@domain.com';
         $mailer->FromName = 'Belron admin';
         $mailer->Subject = utf8_decode('Problème pour une demande');
-        $email_message = "Une signalisation d'un problème pour une demande : <br/> 
-            Pour confirmer le problème :<a href='".url::base()."orders/problem/".$order_id."/".$order_status[0]->code_verif."/'>" .url::base()."orders/problem/".$key."/".$order_status[0]->code_verif."/ </a><br/>";
+        $email_message = "Une signalisation d'un problème pour une demande : <br/><br/>"; 
+        if (input::post('not_recieved') == 1)    
+        {
+            $email_message .= "Je n'ai pas reçu ma commande : <br/><br/>"; 
+        }
+        foreach($problems as $problem)
+        {
+            $email_message .= $problem."<br/>"; 
+        }
+        $email_message .= "<br/>Pour confirmer le problème :<a href='".url::base()."orders/problem/".$order_id."/".$order_status[0]->code_verif."/'>" .url::base()."orders/problem/".$order_id."/".$order_status[0]->code_verif."/ </a><br/>";
         $mailer->MsgHTML($email_message);
         $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
         $mailer->Send();
         
-        url::redirect('orders/confirmation');
+        url::redirect('orders/request_confirmation');
         
     }    
     
     public function request_cancel($order_id)
     {
         $order_status = $this->status->get($order_id);
-        var_dump($order_status);
         $mailer = new phpmailer();
         $mailer->IsSendmail();
         $mailer->From = 'noreply@domain.com';
         $mailer->FromName = 'Belron admin';
         $mailer->Subject = utf8_decode('Demande pour annuler pour une demande');
-        $email_message = "Une demande pour annuler une demande : <br/> 
-            Pour confirmer l'annulation :<a href='".url::base()."orders/cancel/".$order_id."/".$order_status[0]->code_verif."/'>" .url::base()."orders/cancel/".$key."/".$order_status[0]->code_verif."/ </a><br/>";
+        $email_message = "Une demande pour annuler une demande : <br/><br/>";
+        foreach($problems as $problem)
+        {
+            $email_message .= $problem."<br/>"; 
+        }
+        $email_message .= "Pour confirmer l'annulation :<a href='".url::base()."orders/cancel/".$order_id."/".$order_status[0]->code_verif."/'>" .url::base()."orders/cancel/".$order_id."/".$order_status[0]->code_verif."/ </a><br/>";
         $mailer->MsgHTML($email_message);
         $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
         $mailer->Send();
         
-        url::redirect('orders/confirmation');
+        url::redirect('orders/request_confirmation');
     }
 }

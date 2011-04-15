@@ -70,7 +70,7 @@ class products_controller
 
             load::library('minixml/minixml.inc');
             load::library('canadapost');
-            $cp = new CanadaPost('fr');
+            $cp = new CanadaPost(session::get('lang'));
             $cp->addItem($quantity = 1, $weight = intval($rows[$order_quantity])/100, $length = 1, $width = floatval($dimensions[0]), $height = floatval($dimensions[1]), $description = 'Test');
             $cp->getQuote('Montréal', 'Québec', 'Canada', 'H1P 2X8');
 
@@ -80,6 +80,8 @@ class products_controller
             else
             {
                 $shipping_methods = $cp->shipping_methods;
+                $shipping_methods[1]['name'] = urldecode($shipping_methods[1][name]);
+                //$shipping_methods[1]['name'] = "wow";
                 echo json_encode($shipping_methods);      
             }
         }      

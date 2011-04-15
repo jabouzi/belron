@@ -10,7 +10,7 @@ class categories_model
     public function get_categories($lang)
     {
         $table = db('access_category');       
-        $data = $table->select('id', 'name_'.$lang)->execute();  
+        $data = $table->select('id', 'name_'.$lang)->where('active','=','1')->execute();  
         return $data;
     }
     

@@ -114,7 +114,7 @@
             <? endif; ?>
             
             <? if($page->next()): ?>
-                <a href="<?=url::page("admin/dashboard/{$page->next_page()}/{$current_page}/{$sort}/"); ?>"><?=gettext("Next")?></a>
+                <a href="<?=url::page("admin/dashboard/{$page->next_page()}/{$sort}/"); ?>"><?=gettext("Next")?></a>
             <? endif; ?>
         </div>
     </div>

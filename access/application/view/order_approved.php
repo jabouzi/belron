@@ -2,7 +2,15 @@
     <div id="Container_Principale_960">
         <div id="Page_haut">
             <div id="Breadcrumb"><a href="#">&nbsp;</a></div>
-            <h1><?=gettext("Order details")?> # <?=$order_id?></h1>
+            <h1><?=gettext("Order details")?> # <?=$order_id?>
+            <? if (session::get('user_type') == 1):?>
+                <a href="<?=url::page('admin/admin_index')?>"><?=gettext("Back")?></a>
+            <? elseif (session::get('user_type') == 2):?>
+                <a href="<?=url::page('orders/lists/0')?>"><?=gettext("Back")?></a>
+            <? else:?>                
+                <a href="<?=url::page('categories')?>"><?=gettext("Back")?></a>
+            <?endif?>
+            </h1>
         </div>
         <div id="Collone1">
             <div class="order_title">
@@ -61,17 +69,17 @@
             <div class="Boite">   
                 <div class="boite_confirm">         
                     <?if (isset($order)):?>
-                    <p><?=gettext("Adress")?> : <?=$store[0]->address?></p>   
-                    <p><?=gettext("City")?> : <?=$store[0]->city?></p>   
-                    <p><?=gettext("Postal Code")?> : <?=$store[0]->postal_code?></p>   
-                    <p><?=gettext("Province")?> : <?=$store[0]->province?></p>   
-                    <p><?=gettext("Tel")?> : <?=$store[0]->phone?></p>   
-                    <p><?=gettext("Fax")?> : <?=$store[0]->fax?></p>   
+                    <p><?=gettext("Adress")?> : <?=utf8_encode($store[0]->address)?></p>   
+                    <p><?=gettext("City")?> : <?=utf8_encode($store[0]->city)?></p>   
+                    <p><?=gettext("Postal Code")?> : <?=utf8_encode($store[0]->postal_code)?></p>   
+                    <p><?=gettext("Province")?> : <?=utf8_encode($store[0]->province)?></p>   
+                    <p><?=gettext("Tel")?> : <?=utf8_encode($store[0]->phone)?></p>   
+                    <p><?=gettext("Fax")?> : <?=utf8_encode($store[0]->fax)?></p>   
                 <?endif?>
                 </div>                   
                 <input type="hidden" value="<?=$store[0]->store_id?>" id="store_id">
             </div>            
-        </div>
+        </div>        
         
         <?if ($approved):?>
             <?if (session::get('user_type') == 3):?>
@@ -83,7 +91,7 @@
                 <input type="button" class="modalInput" rel="#stores" value="<?=gettext("Order again")?>" />
             <?endif?>
         <?endif?>
-        <?if ($status < 2):?>
+        <?if ($status < 2 && $pos != ''):?>
             <input type="button" class="modalInput" rel="#problems" value="<?=gettext("Problem")?>" />
             <input type="button" class="modalInput" rel="#cancel" value="<?=gettext("Cancel")?>" />
         <?endif?>
@@ -116,6 +124,7 @@
     </div>    
     <form id="edit_user" method="post" action="<?=url::page("orders/request_problem/".$order_id); ?>">
     <div>        
+        <label><?=gettext("Order not recieved")?></label><input type="checkbox" name="not_recieved" value="1"/>
         <?foreach($order['items'] as $item):?>
                 <?
                 $product_image = url::base().'public/images/products/70x70/0.jpg';
@@ -193,6 +202,6 @@
             </div>
     <br/>
     </div>
-    <input type="submit" name="submit_update" value="<?=gettext("Cancel")?>"/>
+    <input type="submit" name="submit_update" value="<?=gettext("Submit cancel")?>"/>
     </form>
 </div>

@@ -5,7 +5,7 @@
             <h1><?=gettext("Confirmation")?></h1>
         </div>              
         <div>
-        <b><?=gettext("Your order is waiting for appoval by")?> <?=$dm_infos[0]->first_name.' '.$dm_infos[0]->family_name?></b>
+        <b><?=gettext("Your order has been submitted with success")?></b>
         </div>    
     </div>
 </div>

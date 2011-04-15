@@ -41,12 +41,13 @@ class orders_model
         return $data;
     }
     
-    public function insert($list, $store_id, $approved, $total_cost, $approve_date)
+    public function insert($list, $approved_by, $store_id, $approved, $total_cost, $approve_date)
     {
         $table = db('access_orders');
         $row = $table->insert(array(            
             'store_id' => $store_id,
             'wish_list' => $list,
+            'changed_by' => $approved_by,
             'approved' => $approved,
             'save_data' => date('Y-m-d H:i:s'),
             'approve_date' => $approve_date,

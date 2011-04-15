@@ -216,6 +216,11 @@ body {
     border-left-style: none;
     background-color: #333333;
 }
+.Boite .boite_confirm {
+    height: 330px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
 .Boite .boite_confirm p{
     padding-bottom: 10px;
 }
@@ -722,6 +727,16 @@ div.total_approuved {
     padding:10px 0 10px 45px;
     border-bottom:1px solid #333;
     font-size:20px;
+}
+
+.modal2 .close, .modal .close {
+	background-image:url(images/close.png);
+	position:absolute;
+	right:-5px;
+	top:-5px;
+	cursor:pointer;
+	height:35px;
+	width:35px;
 }
 
 #edit_user div.Produit_liste_item {padding-bottom: 5px;}

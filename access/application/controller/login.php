@@ -74,7 +74,7 @@ class login_controller
         $errors_lang3 = array('fr' => 'Le mot de passe est invalide', 'en' => 'Your password is invalid');
         if (input::post('store_name') == '0') $this->errors[] = $errors_lang1[session::get('lang')];
         if (input::post('password') == '') $this->errors[] = $errors_lang2[session::get('lang')];
-        if (!$this->store_login_valid(input::post('store_name'),input::post('password'))) $this->errors[1] = $errors_lang3[session::get('lang')];
+        if (!$this->store_login_valid(strtolower(input::post('store_name')),strtolower(input::post('password')))) $this->errors[1] = $errors_lang3[session::get('lang')];
         if (empty($this->errors))
         {
             session::set('lang','fr');
@@ -104,13 +104,14 @@ class login_controller
         $errors_lang3 = array('fr' => 'Le mot de passe est invalide', 'en' => 'Your password is invalid');
         if (input::post('username') == '') $this->errors[] = $errors_lang1[session::get('lang')];
         if (input::post('password') == '') $this->errors[] = $errors_lang2[session::get('lang')];
-        if (!$this->user_login_valid(input::post('username'),input::post('password'))) $this->errors[1] = $errors_lang3[session::get('lang')];
+        if (!$this->user_login_valid(strtolower(input::post('username')),strtolower(input::post('password')))) $this->errors[1] = $errors_lang3[session::get('lang')];
         if (empty($this->errors))
         {            
             session::set('user_type',$this->get_user_type());
             session::set('user',input::post('username'));            
             session::set('user_id',$this->users->get_id(input::post('username'))); 
             $province = $this->users->get_province(input::post('username'));
+            session::set('wishlist',$this->has_wishlist());
             
             session::set('lang','fr');
             session::set('store_type','Lebeau');

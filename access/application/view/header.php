@@ -38,10 +38,7 @@
                 <? elseif ($usertype == 2):?>
                     <a href="<?=url::page('orders/lists/0')?>"><?=gettext("Home")?></a>
                     <a href="<?=url::page('orders/make_order')?>"><?=gettext("Make an order")?></a>
-                <? else:?>                    
-                    <?if ($hasalist):?>
-                        <a href="<?=url::page('wishlist/confirm')?>"><?=gettext("My order")?></a>
-                    <?endif?>
+                <? else:?>                   
                     <a href="<?=url::page('categories')?>"><?=gettext("Categories")?></a>
                     <a href="<?=url::page('orders/historique')?>"><?=gettext("History")?></a>
                 <?endif?>                
