@@ -27,7 +27,7 @@ class users_model
     {        
         $table = db('access_users');
         $data = $table->select('province')->where('email','=',$email)->execute();
-        return $data[0]->id;
+        return $data;
     }
     
     public function get_name($email)

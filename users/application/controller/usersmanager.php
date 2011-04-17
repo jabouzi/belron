@@ -108,16 +108,16 @@ class usersmanager_controller
     {  
         if (is_logged(session::get('user')))
         {
-            $data['id'] = mysql_escape_string(input::post('id'));
-            $data['position'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('position')))));
-            $data['family_name'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('family_name')))));
-            $data['first_name'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('first_name')))));
-            $data['address'] = mysql_escape_string(utf8_decode(input::post('address')));
-            $data['town'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('town')))));
-            $data['province'] = mysql_escape_string(utf8_decode(input::post('province')));
-            $data['postal_code'] = mysql_escape_string(strtoupper(format_postalcode(input::post('postal_code1'),input::post('postal_code2'))));
-            $data['phone'] = mysql_escape_string(format_phone(input::post('phone1'),input::post('phone2'),input::post('phone3')));
-            $data['email'] = mysql_escape_string(utf8_decode(strtolower(input::post('email'))));
+            $data['id'] = input::post('id');
+            $data['position'] = utf8_decode(ucfirst(strtolower(input::post('position'))));
+            $data['family_name'] = utf8_decode(ucfirst(strtolower(input::post('family_name'))));
+            $data['first_name'] = utf8_decode(ucfirst(strtolower(input::post('first_name'))));
+            $data['address'] = utf8_decode(input::post('address'));
+            $data['town'] = utf8_decode(ucfirst(strtolower(input::post('town'))));
+            $data['province'] = utf8_decode(input::post('province'));
+            $data['postal_code'] = strtoupper(format_postalcode(input::post('postal_code1'),input::post('postal_code2')));
+            $data['phone'] = format_phone(input::post('phone1'),input::post('phone2'),input::post('phone3'));
+            $data['email'] = utf8_decode(strtolower(input::post('email')));
             $data['password'] = md5(input::post('password'));
             $user_permissions = input::post('user-permissions');
             $store_permissions = input::post('store-permissions');
@@ -165,15 +165,15 @@ class usersmanager_controller
         if (is_logged(session::get('user')))
         {      
             $positions = get_positions();
-            $data['position'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('position')))));
-            $data['family_name'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('family_name')))));
-            $data['first_name'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('first_name')))));
-            $data['address'] = mysql_escape_string(utf8_decode(input::post('address')));
-            $data['town'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('town')))));
-            $data['province'] = mysql_escape_string(utf8_decode(input::post('province')));
-            $data['postal_code'] = mysql_escape_string(strtoupper(format_postalcode(input::post('postal_code1'),input::post('postal_code2'))));
-            $data['phone'] = mysql_escape_string(format_phone(input::post('phone1'),input::post('phone2'),input::post('phone3')));
-            $data['email'] = mysql_escape_string(utf8_decode(strtolower(input::post('email'))));
+            $data['position'] = utf8_decode(ucfirst(strtolower(input::post('position'))));
+            $data['family_name'] = utf8_decode(ucfirst(strtolower(input::post('family_name'))));
+            $data['first_name'] = utf8_decode(ucfirst(strtolower(input::post('first_name'))));
+            $data['address'] = utf8_decode(input::post('address'));
+            $data['town'] = utf8_decode(ucfirst(strtolower(input::post('town'))));
+            $data['province'] = utf8_decode(input::post('province'));
+            $data['postal_code'] = strtoupper(format_postalcode(input::post('postal_code1'),input::post('postal_code2')));
+            $data['phone'] = format_phone(input::post('phone1'),input::post('phone2'),input::post('phone3'));
+            $data['email'] = utf8_decode(strtolower(input::post('email')));
             $data['password'] = md5(input::post('password'));
             
             $res = $this->users->add_user($data);

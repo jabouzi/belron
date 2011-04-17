@@ -102,10 +102,10 @@
                 <div class="Boite">   
                     <div class="boite_confirm">         
                         <?if (session::get('user_type') == 3 && isset($wish_list)):?>
-                            <p><?=gettext("Address")?><br /> <input type="text" value="<?=utf8_encode($store[0]->address)?>" name="address"> </p>   
-                            <p><?=gettext("City")?><br /> <input type="text" value="<?=utf8_encode($store[0]->city)?>" name="city"> </p>   
+                            <p><?=gettext("Address")?><br /> <input type="text" value="<?=$store[0]->address?>" name="address"> </p>   
+                            <p><?=gettext("City")?><br /> <input type="text" value="<?=$store[0]->city?>" name="city"> </p>   
                             <p><?=gettext("Postal Code")?><br /><input type="text" value="<?=$store[0]->postal_code?>" name="postal_code"> </p>   
-                            <p><?=gettext("Province")?><br /> <input type="text" value="<?=utf8_encode($store[0]->province)?>" name="province"> </p>   
+                            <p><?=gettext("Province")?><br /> <input type="text" value="<?=$store[0]->province?>" name="province"> </p>   
                             <p><?=gettext("Tel")?><br /> <input type="text" value="<?=$store[0]->phone?>" name="phone"> </p>   
                             <p><?=gettext("Fax")?><br /> <input type="text" value="<?=$store[0]->fax?>" name="fax"></p>   
                         <?else:?>

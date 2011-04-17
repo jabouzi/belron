@@ -80,8 +80,7 @@ class products_controller
             else
             {
                 $shipping_methods = $cp->shipping_methods;
-                $shipping_methods[1]['name'] = urldecode($shipping_methods[1][name]);
-                //$shipping_methods[1]['name'] = "wow";
+                if (session::get('lang') == 'fr') $shipping_methods[1]['name'] = "Colis accélérés ";
                 echo json_encode($shipping_methods);      
             }
         }      

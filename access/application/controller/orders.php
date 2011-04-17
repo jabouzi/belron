@@ -21,7 +21,7 @@ class orders_controller
     } 
     
     public function lists($id = 0 ,$current_page = 1, $sort = 0, $type = 0, $user_sup = 0)
-    {
+    {        
         if (is_logged(session::get('user')) || session::get('user_type') < 3)
         {
             if ($id == 0)
@@ -105,7 +105,7 @@ class orders_controller
                     }
                     
                     load::view('header');
-                    if ($order[0]->approved)
+                    if ($order[0]->approved || $this->has_user_superviser())
                     {
                         $approved = $this->orders->is_approved($id);
                         load::view('order_approved',array('order' => $order_list, 'store' => $this->stores->get($order[0]->store_id), 'pos' => $order[0]->pos, 
@@ -121,7 +121,7 @@ class orders_controller
         }
         else
         {
-            url::redirect('login/userlogin');
+            url::redirect('login/userlogin/');
         }
     }    
     
@@ -283,7 +283,7 @@ class orders_controller
     
     public function order_again($id)
     {           
-		if (is_logged(session::get('user')))
+		if ($this->is_logged(session::get('user')))
         { 
 			$stores = input::post('store-orders');     
 			if (!empty($stores))
@@ -439,8 +439,8 @@ class orders_controller
     }
     
     public function make_order()
-    {
-        if (count($this->get_stores_supevised(session::get('user'))))
+    {        
+        if (count($this->get_stores_supevised($this->users->get_id(session::get('user')))))
         {
             url::redirect('categories');
         }
@@ -535,6 +535,7 @@ class orders_controller
     public function request_cancel($order_id)
     {
         $order_status = $this->status->get($order_id);
+        $problems = input::post('problems');  
         $mailer = new phpmailer();
         $mailer->IsSendmail();
         $mailer->From = 'noreply@domain.com';
@@ -551,5 +552,11 @@ class orders_controller
         $mailer->Send();
         
         url::redirect('orders/request_confirmation');
+    }
+    
+    
+    function is_logged($user)
+    {        
+        return ($user != false);
     }
 }

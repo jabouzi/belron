@@ -109,18 +109,18 @@ class storesmanager_controller
     {  
         if (is_logged(session::get('store')))
         {      
-            $data['id'] = mysql_escape_string(input::post('id'));
-            $data['store_id'] = mysql_escape_string(input::post('store_id'));
-            $data['name'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('name')))));
-            $data['address'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('address')))));
-            $data['city'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('city')))));
-            $data['postal_code'] = mysql_escape_string(strtoupper(format_postalcode(input::post('postal_code1'),input::post('postal_code2'))));
-            $data['province'] = mysql_escape_string(utf8_decode(input::post('province')));
-            $data['phone'] = mysql_escape_string(format_phone(input::post('phone1'),input::post('phone2'),input::post('phone3')));
-            $data['fax'] = mysql_escape_string(format_phone(input::post('fax1'),input::post('fax2'),input::post('fax3')));
-            $data['manager_or_owner'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('manager_name')))));
-            $data['dm_id'] = mysql_escape_string(input::post('dm_id'));
-            $data['cart_active'] = mysql_escape_string(input::post('checkbox_cart_active'));            
+            $data['id'] = input::post('id');
+            $data['store_id'] = input::post('store_id');
+            $data['name'] = utf8_decode(ucwords(strtolower(input::post('name'))));
+            $data['address'] = utf8_decode(ucwords(strtolower(input::post('address'))));
+            $data['city'] = utf8_decode(ucfirst(strtolower(input::post('city'))));
+            $data['postal_code'] = strtoupper(format_postalcode(input::post('postal_code1'),input::post('postal_code2')));
+            $data['province'] = utf8_decode(input::post('province'));
+            $data['phone'] = format_phone(input::post('phone1'),input::post('phone2'),input::post('phone3'));
+            $data['fax'] = format_phone(input::post('fax1'),input::post('fax2'),input::post('fax3'));
+            $data['manager_or_owner'] = utf8_decode(ucwords(strtolower(input::post('manager_name'))));
+            $data['dm_id'] = input::post('dm_id');
+            $data['cart_active'] = input::post('checkbox_cart_active');            
             $store_permissions = input::post('user-permissions');     
             
             $res = $this->stores->update_store($data['id'],$data);       
@@ -163,17 +163,17 @@ class storesmanager_controller
     {   
         if (is_logged(session::get('store')))
         {      
-            $data['store_id'] = mysql_escape_string(input::post('store_id'));
-            $data['name'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('name')))));
-            $data['address'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('address')))));
-            $data['city'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('city')))));
-            $data['postal_code'] = mysql_escape_string(strtoupper(format_postalcode(input::post('postal_code1'),input::post('postal_code2'))));
-            $data['province'] = mysql_escape_string(utf8_decode(input::post('province')));
-            $data['phone'] = mysql_escape_string(format_phone(input::post('phone1'),input::post('phone2'),input::post('phone3')));
-            $data['fax'] = mysql_escape_string(format_phone(input::post('fax1'),input::post('fax2'),input::post('fax3')));
-            $data['manager_or_owner'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('manager_name')))));
-            $data['dm_id'] = mysql_escape_string(input::post('dm_id'));
-            $data['cart_active'] = mysql_escape_string(input::post('checkbox_cart_active'));
+            $data['store_id'] = input::post('store_id');
+            $data['name'] = utf8_decode(ucwords(strtolower(input::post('name'))));
+            $data['address'] = utf8_decode(ucwords(strtolower(input::post('address'))));
+            $data['city'] = utf8_decode(ucfirst(strtolower(input::post('city'))));
+            $data['postal_code'] = strtoupper(format_postalcode(input::post('postal_code1'),input::post('postal_code2')));
+            $data['province'] = utf8_decode(input::post('province'));
+            $data['phone'] = format_phone(input::post('phone1'),input::post('phone2'),input::post('phone3'));
+            $data['fax'] = format_phone(input::post('fax1'),input::post('fax2'),input::post('fax3'));
+            $data['manager_or_owner'] = utf8_decode(ucwords(strtolower(input::post('manager_name'))));
+            $data['dm_id'] = input::post('dm_id');
+            $data['cart_active'] = input::post('checkbox_cart_active');
             
             $res = $this->stores->add_store($data);
             

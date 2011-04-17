@@ -19,7 +19,7 @@ class admin_controller
     
     public function index()
     {        
-        if (is_logged(session::get('user')))
+        if ($this->is_logged(session::get('user')))
         {
             if (session::get('user_type') == 3)
             {                
@@ -100,6 +100,11 @@ class admin_controller
     public function make_order()
     {
         url::redirect('categories');
+    }
+    
+    function is_logged($user)
+    {        
+        return ($user != false);
     }
 
 }

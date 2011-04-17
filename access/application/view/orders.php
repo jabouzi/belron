@@ -107,7 +107,7 @@
                     <td><?=printf("%01.1f",$order_detail['shipping']['total'])?></td>
                     <td><span class="<?=$class_approved?>"><?=$approved?></span></td>  
                     <? if ((!$user_sup && !$has_superviser) || $user_sup):?>
-                        <?if (!$order->approved):?>
+                        <?if (!$order->approved && $order->pos != ''):?>
                             <td><a href="<?=url::base()?>orders/approve_order/<?=$order->id?>"><?=gettext("Approve")?></a></td>   
                         <?else:?>
                             <td></td>

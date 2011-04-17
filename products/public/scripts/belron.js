@@ -127,7 +127,7 @@ function add_update_category()
     if ($('#password').val() == '') errors += en[8] + '<br />';
     
     if (errors != '') $('#error').html(errors);
-    else document.forms["edit_category"].submit();   
+    else document.forms["edit_product"].submit();   
     
     $('#type').val();
     

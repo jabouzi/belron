@@ -109,25 +109,25 @@ class productsmanager_controller
     {  
         if (is_logged(session::get('user')))
         {      
-            $data['name'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('name'))))); 
-            $data['brand'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('brand'))))); 
-            $data['lang'] = mysql_escape_string(input::post('lang')); 
-            $data['description'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('description')))));
-            $data['dimension'] = mysql_escape_string(utf8_decode(input::post('dimension'))); 
-            $data['impression_materiel'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('impression_materiel')))));             
-            $data['prix_pour_1'] = mysql_escape_string(input::post('prix_pour_1')); 
-            $data['prix_pour_2'] = mysql_escape_string(input::post('prix_pour_2')); 
-            $data['prix_pour_3'] = mysql_escape_string(input::post('prix_pour_3')); 
-            $data['prix_pour_4'] = mysql_escape_string(input::post('prix_pour_4')); 
-            $data['prix_pour_5'] = mysql_escape_string(input::post('prix_pour_5'));
-            $data['prix_pour_20'] = mysql_escape_string(input::post('prix_pour_20'));
-            $data['prix_pour_50'] = mysql_escape_string(input::post('prix_pour_50')); 
-            $data['prix_pour_100'] = mysql_escape_string(input::post('prix_pour_100')); 
-            $data['prix_pour_150'] = mysql_escape_string(input::post('prix_pour_150')); 
-            $data['prix_pour_250'] = mysql_escape_string(input::post('prix_pour_250')); 
-            $data['prix_pour_500'] = mysql_escape_string(input::post('prix_pour_500')); 
-            $data['prix_pour_1000'] = mysql_escape_string(input::post('prix_pour_1000'));
-            $data['active'] = mysql_escape_string(input::post('active'));
+            $data['name'] = utf8_decode(ucfirst(strtolower(input::post('name')))); 
+            $data['brand'] = utf8_decode(ucfirst(strtolower(input::post('brand')))); 
+            $data['lang'] = input::post('lang'); 
+            $data['description'] = utf8_decode(ucwords(strtolower(input::post('description'))));
+            $data['dimension'] = utf8_decode(input::post('dimension')); 
+            $data['impression_materiel'] = utf8_decode(ucfirst(strtolower(input::post('impression_materiel'))));             
+            $data['prix_pour_1'] = input::post('prix_pour_1'); 
+            $data['prix_pour_2'] = input::post('prix_pour_2'); 
+            $data['prix_pour_3'] = input::post('prix_pour_3'); 
+            $data['prix_pour_4'] = input::post('prix_pour_4'); 
+            $data['prix_pour_5'] = input::post('prix_pour_5');
+            $data['prix_pour_20'] = input::post('prix_pour_20');
+            $data['prix_pour_50'] = input::post('prix_pour_50'); 
+            $data['prix_pour_100'] = input::post('prix_pour_100'); 
+            $data['prix_pour_150'] = input::post('prix_pour_150'); 
+            $data['prix_pour_250'] = input::post('prix_pour_250'); 
+            $data['prix_pour_500'] = input::post('prix_pour_500'); 
+            $data['prix_pour_1000'] = input::post('prix_pour_1000');
+            $data['active'] = input::post('active');
             
             $res = $this->products->update_product(input::post('id'),$data);
             
@@ -165,14 +165,14 @@ class productsmanager_controller
     {   
         if (is_logged(session::get('user')))
         {      
-            $data['id'] = mysql_escape_string(input::post('product_id'));
-            $data['category_id'] = mysql_escape_string(input::post('category'));  
-            $data['brand'] = mysql_escape_string(input::post('brand'));  
-            $data['name'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('name'))))); 
-            $data['lang'] = mysql_escape_string(input::post('lang')); 
-            $data['description'] = mysql_escape_string(utf8_decode(ucwords(strtolower(input::post('description')))));
-            $data['dimension'] = mysql_escape_string(utf8_decode(input::post('dimension'))); 
-            $data['impression_materiel'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('impression_materiel')))));             
+            $data['id'] = input::post('product_id');
+            $data['category_id'] = input::post('category');  
+            $data['brand'] = input::post('brand');  
+            $data['name'] = utf8_decode(ucfirst(strtolower(input::post('name')))); 
+            $data['lang'] = input::post('lang'); 
+            $data['description'] = utf8_decode(ucwords(strtolower(input::post('description'))));
+            $data['dimension'] = utf8_decode(input::post('dimension')); 
+            $data['impression_materiel'] = utf8_decode(ucfirst(strtolower(input::post('impression_materiel'))));             
                         
             move_uploaded_file($_FILES['product_photo']['tmp_name'], UPLOAD.$data['id'].'_'.basename( $_FILES['product_photo']['name']));
             move_uploaded_file($_FILES['product_vectoriel']['tmp_name'], UPLOAD.$data['id'].'_'.basename( $_FILES['product_vectoriel']['name']));
@@ -189,8 +189,8 @@ class productsmanager_controller
             $mailer->IsSendmail();
             $mailer->From = 'noreply@belron.com';
             $mailer->FromName = 'Admin';
-            $mailer->Subject = 'Nouveau produit ajoute&eacute; ';
-            $email_message = "<a href='".url::base()."productsmanager/edit/".$data['id']."/'>Nouveau produit ajouté</a>";             
+            $mailer->Subject = utf8_decode('Nouveau produit ajouté');
+            $email_message = "<a href='".url::base()."productsmanager/edit/".$data['id']."/'>Produit # ".$data['id']."</a>";             
             $mailer->MsgHTML($email_message);
             $mailer->AddAddress('skander.jabouzi@groupimage.com', 'Skander Jabouzi');
             $mailer->Send();
@@ -243,11 +243,11 @@ class productsmanager_controller
     {
         if (is_logged(session::get('user')))
         {
-            $data['id'] = mysql_escape_string(input::post('id'));
-            $data['name_fr'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('name_fr'))))); 
-            $data['name_en'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('name_en'))))); 
-            $data['image_file'] = mysql_escape_string(input::post('image_file')); 
-            $data['active'] = mysql_escape_string(input::post('active'));
+            $data['id'] = input::post('id');
+            $data['name_fr'] = utf8_decode(ucfirst(strtolower(input::post('name_fr')))); 
+            $data['name_en'] = utf8_decode(ucfirst(strtolower(input::post('name_en')))); 
+            $data['image_file'] = input::post('image_file'); 
+            $data['active'] = input::post('active');
             
             $res = $this->categories->update($data['id'], $data);           
 
@@ -269,10 +269,10 @@ class productsmanager_controller
     {
         if (is_logged(session::get('user')))
         {              
-            $data['name_fr'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('name_fr'))))); 
-            $data['name_en'] = mysql_escape_string(utf8_decode(ucfirst(strtolower(input::post('name_en'))))); 
-            $data['image_file'] = mysql_escape_string(input::post('image_file')); 
-            $data['active'] = mysql_escape_string(input::post('active')); 
+            $data['name_fr'] = utf8_decode(ucfirst(strtolower(input::post('name_fr')))); 
+            $data['name_en'] = utf8_decode(ucfirst(strtolower(input::post('name_en')))); 
+            $data['image_file'] = input::post('image_file'); 
+            $data['active'] = input::post('active'); 
             
             $res = $this->categories->insert($data);
             

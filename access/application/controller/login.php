@@ -23,7 +23,7 @@ class login_controller
             session::set('lang','fr');
         }
         
-        if (is_logged(session::get('user')))
+        if ($this->is_logged(session::get('user')))
         {            
             if (session::get('user_type') == 3)
             {                
@@ -114,7 +114,7 @@ class login_controller
             session::set('wishlist',$this->has_wishlist());
             
             session::set('lang','fr');
-            session::set('store_type','Lebeau');
+             session::set('store_type','Lebeau');
             if ($province[0]->province != 'QC')
             {
                 session::set('lang','en');
@@ -140,12 +140,14 @@ class login_controller
     }
     
     public function logout()
-    {
+    {        
+        //var_dump(session::get('user'));exit;
         session::delete('user');
         session::delete('user_id');
         session::delete('user_type');
         session::delete('wishlist');
         session::delete('store_type');
+        //var_dump(session::get('user'));
         url::redirect('login');
     }
     
@@ -196,5 +198,11 @@ class login_controller
         }
          
         return $visitorGeolocation;
-    }    
+    }   
+    
+    
+    function is_logged($user)
+    {        
+        return ($user != false);
+    } 
 }

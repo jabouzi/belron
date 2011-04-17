@@ -11,7 +11,7 @@
 <link href="<?=url::base()?>public/styles/style.css" rel="stylesheet" type="text/css" />
 
 </head>
-
+<?var_dump(session::get('user'),session::get('user_id'),session::get('user_type'),session::get('wishlist'),session::get('store_type'))?>
 <?$redirect_url = url::get_redirect_url();?>
 <?$home_url = url::get_home();?>
 <?url::change_language();?>
@@ -42,7 +42,7 @@
                     <a href="<?=url::page('categories')?>"><?=gettext("Categories")?></a>
                     <a href="<?=url::page('orders/historique')?>"><?=gettext("History")?></a>
                 <?endif?>                
-                <a href="<?=url::page('login/logout')?>"><?=gettext("Logout")?></a>
+                <a href="<?=url::page('login/logout/')?>"><?=gettext("Logout")?></a>
             <?else:?>
                 <?if ($admin):?>
                     <a href="<?=url::page('login/userlogin')?>"><?=gettext("Admin")?></a>

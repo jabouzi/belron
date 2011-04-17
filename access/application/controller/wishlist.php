@@ -265,9 +265,6 @@ class wishlist_controller
             
             $stores_ids = unserialize(session::get('stores_ids'));
 			$orders_ids = unserialize(session::get('orders_ids'));			
-		
-			session::delete('stores_ids');
-			session::delete('orders_ids');
                           
             $store_id = $order[0]->store_id;
             $total_cost = $order[0]->total_cost;
@@ -288,6 +285,8 @@ class wishlist_controller
     {
         if (is_logged(session::get('user')))
         {
+            session::delete('stores_ids');
+			session::delete('orders_ids');
             $orders = load::model('orders');
             $status = load::model('status');
             $pos = input::post('pos');
