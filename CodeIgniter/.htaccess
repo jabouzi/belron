@@ -4,7 +4,7 @@
     DirectoryIndex index.php
 
 	RewriteEngine on
-	RewriteBase /belron_pp/CodeIgniter
+	RewriteBase /belron_pp/admin1
 	Order allow,deny
 	Allow from all
 
