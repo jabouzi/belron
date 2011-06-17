@@ -1,0 +1,61 @@
+<div>       
+    <table border="1">
+            
+            <tr>
+                <td><label>P.O. : </label><input type='text' id='pos_0' name='pos[101]' value="" /></td>
+                <td> store # : 6101                            <input type='hidden' id='store_id' name='store_id' value="6101"/></td>
+            </tr>
+            
+            <tr>
+                <td><label>P.O. : </label><input type='text' id='pos_1' name='pos[102]' value="" /></td>
+                <td> store # : 6102                            <input type='hidden' id='store_id' name='store_id' value="6102"/></td>
+            </tr>
+            
+            <tr>
+                <td><label>P.O. : </label><input type='text' id='pos_2' name='pos[103]' value="" /></td>
+                <td> store # : 6103                            <input type='hidden' id='store_id' name='store_id' value="6103"/></td>
+            </tr>
+            
+            <tr>
+                <td><label>P.O. : </label><input type='text' id='pos_3' name='pos[104]' value="" /></td>
+                <td> store # : 6104                            <input type='hidden' id='store_id' name='store_id' value="6104"/></td>
+            </tr>
+                                <tr>
+                <td>
+                    <label>Shipping By store : </label>$14.30                                <input type='hidden' id='shipping' name='shipping' value="14.30" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Total By store : </label>754.3                                <input type='hidden' id='total' name='total' value="754.3" />
+                </td>
+            </tr>
+                                    <tr>
+                <td>
+                    <label>Products : </label>Invoice holder                                <input type='hidden' id='total' name='total' value="Invoice holder" />
+                </td>
+                <td>
+                    <label>Description : </label>Invoice holder                                <input type='hidden' id='total' name='total' value="English Version" />
+                </td>
+                <td>
+                    <label>Price : </label>Invoice holder                                <input type='hidden' id='total' name='total' value="345" />
+                </td>
+            </tr>
+                                <tr>
+                <td>
+                    <label>Products : </label>Form - electronic                                <input type='hidden' id='total' name='total' value="Form - electronic" />
+                </td>
+                <td>
+                    <label>Description : </label>Form - electronic                                <input type='hidden' id='total' name='total' value="English Version" />
+                </td>
+                <td>
+                    <label>Price : </label>Form - electronic                                <input type='hidden' id='total' name='total' value="395" />
+                </td>
+            </tr>
+                            <tr>
+            <td>
+                <label>Grand total : </label>3017.2                            <input type='hidden' id='total' name='total' value="3017.2" />
+            </td>
+        </tr>
+    </table>
+</div>

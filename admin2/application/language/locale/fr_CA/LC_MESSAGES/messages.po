@@ -1,0 +1,1038 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: BELRON\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-04-14 21:50-0400\n"
+"PO-Revision-Date: 2011-04-22 08:54-0500\n"
+"Last-Translator: Skander Jabouzi <jabouzi@gmail.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#: add-confirm1.php:5
+#: add-confirm2.php:5
+#: add-confirm3.php:5
+#: admin_confirmation0.php:5
+#: request_confirmation0.php:5
+#: status_confirmation0.php:5
+#: store_confirmation0.php:5
+#: update-confirm1.php:5
+#: update-confirm2.php:5
+#: update-confirm3.php:5
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#: add-confirm1.php:8
+#: add-confirm2.php:8
+#: add-confirm3.php:8
+msgid "The user info has been added with success"
+msgstr "Les informations de l'usager ont été ajoutées avec succès"
+
+#: add-product1.php:5
+#: add-product1.php:43
+#: header1.php:32
+msgid "Add product"
+msgstr "Ajouter un produit"
+
+#: add-product1.php:11
+#: edit-product1.php:14
+#: products-index1.php:79
+msgid "Category"
+msgstr "Catégorie"
+
+#: add-product1.php:13
+msgid "Select a category"
+msgstr "Sélectionner une catégorie"
+
+#: add-product1.php:20
+#: edit-product1.php:16
+#: products-index1.php:80
+msgid "Brand"
+msgstr "Marque"
+
+#: add-product1.php:21
+#: edit-product1.php:15
+#: products-index1.php:78
+msgid "product number"
+msgstr "Numéro du produit"
+
+#: add-product1.php:22
+#: add-store2.php:13
+#: edit-product1.php:17
+#: edit-store2.php:19
+#: products-index1.php:81
+#: stores-index2.php:81
+msgid "Name"
+msgstr "Nom"
+
+#: add-product1.php:23
+#: edit-product1.php:18
+#: products-index1.php:82
+msgid "Language"
+msgstr "Langue"
+
+#: add-product1.php:34
+#: confirm0.php:23
+#: edit-product1.php:29
+#: order0.php:15
+#: order_approved0.php:18
+#: order_detail0.php:9
+#: products-index1.php:83
+msgid "Description"
+msgstr "Description"
+
+#: add-product1.php:35
+#: edit-product1.php:30
+#: products-index1.php:84
+msgid "Dimensions"
+msgstr "Dimensions"
+
+#: add-product1.php:36
+#: edit-product1.php:31
+#: products-index1.php:85
+msgid "Print"
+msgstr "Impression"
+
+#: add-product1.php:37
+msgid "Product photo"
+msgstr "Photo du produit"
+
+#: add-product1.php:38
+msgid "Vectorial"
+msgstr "Vectoriel du produit"
+
+#: add-store2.php:5
+#: edit-store2.php:5
+msgid "Edit store"
+msgstr "Modifier un magasin"
+
+#: add-store2.php:12
+#: edit-store2.php:18
+#: stores-index2.php:80
+msgid "Store number"
+msgstr "Le numéro du magasin"
+
+#: add-store2.php:14
+#: add-user3.php:15
+#: confirm0.php:105
+#: edit-store2.php:20
+#: edit-user3.php:20
+#: order0.php:116
+#: stores-index2.php:82
+#: users-index3.php:81
+msgid "Address"
+msgstr "Adresse"
+
+#: add-store2.php:15
+#: add-user3.php:16
+#: confirm0.php:106
+#: edit-store2.php:21
+#: edit-user3.php:21
+#: order0.php:117
+#: order_approved0.php:73
+#: order_detail0.php:65
+#: stores-index2.php:83
+msgid "City"
+msgstr "Ville"
+
+#: add-store2.php:16
+#: add-user3.php:17
+#: confirm0.php:108
+#: edit-store2.php:22
+#: edit-user3.php:22
+#: order0.php:119
+#: order_approved0.php:75
+#: order_detail0.php:67
+#: stores-index2.php:84
+#: users-index3.php:83
+msgid "Province"
+msgstr "Province"
+
+#: add-store2.php:26
+#: add-user3.php:27
+#: edit-store2.php:32
+#: edit-user3.php:32
+#: stores-index2.php:85
+#: users-index3.php:84
+msgid "Postal code"
+msgstr "Code postal"
+
+#: add-store2.php:28
+#: add-user3.php:29
+#: edit-store2.php:34
+#: edit-user3.php:34
+#: stores-index2.php:86
+#: users-index3.php:85
+msgid "Phone"
+msgstr "Téléphone"
+
+#: add-store2.php:31
+#: confirm0.php:110
+#: edit-store2.php:37
+#: order0.php:121
+#: order_approved0.php:77
+#: order_detail0.php:69
+#: stores-index2.php:87
+msgid "Fax"
+msgstr "Télécopieur"
+
+#: add-store2.php:34
+#: edit-store2.php:40
+#: stores-index2.php:88
+msgid "Manager"
+msgstr "Gérant"
+
+#: add-store2.php:35
+#: edit-store2.php:41
+msgid "Active cart"
+msgstr "Magasin actif"
+
+#: add-store2.php:41
+msgid "Add store"
+msgstr "Ajouter un magasin"
+
+#: add-user3.php:5
+#: add-user3.php:37
+msgid "Add user"
+msgstr "Ajouter un usager"
+
+#: add-user3.php:12
+#: edit-user3.php:17
+#: users-index3.php:78
+msgid "Position"
+msgstr "Position"
+
+#: add-user3.php:13
+#: edit-user3.php:18
+msgid "Last name"
+msgstr "Nom de famille"
+
+#: add-user3.php:14
+#: edit-user3.php:19
+msgid "First name"
+msgstr "Prénom"
+
+#: add-user3.php:32
+#: edit-user3.php:37
+#: users-index3.php:86
+msgid "Email"
+msgstr "Courriel"
+
+#: add-user3.php:33
+#: edit-user3.php:38
+#: footer0.php:19
+#: storelogin0.php:33
+#: userlogin0.php:24
+msgid "Password"
+msgstr "Mot de passe"
+
+#: add-user3.php:34
+#: categories1.php:16
+#: categories1.php:52
+#: edit-category1.php:17
+#: edit-product1.php:44
+#: edit-user3.php:39
+#: products-index1.php:86
+#: users-index3.php:87
+msgid "Active"
+msgstr "Actif"
+
+#: admin_confirmation0.php:8
+msgid "This order has been sent with success"
+msgstr "Cette commande a été envoyée avec succès"
+
+#: admin_index0.php:7
+msgid "Access to your ressources"
+msgstr "Accéder à vos ressources"
+
+#: categories1.php:5
+msgid "Category list"
+msgstr "Liste des catégories"
+
+#: categories1.php:12
+msgid "Category number"
+msgstr "Numéro de catégorie"
+
+#: categories1.php:13
+#: categories1.php:49
+#: edit-category1.php:14
+msgid "Name fr"
+msgstr "Nom (fr)"
+
+#: categories1.php:14
+#: categories1.php:50
+#: edit-category1.php:15
+msgid "Name en"
+msgstr "Nom (en)"
+
+#: categories1.php:15
+msgid "Image file"
+msgstr "Fichier image"
+
+#: categories1.php:33
+#: products-index1.php:112
+#: stores-index2.php:115
+#: users-index3.php:113
+msgid "Edit"
+msgstr "Modifier"
+
+#: categories1.php:38
+#: categories1.php:45
+#: categories1.php:55
+msgid "Add a category"
+msgstr "Ajouter une catégorie"
+
+#: categories1.php:51
+#: edit-category1.php:16
+msgid "Image"
+msgstr "Image"
+
+#: confirm0.php:6
+#: order0.php:8
+msgid "Order confirmation"
+msgstr "Confirmation de la commande"
+
+#: confirm0.php:7
+#: order_approved0.php:5
+#: order_detail0.php:5
+msgid "Order info"
+msgstr "Détails de la commande"
+
+#: confirm0.php:9
+#: confirm0.php:11
+#: confirm0.php:13
+#: order_approved0.php:7
+#: order_approved0.php:9
+#: order_approved0.php:11
+msgid "Back"
+msgstr "Retour"
+
+#: confirm0.php:22
+#: confirm0.php:65
+#: order0.php:14
+#: order0.php:59
+msgid "Remove"
+msgstr "Supprimer"
+
+#: confirm0.php:24
+#: order0.php:16
+#: order_approved0.php:19
+#: order_detail0.php:10
+msgid "Quantity"
+msgstr "Quantité"
+
+#: confirm0.php:25
+#: order0.php:17
+#: order_approved0.php:20
+#: order_detail0.php:11
+msgid "Price"
+msgstr "Prix"
+
+#: confirm0.php:46
+#: order0.php:37
+msgid "-------"
+msgstr "-------"
+
+#: confirm0.php:66
+#: order0.php:60
+msgid "Show shipping fee"
+msgstr "Afficher les frais de livraison"
+
+#: confirm0.php:70
+#: order0.php:81
+msgid "Select a fee"
+msgstr "Sélectionner un prix"
+
+#: confirm0.php:73
+#: order0.php:84
+#: order_approved0.php:53
+#: order_detail0.php:44
+#: order_pos0.php:16
+msgid "Total"
+msgstr "Total"
+
+#: confirm0.php:96
+msgid "The delivery fees may change"
+msgstr "Les frais de livraison peuvent changer"
+
+#: confirm0.php:97
+msgid "Print delays are not included"
+msgstr "Les délais d'impression ne sont pas inclus"
+
+#: confirm0.php:101
+#: order0.php:112
+#: order_approved0.php:68
+#: order_detail0.php:60
+msgid "Store address"
+msgstr "Adresse du magasin"
+
+#: confirm0.php:107
+#: order0.php:118
+#: order_approved0.php:74
+#: order_detail0.php:66
+msgid "Postal Code"
+msgstr "Code postal"
+
+#: confirm0.php:109
+#: order0.php:120
+#: order_approved0.php:76
+#: order_detail0.php:68
+msgid "Tel."
+msgstr "Tél."
+
+#: confirm0.php:119
+msgid "Confirm the order"
+msgstr "Confirmer la commande"
+
+#: dashboard0.php:5
+#: historique0.php:5
+#: orders0.php:5
+msgid "List of orders"
+msgstr "Liste des commandes"
+
+#: dashboard0.php:10
+#: historique0.php:10
+#: orders0.php:10
+#: products-index1.php:10
+#: stores-index2.php:12
+#: users-index3.php:10
+msgid "Page number"
+msgstr "Numéro de la page"
+
+#: dashboard0.php:24
+#: historique0.php:24
+#: orders0.php:35
+#: products-index1.php:24
+#: stores-index2.php:26
+#: users-index3.php:24
+msgid "Sort by"
+msgstr "Trier par"
+
+#: dashboard0.php:36
+#: historique0.php:38
+#: orders0.php:47
+msgid "Sort order"
+msgstr "Ordre du tri"
+
+#: dashboard0.php:46
+#: historique0.php:48
+#: orders0.php:57
+#: products-index1.php:46
+#: stores-index2.php:48
+#: users-index3.php:46
+msgid "DESC"
+msgstr "DEC"
+
+#: dashboard0.php:47
+#: historique0.php:49
+#: orders0.php:58
+#: products-index1.php:47
+#: stores-index2.php:49
+#: users-index3.php:47
+msgid "ASC"
+msgstr "INC"
+
+#: dashboard0.php:55
+#: dashboard0.php:113
+#: historique0.php:57
+#: historique0.php:107
+#: orders0.php:66
+#: orders0.php:126
+#: products-index1.php:67
+#: products-index1.php:123
+#: stores-index2.php:69
+#: stores-index2.php:125
+#: users-index3.php:67
+#: users-index3.php:123
+msgid "Previous"
+msgstr "Précédent"
+
+#: dashboard0.php:59
+#: dashboard0.php:117
+#: historique0.php:61
+#: historique0.php:111
+#: orders0.php:70
+#: orders0.php:130
+#: products-index1.php:71
+#: products-index1.php:127
+#: stores-index2.php:73
+#: stores-index2.php:129
+#: users-index3.php:71
+#: users-index3.php:127
+msgid "Next"
+msgstr "Suivant"
+
+#: dashboard0.php:65
+#: orders0.php:76
+#: storelogin0.php:19
+#: storelogin0.php:22
+msgid "Store"
+msgstr "Magasin"
+
+#: dashboard0.php:66
+#: historique0.php:67
+#: orders0.php:77
+msgid "Reservation date"
+msgstr "Date de réservation"
+
+#: dashboard0.php:67
+#: historique0.php:68
+#: orders0.php:78
+msgid "Approval date"
+msgstr "Date d'approbation"
+
+#: dashboard0.php:68
+#: historique0.php:69
+#: orders0.php:79
+msgid "Approved by"
+msgstr "Approuvé par"
+
+#: dashboard0.php:69
+#: historique0.php:70
+#: orders0.php:80
+msgid "Number"
+msgstr "Numéro"
+
+#msgid "Total"
+#msgstr "Total"
+#: dashboard0.php:70
+#: historique0.php:71
+#: orders0.php:81
+#: dashboard0.php:71
+#: historique0.php:72
+#: orders0.php:82
+msgid "Status"
+msgstr "État"
+
+#: dashboard0.php:72
+#: historique0.php:73
+#: orders0.php:83
+msgid "Actions"
+msgstr "Actions"
+
+#: dashboard0.php:78
+#: historique0.php:78
+#: orders0.php:89
+msgid "approved"
+msgstr "approuvé"
+
+#: dashboard0.php:80
+#: historique0.php:80
+#: orders0.php:91
+msgid "not approved"
+msgstr "non approuvé"
+
+#: dashboard0.php:83
+#: historique0.php:83
+#: orders0.php:94
+msgid "no pos"
+msgstr "pas de pos"
+
+#: dashboard0.php:99
+#: orders0.php:111
+msgid "Approve"
+msgstr "Approuver"
+
+#: dashboard0.php:104
+#: historique0.php:98
+#: orders0.php:117
+msgid "Details"
+msgstr "Détails"
+
+#: edit-category1.php:5
+msgid "Edit category"
+msgstr "Modifier une catégorie"
+
+#: edit-category1.php:21
+msgid "Update category"
+msgstr "Mettre à jour une catégorie"
+
+#: edit-product1.php:5
+msgid "Edit product"
+msgstr "Modifier un produit"
+
+#: edit-product1.php:32
+msgid "Price for 1"
+msgstr "Prix pour 1"
+
+#: edit-product1.php:33
+msgid "Price for 2"
+msgstr "Prix pour 2"
+
+#: edit-product1.php:34
+msgid "Price for 3"
+msgstr "Prix pour 3"
+
+#: edit-product1.php:35
+msgid "Price for 4"
+msgstr "Prix pour 4"
+
+#: edit-product1.php:36
+msgid "Price for 5"
+msgstr "Prix pour 5"
+
+#: edit-product1.php:37
+msgid "Price for 20"
+msgstr "Prix pour 20"
+
+#: edit-product1.php:38
+msgid "Price for 50"
+msgstr "Prix pour 20"
+
+#: edit-product1.php:39
+msgid "Price for 100"
+msgstr "Prix pour 100"
+
+#: edit-product1.php:40
+msgid "Price for 150"
+msgstr "Prix pour 150"
+
+#: edit-product1.php:41
+msgid "Price for 250"
+msgstr "Prix pour 250"
+
+#: edit-product1.php:42
+msgid "Price for 500"
+msgstr "Prix pour 500"
+
+#: edit-product1.php:43
+msgid "Price for 1000"
+msgstr "Prix pour 1000"
+
+#: edit-product1.php:50
+msgid "Update product"
+msgstr "Mettre à jour un produit"
+
+#: edit-store2.php:46
+#: edit-store2.php:52
+#: edit-store2.php:67
+msgid "Add manager"
+msgstr "Ajouter un gérant"
+
+#: edit-store2.php:47
+msgid "Update store"
+msgstr "Mettre à jour un magasin"
+
+#: edit-user3.php:5
+msgid "Edit user"
+msgstr "Modifier un usager"
+
+#: edit-user3.php:43
+#: edit-user3.php:50
+msgid "Add permission"
+msgstr "Ajouter une permission"
+
+#msgid "Add store"
+#msgstr "Ajouter un magasin"
+#: edit-user3.php:44
+#: edit-user3.php:71
+#: edit-user3.php:85
+#: order_approved0.php:106
+#: order_approved0.php:116
+#: edit-user3.php:45
+msgid "Update user"
+msgstr "Mettre à jour un usager"
+
+#msgid "Add user"
+#msgstr "Ajouter un usager"
+#: edit-user3.php:65
+#: footer0.php:9
+msgid "Login form"
+msgstr "Formulaire de connexion"
+
+#: footer0.php:13
+msgid "To close, click any button or the ESC key."
+msgstr "Pour fermer, cliquer sur ÉCHAP"
+
+#: footer0.php:18
+#: userlogin0.php:22
+msgid "User name"
+msgstr "Nom d'utilisateur"
+
+#: footer0.php:21
+#: header1.php:27
+#: header2.php:27
+#: header3.php:27
+msgid "Login"
+msgstr "Connexion"
+
+#: footer0.php:22
+#: order_approved0.php:96
+#: order_approved0.php:168
+#: order_approved0.php:205
+msgid "Cancel"
+msgstr "Annuler"
+
+#: header0.php:35
+#: header0.php:39
+#: header1.php:30
+#: header2.php:30
+#: header3.php:30
+#: storelogin0.php:39
+#: userlogin0.php:30
+msgid "Home"
+msgstr "Accueil"
+
+#: header0.php:36
+#: header0.php:40
+msgid "Make an order"
+msgstr "Créer une commande"
+
+#: header0.php:37
+#: header0.php:48
+#: userlogin0.php:19
+msgid "Admin"
+msgstr "Admin"
+
+#: header0.php:42
+#: header1.php:34
+msgid "Categories"
+msgstr "Catégories"
+
+#: header0.php:43
+msgid "History"
+msgstr "Historique"
+
+#: header0.php:45
+#: header1.php:31
+#: header2.php:31
+#: header3.php:31
+msgid "Logout"
+msgstr "Quitter"
+
+#: header0.php:53
+#: header1.php:38
+#: header2.php:37
+#: header3.php:37
+msgid "English"
+msgstr "Anglais"
+
+#: header0.php:54
+#: header1.php:39
+#: header2.php:38
+#: header3.php:38
+msgid "French"
+msgstr "Français"
+
+#: header1.php:33
+#: products-index1.php:5
+msgid "Product list"
+msgstr "Liste des produits"
+
+#: header2.php:32
+#: header3.php:32
+msgid "Add"
+msgstr "Ajouter"
+
+#: header2.php:33
+#: header3.php:33
+msgid "List"
+msgstr "Liste"
+
+#: order0.php:33
+#: order_detail0.php:23
+msgid "More info"
+msgstr "Plus d'infos"
+
+#: order0.php:124
+msgid "Approve the order"
+msgstr "Approuver la commande"
+
+#: order_approved0.php:50
+#: order_detail0.php:41
+msgid "Shipping fee"
+msgstr "Frais de livraison"
+
+#msgid "Address"
+#msgstr "Adresse"
+#: order_approved0.php:72
+#: order_detail0.php:64
+#: order_approved0.php:88
+#: order_approved0.php:91
+msgid "Order again"
+msgstr "Commander encore"
+
+#: order_approved0.php:95
+#: order_approved0.php:123
+msgid "Problem"
+msgstr "Problème"
+
+#: order_approved0.php:127
+msgid "Order not received"
+msgstr "Commande non reçue"
+
+#: order_approved0.php:141
+#: order_approved0.php:185
+msgid "quantity"
+msgstr "quantité"
+
+#: order_approved0.php:144
+#: order_approved0.php:188
+msgid "price"
+msgstr "prix"
+
+#: order_approved0.php:148
+#: order_approved0.php:192
+msgid "reason"
+msgstr "raison"
+
+#: order_approved0.php:154
+#: order_approved0.php:198
+msgid "summary"
+msgstr "résumé"
+
+#: order_approved0.php:161
+msgid "Submit a problem"
+msgstr "Soummettre le problème"
+
+#: order_approved0.php:161
+msgid "Submit cancellation"
+msgstr "Soumettre l'annulation"
+
+#: order_pos0.php:5
+msgid "P.O number (P.O.S)"
+msgstr "P.O de la commande (P.O.S)"
+
+#: order_pos0.php:12
+msgid "P.O."
+msgstr "P.O."
+
+#: order_pos0.php:15
+msgid "Shipping"
+msgstr "Livraison"
+
+#: order_pos0.php:18
+msgid "Products"
+msgstr "Produits"
+
+#: order_pos0.php:24
+msgid "Update order"
+msgstr "Mettre à jour une commande"
+
+#: order_pos0.php:27
+msgid "Can be approved by"
+msgstr "Approbation peut être faite par"
+
+#: orders0.php:24
+msgid "User"
+msgstr "Usager"
+
+#: page-index0.php:5
+#: page-index1.php:5
+#: page-index2.php:5
+#: page-index3.php:5
+msgid "Speedy ordering website"
+msgstr "Site de commandes Lebeau"
+
+#: product0.php:20
+#: products0.php:26
+msgid "Add to cart"
+msgstr "Ajouter au panier"
+
+#: product0.php:28
+#: products0.php:37
+msgid "Shopping cart"
+msgstr "Panier"
+
+#: product0.php:33
+#: products0.php:46
+msgid "Order now"
+msgstr "Commander maintenant"
+
+#: products0.php:5
+msgid "Add a product"
+msgstr "Ajouter un produit"
+
+#: products-index1.php:36
+msgid "Sort product"
+msgstr "Trier produit"
+
+#: products-index1.php:50
+#: stores-index2.php:52
+#: users-index3.php:50
+msgid "Display count"
+msgstr "Afficher le nombre"
+
+#: products-index1.php:87
+#: stores-index2.php:90
+#: users-index3.php:88
+msgid "Creation date"
+msgstr "Date de création"
+
+#: products-index1.php:88
+#: stores-index2.php:91
+#: users-index3.php:89
+msgid "Modification date"
+msgstr "Date de modification"
+
+#: products-index1.php:119
+msgid "Remove products"
+msgstr "Supprimer produits"
+
+#: request_confirmation0.php:8
+msgid "Your request has been submitted with success"
+msgstr "Votre demande a été envoyée avec succès"
+
+#: store_confirmation0.php:8
+msgid "Your order has been submitted with success"
+msgstr "Votre commande a été envoyée avec succès"
+
+#: storelogin0.php:5
+#: userlogin0.php:5
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: storelogin0.php:24
+msgid "Select a store"
+msgstr "Choisir un magasin"
+
+#: storelogin0.php:35
+#: userlogin0.php:26
+msgid "Submit"
+msgstr "Soumettre"
+
+#: stores-index2.php:7
+msgid "Store list"
+msgstr "Liste des magasins"
+
+#: stores-index2.php:38
+msgid "Sort store"
+msgstr "Trier magasin"
+
+#: stores-index2.php:89
+msgid "Cart"
+msgstr "Panier"
+
+#: stores-index2.php:121
+msgid "Remove stores"
+msgstr "Supprimer les magasins"
+
+#: update-confirm1.php:8
+#: update-confirm2.php:8
+#: update-confirm3.php:8
+msgid "The user info has been updated with success"
+msgstr "Les informations de l'usager ont été modifiées avec succès"
+
+#: users-index3.php:5
+msgid "List of users"
+msgstr "Liste des usagers"
+
+#: users-index3.php:36
+msgid "Sort user"
+msgstr "Trier usager"
+
+#msgid "Last name"
+#msgstr "Nom de famille"
+#msgid "First name"
+#msgstr "Prénom"
+#msgid "City"
+#msgstr "Ville"
+#: users-index3.php:79
+#: users-index3.php:80
+#: users-index3.php:82
+#: users-index3.php:119
+msgid "Remove users"
+msgstr "Supprimer usagers"
+
+#: users-index3.php:119
+msgid "Received"
+msgstr "Reçue"
+
+#: users-index3.php:119
+msgid "Processing"
+msgstr "En traitement"
+
+#: users-index3.php:119
+msgid "Sent"
+msgstr "Envoyée"
+
+#: users-index3.php:119
+msgid "Cancelled"
+msgstr "Annulée"
+
+msgid "Delivery within 30 days"
+msgstr "Livraison durant 30 jours"
+
+msgid "Delivery within 2 weeks"
+msgstr "Livraison durant 2 semaines"
+
+msgid "Delivery as soon as possible"
+msgstr "Livraison le plus rapide possible"
+
+msgid "Tax not included"
+msgstr "Taxe non inluse"
+
+msgid "Admin home"
+msgstr "Accueil admin"
+
+msgid "Products list"
+msgstr "Liste des produits"
+
+msgid "Product id"
+msgstr "Numéro du produit"
+
+msgid "Request price revision"
+msgstr "Demander de vérification du prix"
+
+msgid "Users list"
+msgstr "Liste des usagers"
+
+msgid "Stores list"
+msgstr "Liste des magasins"
+
+msgid "Add provinces to supervise"
+msgstr "Ajouter les provinces à gérer"
+
+msgid "Provinces to supervise"
+msgstr "Provinces à gérer"
+
+msgid "Add managers to supervise"
+msgstr "Ajouter les usagers à superviser"
+
+msgid "Managers to supervise"
+msgstr "Usagers à superviser"
+
+msgid "Add stores to supervise"
+msgstr "Ajouter les magasins à superviser"
+
+msgid "Stores to supervise"
+msgstr "Magasins à superviser"
+
+msgid "Update user infos"
+msgstr "Mettre à jour les données de l'usager"
+
+msgid "Save user infos"
+msgstr "Sauvegarder les données de l'usager"
+
+msgid "Cart active"
+msgstr "Magasin actif"
+
+msgid "Add store supervisers"
+msgstr "Ajouter les supervisers du magasin"
+
+msgid "Store supervisers"
+msgstr "Supervisers du magasin"
+
+msgid "Save stores supervisers"
+msgstr "Sauvegarder les supervisers du magasin"
+
+msgid "Update store infos"
+msgstr "Mettre à jour les données du magasin"
+
+msgid "Save store infos"
+msgstr "Sauvegarder les données du magasin"
+
+msgid "Download the invoice"
+msgstr "Télécharger la facture"
+
