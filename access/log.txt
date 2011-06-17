@@ -2940,3 +2940,101 @@
 [11:06 AM Apr 16 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/system/driver/db/pdo.php ON LINE 285
 [3:31 PM Apr 16 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
 [3:31 PM Apr 16 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[11:19 AM Apr 17 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[7:43 AM Apr 18 2011] Notice: Undefined index:  geolocation IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/login.php ON LINE 187
+[7:43 AM Apr 18 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[7:43 AM Apr 18 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[7:43 AM Apr 18 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[7:43 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[7:43 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[7:43 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[7:43 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[7:44 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[7:44 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[7:44 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[7:44 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[7:44 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[7:44 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[7:44 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[7:44 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[7:47 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[7:47 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[7:47 AM Apr 18 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/login.php ON LINE 107
+[7:47 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[7:47 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[7:48 AM Apr 18 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/login.php ON LINE 107
+[7:48 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[7:48 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[8:19 AM Apr 18 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/login.php ON LINE 107
+[8:19 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[8:19 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[8:19 AM Apr 18 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/login.php ON LINE 107
+[8:19 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[8:19 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[9:06 AM Apr 18 2011] Notice: Undefined index:  geolocation IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/login.php ON LINE 187
+[9:06 AM Apr 18 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[9:06 AM Apr 18 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[9:06 AM Apr 18 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[9:06 AM Apr 18 2011] Notice: Undefined property:  dingo::$category_name IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/categories.php ON LINE 9
+[9:06 AM Apr 18 2011] Notice: Undefined property:  dingo::$category_name IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/categories.php ON LINE 9
+[9:06 AM Apr 18 2011] Notice: Undefined property:  dingo::$category_name IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/categories.php ON LINE 9
+[9:06 AM Apr 18 2011] Notice: Undefined property:  dingo::$category_name IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/categories.php ON LINE 9
+[9:06 AM Apr 18 2011] Notice: Undefined property:  dingo::$category_name IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/categories.php ON LINE 9
+[9:06 AM Apr 18 2011] Notice: Undefined property:  dingo::$category_name IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/categories.php ON LINE 9
+[9:06 AM Apr 18 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 183
+[9:06 AM Apr 18 2011] Notice: Trying to get property of non-object IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 183
+[9:06 AM Apr 18 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 184
+[9:06 AM Apr 18 2011] Notice: Trying to get property of non-object IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 184
+[9:06 AM Apr 18 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 183
+[9:06 AM Apr 18 2011] Notice: Trying to get property of non-object IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 183
+[9:06 AM Apr 18 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 184
+[9:06 AM Apr 18 2011] Notice: Trying to get property of non-object IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 184
+[9:06 AM Apr 18 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 183
+[9:06 AM Apr 18 2011] Notice: Trying to get property of non-object IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 183
+[9:06 AM Apr 18 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 184
+[9:06 AM Apr 18 2011] Notice: Trying to get property of non-object IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 184
+[9:06 AM Apr 18 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 186
+[9:06 AM Apr 18 2011] Notice: Trying to get property of non-object IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 186
+[9:06 AM Apr 18 2011] Notice: Undefined index:   IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 186
+[9:08 AM Apr 18 2011] Notice: Trying to get property of non-object IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 145
+[9:08 AM Apr 18 2011] Notice: Trying to get property of non-object IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 145
+[9:08 AM Apr 18 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 151
+[9:08 AM Apr 18 2011] Notice: Trying to get property of non-object IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/orders.php ON LINE 151
+[9:08 AM Apr 18 2011] Notice: Undefined variable: stores_supervised IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/order_approved.php ON LINE 109
+[9:08 AM Apr 18 2011] Warning: Invalid argument supplied for foreach() IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/order_approved.php ON LINE 109
+[9:16 AM Apr 18 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/login.php ON LINE 107
+[9:16 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[9:16 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[9:56 AM Apr 18 2011] Notice: Undefined offset:  0 IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/login.php ON LINE 107
+[9:56 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[9:56 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[9:56 AM Apr 18 2011] Notice: Undefined index:  geolocation IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/login.php ON LINE 187
+[9:56 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[9:56 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[9:56 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[9:56 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[9:56 AM Apr 18 2011] Notice: Undefined index:  geolocation IN /home/www/php2.groupimage.net/public/belron_pp/access/application/controller/login.php ON LINE 187
+[9:56 AM Apr 18 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[9:56 AM Apr 18 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[9:56 AM Apr 18 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[9:57 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[9:57 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[9:58 AM Apr 18 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[9:58 AM Apr 18 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[9:58 AM Apr 18 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[9:58 AM Apr 18 2011] Notice: Undefined property:  dingo::$category_name IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/categories.php ON LINE 9
+[9:58 AM Apr 18 2011] Notice: Undefined property:  dingo::$category_name IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/categories.php ON LINE 9
+[9:58 AM Apr 18 2011] Notice: Undefined property:  dingo::$category_name IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/categories.php ON LINE 9
+[9:58 AM Apr 18 2011] Notice: Undefined property:  dingo::$category_name IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/categories.php ON LINE 9
+[9:58 AM Apr 18 2011] Notice: Undefined property:  dingo::$category_name IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/categories.php ON LINE 9
+[9:58 AM Apr 18 2011] Notice: Undefined property:  dingo::$category_name IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/categories.php ON LINE 9
+[9:58 AM Apr 18 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[9:58 AM Apr 18 2011] Notice: Undefined variable: id IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/userlogin.php ON LINE 21
+[9:38 AM Apr 20 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[9:38 AM Apr 20 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[8:38 AM Apr 21 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[8:38 AM Apr 21 2011] Notice: Undefined variable: store_selected IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/storelogin.php ON LINE 27
+[10:33 PM May 13 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[10:21 PM May 23 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[2:20 AM Jun 12 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
+[10:16 PM Jun 15 2011] Notice: Undefined variable: admin IN /home/www/php2.groupimage.net/public/belron_pp/access/application/view/header.php ON LINE 47
